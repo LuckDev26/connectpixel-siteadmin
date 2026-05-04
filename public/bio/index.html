@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>ConnectPixel — Link da Bio</title>
+<meta name="description" content="Acesse o link oficial da ConnectPixel: atendimento, portfólio e soluções para empresas, pessoas e eventos." />
+<meta name="theme-color" content="#05080D" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05080D;
+  --bg-2:#07111B;
+  --bg-3:#0A1521;
+  --panel:#0D1825;
+  --panel-2:#101D2C;
+  --line:rgba(255,255,255,.07);
+  --line-strong:rgba(72,229,194,.28);
+  --text:#F7FBFC;
+  --text-soft:#DCE7EA;
+  --muted:#94A4B5;
+  --muted-2:#6E7E8F;
+  --green:#B6EF59;
+  --teal:#48E5C2;
+  --teal-strong:#24E3CF;
+  --grad:linear-gradient(135deg,#B6EF59 0%,#48E5C2 78%);
+  --grad-soft:linear-gradient(135deg,rgba(182,239,89,.14),rgba(72,229,194,.11));
+  --shadow:0 20px 60px rgba(0,0,0,.34);
+  --shadow-soft:0 12px 30px rgba(0,0,0,.22);
+  --radius-xl:30px;
+  --radius-lg:24px;
+  --radius-md:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:
+    radial-gradient(circle at 16% 4%,rgba(182,239,89,.14),transparent 24%),
+    radial-gradient(circle at 88% 5%,rgba(72,229,194,.17),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(72,229,194,.08),transparent 30%),
+    linear-gradient(180deg,#04070C 0%,#07111B 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.015),transparent 20%),
+    url("data:image/svg+xml,%3Csvg width='88' height='102' viewBox='0 0 88 102' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M44 1 L87 26 L87 76 L44 101 L1 76 L1 26Z' fill='none' stroke='rgba(72,229,194,0.035)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:auto,88px 102px;
+  opacity:.34;
+  z-index:0;
+}
+a,button{font:inherit;color:inherit}
+a{text-decoration:none}
+button{border:0;background:none;cursor:pointer;text-align:left}
+.page{
+  position:fixed;
+  inset:0;
+  z-index:10;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  transition:transform .52s cubic-bezier(.16,1,.3,1),opacity .38s ease,filter .38s ease;
+}
+.page.hidden{opacity:0;transform:translateX(102%);filter:blur(8px);pointer-events:none}
+.page.active{opacity:1;transform:translateX(0);filter:none;pointer-events:auto}
+#page-empresas,#page-eventos{
+  z-index:20;
+  background:
+    radial-gradient(circle at 16% 4%,rgba(182,239,89,.12),transparent 24%),
+    radial-gradient(circle at 88% 5%,rgba(72,229,194,.14),transparent 25%),
+    linear-gradient(180deg,#04070C 0%,#07111B 100%);
+}
+.app{
+  width:min(100%,500px);
+  margin:0 auto;
+  min-height:100svh;
+  padding:18px 16px calc(28px + env(safe-area-inset-bottom));
+  position:relative;
+  z-index:1;
+}
+.title-font,h1,h2,h3,h4{font-family:'Space Grotesk',Inter,sans-serif;letter-spacing:-.045em}
+.logo-top{display:block;width:min(78vw,260px);height:auto;margin:4px auto 18px;filter:drop-shadow(0 0 18px rgba(72,229,194,.14))}
+.hero{padding:8px 0 0;text-align:center;animation:rise .72s cubic-bezier(.16,1,.3,1) both}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;margin-bottom:16px;
+  border-radius:999px;border:1px solid rgba(72,229,194,.18);
+  background:rgba(7,21,27,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  font-size:.67rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+}
+.kicker::before{content:'';width:7px;height:7px;border-radius:999px;background:var(--green);box-shadow:0 0 14px rgba(182,239,89,.65);animation:pulse 2.6s infinite ease-in-out}
+.hero-title{max-width:9.5ch;margin:0 auto 14px;font-size:clamp(2.6rem,12vw,4rem);line-height:.94;font-weight:800}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-copy{max-width:34ch;margin:0 auto 24px;color:var(--text-soft);font-size:.995rem;line-height:1.68}
+.hero-copy strong{color:#fff}
+.quick-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px}
+.quick-point{
+  position:relative;overflow:hidden;
+  min-height:84px;padding:12px 10px;border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.024));
+  border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow-soft);
+  color:#EFF8FA;text-align:center;font-size:.76rem;font-weight:700;line-height:1.2;
+  transition:transform .34s cubic-bezier(.16,1,.3,1),border-color .34s ease,background .34s ease,box-shadow .34s ease,filter .34s ease;
+  animation:fadeUp .62s both;
+}
+.quick-point:nth-child(1){animation-delay:.08s}
+.quick-point:nth-child(2){animation-delay:.14s}
+.quick-point:nth-child(3){animation-delay:.20s}
+.quick-point::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,18%),rgba(72,229,194,.22),transparent 48%);opacity:0;transition:opacity .34s ease}
+.quick-point::after{content:'';position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(120deg,rgba(182,239,89,.18),rgba(72,229,194,.1),transparent 60%);opacity:0;transition:opacity .34s ease;pointer-events:none}
+.quick-point:active{transform:scale(.985)}
+@media(hover:hover){.quick-point:hover{border-color:rgba(72,229,194,.28);box-shadow:0 18px 32px rgba(0,0,0,.24),0 0 0 1px rgba(72,229,194,.04) inset;filter:brightness(1.02)}.quick-point:hover::before,.quick-point:hover::after{opacity:1}}
+.icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;color:var(--teal);flex:0 0 auto}
+.icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.actions{display:grid;gap:12px;margin-top:10px}
+.action{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:grid;grid-template-columns:52px 1fr 40px;align-items:center;gap:13px;
+  min-height:78px;padding:14px;border-radius:24px;
+  background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.018)), rgba(11,20,31,.9);
+  border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 38px rgba(0,0,0,.22);
+  transition:transform .32s cubic-bezier(.16,1,.3,1),border-color .32s ease,box-shadow .32s ease,background .32s ease,filter .32s ease;
+  animation:fadeUp .66s both;
+}
+.action:nth-child(1){animation-delay:.24s}
+.action:nth-child(2){animation-delay:.30s}
+.action:nth-child(3){animation-delay:.36s}
+.action:nth-child(4){animation-delay:.42s}
+.action:nth-child(5){animation-delay:.48s}
+.action::before{content:'';position:absolute;inset:-1px;opacity:0;background:linear-gradient(110deg,transparent 15%,rgba(72,229,194,.12) 50%,transparent 85%);transform:translateX(-100%);transition:opacity .25s ease}
+.action::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,15%),rgba(72,229,194,.18),transparent 42%);opacity:0;transition:opacity .32s ease;pointer-events:none}
+.action:active{transform:scale(.986)}
+@media(hover:hover){.action:hover{border-color:var(--line-strong);box-shadow:0 26px 52px rgba(0,0,0,.34),0 0 0 1px rgba(72,229,194,.04) inset;filter:brightness(1.03)}.action:hover::before{opacity:1;animation:sheen .9s ease 1}.action:hover::after{opacity:1}.action:hover .arrow-circle{transform:translateX(4px) translateZ(24px)}.action:hover .icon-box{transform:translateY(-1px) translateZ(24px);border-color:rgba(72,229,194,.28)}}
+.action.primary{
+  color:#08120f;
+  background:linear-gradient(135deg,#BAF35E 0%,#5CE7C8 70%,#44DEC1 100%);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 18px 42px rgba(72,229,194,.24),0 0 30px rgba(72,229,194,.12);
+}
+.action.primary .action-kicker,.action.primary .action-sub{color:rgba(8,18,15,.74)}
+.action.primary .action-title{color:#07110F}
+.action.company .icon-box{background:linear-gradient(180deg,rgba(182,239,89,.16),rgba(182,239,89,.06));border-color:rgba(182,239,89,.18);color:var(--green)}
+.action.company .icon-box .icon{color:var(--green)}
+.action.event .icon-box{background:linear-gradient(180deg,rgba(72,229,194,.16),rgba(72,229,194,.06));border-color:rgba(72,229,194,.18)}
+.action.company .action-kicker{color:var(--green)}
+.action.event .action-kicker{color:var(--teal)}
+.icon-box{
+  width:52px;height:52px;border-radius:18px;display:grid;place-items:center;
+  background:linear-gradient(180deg,rgba(72,229,194,.12),rgba(72,229,194,.06));
+  border:1px solid rgba(72,229,194,.16);color:var(--teal);box-shadow:0 0 0 1px rgba(255,255,255,.025) inset;
+}
+.primary .icon-box{
+  background:rgba(255,255,255,.30);color:#07110F;border:1px solid rgba(255,255,255,.38);
+  box-shadow:0 8px 18px rgba(0,0,0,.14),0 0 0 1px rgba(255,255,255,.18) inset;
+}
+.primary .icon-box .icon{color:#07110F}
+.primary .icon-box .icon svg{stroke:#07110F}
+.action-text{text-align:left;min-width:0}
+.action-kicker{display:block;margin-bottom:4px;color:var(--teal);font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.action-title{display:block;color:#fff;font-size:1.06rem;line-height:1.14;font-weight:800;letter-spacing:-.018em}
+.action-sub{display:block;margin-top:4px;color:var(--muted);font-size:.81rem;line-height:1.38}
+.arrow-circle{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#F5FAFC;transition:transform .28s cubic-bezier(.16,1,.3,1),background .28s ease,border-color .28s ease}
+.primary .arrow-circle{background:rgba(255,255,255,.26);border-color:rgba(255,255,255,.32);color:#07110F}
+.info-strip{margin:22px 0 0;padding:18px;border-radius:24px;border:1px solid rgba(72,229,194,.16);background:linear-gradient(135deg,rgba(72,229,194,.09),rgba(182,239,89,.05)),rgba(10,17,27,.56);color:#D8E4E8;font-size:.89rem;line-height:1.62;animation:fadeUp .62s .56s both}
+.info-strip strong{color:#fff}
+.social-row{display:flex;justify-content:center;gap:12px;margin:24px 0 0}
+.social{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#F5FAFC;transition:transform .28s cubic-bezier(.16,1,.3,1),border-color .28s ease,background .28s ease}
+.social:active{transform:scale(.96)}
+@media(hover:hover){.social:hover{transform:translateY(-2px);border-color:var(--line-strong);background:rgba(72,229,194,.1)}}
+.footer-text{text-align:center;margin-top:20px;color:rgba(245,250,252,.48);font-size:.72rem}
+.inner-top{position:sticky;top:0;z-index:4;margin:0 -16px 22px;padding:14px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,rgba(5,8,13,.96),rgba(5,8,13,.78));border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.back-btn{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#fff;transition:transform .28s cubic-bezier(.16,1,.3,1),border-color .28s ease,background .28s ease}
+.back-btn:active{transform:scale(.96)}
+@media(hover:hover){.back-btn:hover{transform:translateX(-2px);border-color:var(--line-strong);background:rgba(72,229,194,.1)}}
+.inner-logo{width:160px;height:auto;object-fit:contain}
+.inner-hero{animation:rise .62s cubic-bezier(.16,1,.3,1) both}
+.inner-title{max-width:10ch;margin:0 0 14px;font-size:clamp(2.28rem,10.8vw,3.4rem);line-height:.96;font-weight:800}
+.inner-copy{max-width:38ch;color:#C7D2DC;line-height:1.7;font-size:.98rem}
+.highlight{margin:22px 0;padding:18px;border-radius:24px;border:1px solid rgba(72,229,194,.16);background:linear-gradient(135deg,rgba(72,229,194,.10),rgba(182,239,89,.05)),rgba(10,17,27,.56);animation:fadeUp .6s .10s both}
+.highlight-title{display:flex;align-items:center;gap:10px;color:var(--green);font-size:1rem;font-weight:800;margin-bottom:8px}
+.highlight p{color:var(--muted);font-size:.88rem;line-height:1.65}
+.section-label{margin:30px 0 14px;color:var(--teal);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.card-grid{display:grid;gap:12px}
+.service-card{position:relative;overflow:hidden;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:flex-start;padding:16px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),rgba(13,22,34,.82);border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 32px rgba(0,0,0,.16);animation:fadeUp .62s both;transition:transform .32s cubic-bezier(.16,1,.3,1),border-color .32s ease,box-shadow .32s ease,filter .32s ease}
+.service-card:nth-child(1){animation-delay:.08s}.service-card:nth-child(2){animation-delay:.14s}.service-card:nth-child(3){animation-delay:.20s}.service-card:nth-child(4){animation-delay:.26s}
+.service-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,15%),rgba(72,229,194,.14),transparent 42%);opacity:0;transition:opacity .3s ease}
+.service-icon{width:48px;height:48px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(72,229,194,.12),rgba(72,229,194,.06));border:1px solid rgba(72,229,194,.16);color:var(--teal);transition:transform .32s cubic-bezier(.16,1,.3,1),border-color .32s ease}
+.service-card h3{font-size:1.04rem;line-height:1.16;font-weight:800;margin-bottom:6px}.service-card p{color:var(--muted);font-size:.86rem;line-height:1.58}
+@media(hover:hover){.service-card:hover{border-color:rgba(72,229,194,.22);box-shadow:0 18px 38px rgba(0,0,0,.22);filter:brightness(1.02)}.service-card:hover::before{opacity:1}.service-card:hover .service-icon{transform:translateY(-2px);border-color:rgba(72,229,194,.28)}}
+.method{display:grid;gap:16px}.step{position:relative;display:grid;grid-template-columns:40px 1fr;gap:14px;animation:fadeUp .62s both}.step:nth-child(1){animation-delay:.08s}.step:nth-child(2){animation-delay:.14s}.step:nth-child(3){animation-delay:.20s}.step:nth-child(4){animation-delay:.26s}
+.step:not(:last-child)::after{content:'';position:absolute;left:19px;top:43px;bottom:-18px;width:1px;background:linear-gradient(to bottom,rgba(72,229,194,.38),transparent)}
+.step-num{width:40px;height:40px;border-radius:15px;display:grid;place-items:center;background:rgba(72,229,194,.10);border:1px solid rgba(72,229,194,.18);color:var(--teal);font-family:'Space Grotesk',Inter,sans-serif;font-size:.78rem;font-weight:800}
+.step h3{font-size:1rem;line-height:1.15;font-weight:800;margin-bottom:5px}.step p{color:var(--muted);font-size:.86rem;line-height:1.6}
+.checklist{display:grid;gap:10px;list-style:none}.checklist li{display:flex;align-items:flex-start;gap:10px;padding:12px 13px;border-radius:17px;color:var(--muted);background:rgba(255,255,255,.032);border:1px solid rgba(255,255,255,.06);font-size:.86rem;line-height:1.5}.checklist li::before{content:'';width:7px;height:7px;margin-top:7px;border-radius:999px;background:var(--teal);box-shadow:0 0 12px rgba(72,229,194,.58);flex:0 0 auto}
+.cta-box{margin-top:28px;padding:18px;border-radius:26px;text-align:center;border:1px solid rgba(72,229,194,.18);background:radial-gradient(circle at 50% 0%,rgba(72,229,194,.15),transparent 52%),rgba(13,22,34,.82)}
+.cta-box h2{font-size:1.38rem;line-height:1.14;margin-bottom:8px}.cta-box p{color:var(--muted);line-height:1.6;margin-bottom:14px;font-size:.88rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.48;transform:scale(.84)}}
+@keyframes sheen{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.tilt-card{--rx:0deg;--ry:0deg;--tx:0px;--ty:0px;--gx:50%;--gy:50%;transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(var(--tx),var(--ty),0);transform-style:preserve-3d;will-change:transform;transition:transform .42s cubic-bezier(.16,1,.3,1),box-shadow .32s ease,border-color .32s ease,filter .32s ease}
+.tilt-card .icon-box,.tilt-card .action-text,.tilt-card .arrow-circle,.tilt-card .service-icon,.tilt-card .service-body,.tilt-card .quick-copy{transform:translateZ(18px);transition:transform .42s cubic-bezier(.16,1,.3,1)}
+.quick-point .icon{transform:translateZ(26px)}
+.quick-point > span:last-child{position:relative;z-index:1}
+.quick-copy{display:contents}
+.tilt-card.is-tilting{transition:none}
+@media(hover:none){.tilt-card{transform:none !important}}
+
+@media(max-width:380px){
+  .app{padding-left:13px;padding-right:13px}
+  .quick-points{grid-template-columns:1fr}
+  .quick-point{min-height:auto;flex-direction:row;justify-content:flex-start;text-align:left;padding:13px 14px}
+  .action{grid-template-columns:48px 1fr 36px;padding:13px}
+  .icon-box{width:48px;height:48px}
+  .arrow-circle{width:36px;height:36px}
+  .hero-title{font-size:2.35rem}
+}
+
+
+
+.highlight-title .method-brand-icon{
+  width:30px;
+  height:30px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(10,26,38,.72), rgba(7,17,28,.92));
+  border:1px solid rgba(72,229,194,.16);
+  box-shadow:0 0 0 1px rgba(255,255,255,.03) inset, 0 8px 18px rgba(0,0,0,.24), 0 0 18px rgba(72,229,194,.08);
+  padding:5px;
+}
+.highlight-title .method-brand-icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+
+/* Página de eventos com identidade própria */
+#page-eventos .inner-title{
+  max-width:11ch;
+}
+.event-type-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:18px 0 26px;
+}
+.event-type{
+  min-height:78px;
+  padding:13px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(182,239,89,.10),transparent 45%),
+    linear-gradient(135deg,rgba(255,255,255,.052),rgba(255,255,255,.018)),
+    rgba(13,22,34,.76);
+  border:1px solid rgba(255,255,255,.075);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:10px;
+  animation:fadeUp .62s both;
+}
+.event-type:nth-child(1){animation-delay:.08s}
+.event-type:nth-child(2){animation-delay:.14s}
+.event-type:nth-child(3){animation-delay:.20s}
+.event-type:nth-child(4){animation-delay:.26s}
+.event-type .event-icon{
+  width:34px;
+  height:34px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  color:var(--green);
+  background:rgba(182,239,89,.09);
+  border:1px solid rgba(182,239,89,.16);
+}
+.event-type strong{
+  display:block;
+  color:#fff;
+  font-family:'Space Grotesk',Inter,sans-serif;
+  font-size:.96rem;
+  line-height:1.14;
+  letter-spacing:-.025em;
+}
+.event-type small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.35;
+}
+.video-flow{
+  display:grid;
+  gap:12px;
+}
+.video-flow-card{
+  position:relative;
+  padding:16px 16px 16px 54px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg,rgba(72,229,194,.075),rgba(255,255,255,.018)),
+    rgba(13,22,34,.78);
+  border:1px solid rgba(72,229,194,.10);
+  animation:fadeUp .62s both;
+}
+.video-flow-card:nth-child(1){animation-delay:.08s}
+.video-flow-card:nth-child(2){animation-delay:.14s}
+.video-flow-card:nth-child(3){animation-delay:.20s}
+.video-flow-card:nth-child(4){animation-delay:.26s}
+.video-flow-card::before{
+  content:attr(data-step);
+  position:absolute;
+  left:14px;
+  top:16px;
+  width:28px;
+  height:28px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  color:#07110F;
+  background:linear-gradient(135deg,var(--green),var(--teal));
+  font-family:'Space Grotesk',Inter,sans-serif;
+  font-size:.72rem;
+  font-weight:800;
+}
+.video-flow-card h3{
+  font-size:1rem;
+  line-height:1.15;
+  margin-bottom:6px;
+}
+.video-flow-card p{
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.58;
+}
+.deliveries-box{
+  margin-top:12px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.075);
+  background:rgba(10,17,27,.56);
+}
+.delivery-row{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:12px;
+  padding:14px;
+  align-items:flex-start;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.delivery-row:last-child{border-bottom:0}
+.delivery-row .icon{
+  width:26px;
+  height:26px;
+  color:var(--teal);
+  margin-top:2px;
+}
+.delivery-row strong{
+  display:block;
+  color:#fff;
+  margin-bottom:3px;
+  font-size:.92rem;
+}
+.delivery-row span{
+  color:var(--muted);
+  font-size:.82rem;
+  line-height:1.45;
+}
+@media(max-width:380px){
+  .event-type-grid{grid-template-columns:1fr}
+}
+
+
+/* Página de empresas com estrutura própria */
+#page-empresas .inner-title{
+  max-width:11ch;
+}
+.company-services-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:18px 0 26px;
+}
+.company-service{
+  min-height:88px;
+  padding:13px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(72,229,194,.12),transparent 45%),
+    linear-gradient(135deg,rgba(255,255,255,.052),rgba(255,255,255,.018)),
+    rgba(13,22,34,.76);
+  border:1px solid rgba(255,255,255,.075);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:10px;
+  animation:fadeUp .62s both;
+}
+.company-service:nth-child(1){animation-delay:.08s}
+.company-service:nth-child(2){animation-delay:.14s}
+.company-service:nth-child(3){animation-delay:.20s}
+.company-service:nth-child(4){animation-delay:.26s}
+.company-service .company-icon{
+  width:34px;
+  height:34px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  color:var(--teal);
+  background:rgba(72,229,194,.09);
+  border:1px solid rgba(72,229,194,.16);
+}
+.company-service strong{
+  display:block;
+  color:#fff;
+  font-family:'Space Grotesk',Inter,sans-serif;
+  font-size:.96rem;
+  line-height:1.14;
+  letter-spacing:-.025em;
+}
+.company-service small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.35;
+}
+.connectflow-flow{
+  display:grid;
+  gap:12px;
+}
+.connectflow-card{
+  position:relative;
+  padding:16px 16px 16px 54px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg,rgba(182,239,89,.075),rgba(255,255,255,.018)),
+    rgba(13,22,34,.78);
+  border:1px solid rgba(182,239,89,.10);
+  animation:fadeUp .62s both;
+}
+.connectflow-card:nth-child(1){animation-delay:.08s}
+.connectflow-card:nth-child(2){animation-delay:.14s}
+.connectflow-card:nth-child(3){animation-delay:.20s}
+.connectflow-card:nth-child(4){animation-delay:.26s}
+.connectflow-card::before{
+  content:attr(data-step);
+  position:absolute;
+  left:14px;
+  top:16px;
+  width:28px;
+  height:28px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  color:#07110F;
+  background:linear-gradient(135deg,var(--green),var(--teal));
+  font-family:'Space Grotesk',Inter,sans-serif;
+  font-size:.72rem;
+  font-weight:800;
+}
+.connectflow-card h3{
+  font-size:1rem;
+  line-height:1.15;
+  margin-bottom:6px;
+}
+.connectflow-card p{
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.58;
+}
+.company-deliveries-box{
+  margin-top:12px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.075);
+  background:rgba(10,17,27,.56);
+}
+.company-delivery-row{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:12px;
+  padding:14px;
+  align-items:flex-start;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.company-delivery-row:last-child{border-bottom:0}
+.company-delivery-row .icon{
+  width:26px;
+  height:26px;
+  color:var(--green);
+  margin-top:2px;
+}
+.company-delivery-row strong{
+  display:block;
+  color:#fff;
+  margin-bottom:3px;
+  font-size:.92rem;
+}
+.company-delivery-row span{
+  color:var(--muted);
+  font-size:.82rem;
+  line-height:1.45;
+}
+@media(max-width:380px){
+  .company-services-grid{grid-template-columns:1fr}
+}
+
+
+/* ===== Glow animado de fundo + animação constante dos destaques ===== */
+body::after{
+  content:'';
+  position:fixed;
+  inset:-12%;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(182,239,89,.16), transparent 20%),
+    radial-gradient(circle at 84% 10%, rgba(72,229,194,.16), transparent 22%),
+    radial-gradient(circle at 72% 78%, rgba(72,229,194,.10), transparent 20%),
+    radial-gradient(circle at 24% 76%, rgba(182,239,89,.10), transparent 18%);
+  filter:blur(34px);
+  opacity:.9;
+  animation:bgGlowMove 18s ease-in-out infinite alternate;
+}
+
+.quick-point,
+.action,
+.info-strip{
+  position:relative;
+  overflow:hidden;
+}
+
+.quick-point::before{
+  opacity:.42 !important;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(72,229,194,.18), transparent 34%),
+    radial-gradient(circle at 78% 82%, rgba(182,239,89,.14), transparent 32%);
+  animation:cardGlowDrift 7.2s ease-in-out infinite alternate;
+}
+
+.quick-point::after{
+  opacity:.26 !important;
+  background:
+    linear-gradient(120deg, rgba(182,239,89,.15), rgba(72,229,194,.10), transparent 68%);
+  animation:cardAuraPulse 5.4s ease-in-out infinite;
+}
+
+.action::after{
+  opacity:.34 !important;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(72,229,194,.18), transparent 34%),
+    radial-gradient(circle at 82% 70%, rgba(182,239,89,.12), transparent 36%);
+  animation:cardGlowDrift 8s ease-in-out infinite alternate;
+}
+
+.action::before{
+  opacity:.32 !important;
+  animation:sheenLoop 8.8s linear infinite;
+}
+
+.info-strip::before{
+  content:'';
+  position:absolute;
+  inset:-18%;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(72,229,194,.16), transparent 22%),
+    radial-gradient(circle at 80% 72%, rgba(182,239,89,.10), transparent 22%);
+  filter:blur(10px);
+  opacity:.58;
+  animation:cardGlowDrift 9.5s ease-in-out infinite alternate;
+}
+
+.quick-point .icon,
+.action .icon-box,
+.action .arrow-circle{
+  animation:softFloat 4.8s ease-in-out infinite;
+}
+
+.quick-point:nth-child(2) .icon,
+.action:nth-child(2) .icon-box,
+.action:nth-child(2) .arrow-circle{
+  animation-delay:.45s;
+}
+
+.quick-point:nth-child(3) .icon,
+.action:nth-child(3) .icon-box,
+.action:nth-child(3) .arrow-circle{
+  animation-delay:.9s;
+}
+
+.action:nth-child(4) .icon-box,
+.action:nth-child(4) .arrow-circle{
+  animation-delay:1.15s;
+}
+
+.action:nth-child(5) .icon-box,
+.action:nth-child(5) .arrow-circle{
+  animation-delay:1.35s;
+}
+
+@keyframes bgGlowMove{
+  0%{
+    transform:translate3d(0,0,0) scale(1);
+    opacity:.78;
+  }
+  50%{
+    transform:translate3d(1.8%, -1.2%, 0) scale(1.04);
+    opacity:1;
+  }
+  100%{
+    transform:translate3d(-1.4%, 1.8%, 0) scale(1.08);
+    opacity:.86;
+  }
+}
+
+@keyframes cardGlowDrift{
+  0%{
+    transform:translate3d(-4%, -2%, 0) scale(1);
+    filter:blur(0px);
+  }
+  50%{
+    transform:translate3d(3%, 2%, 0) scale(1.05);
+    filter:blur(.4px);
+  }
+  100%{
+    transform:translate3d(6%, -1%, 0) scale(1.08);
+    filter:blur(.2px);
+  }
+}
+
+@keyframes cardAuraPulse{
+  0%,100%{
+    opacity:.18;
+    transform:scale(1);
+  }
+  50%{
+    opacity:.34;
+    transform:scale(1.03);
+  }
+}
+
+@keyframes sheenLoop{
+  0%{
+    transform:translateX(-110%);
+  }
+  52%,100%{
+    transform:translateX(115%);
+  }
+}
+
+@keyframes softFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  body::after,
+  .quick-point::before,
+  .quick-point::after,
+  .action::after,
+  .action::before,
+  .info-strip::before,
+  .quick-point .icon,
+  .action .icon-box,
+  .action .arrow-circle{
+    animation:none !important;
+  }
+}
+
+
+/* ===== Ajuste de performance para mobile =====
+   Mantém o glow/destaques vivos, mas evita que vários blocos fora da tela
+   pareçam “recarregar” quando o usuário desce e volta. */
+.logo-top,
+.logo-wide,
+.inner-logo,
+.icon,
+.icon-box,
+.action,
+.quick-point,
+.info-strip,
+.company-service,
+.event-type,
+.connectflow-card,
+.video-flow-card,
+.company-delivery-row,
+.delivery-row{
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+#page-empresas .company-service,
+#page-empresas .connectflow-card,
+#page-empresas .company-delivery-row,
+#page-eventos .event-type,
+#page-eventos .video-flow-card,
+#page-eventos .delivery-row{
+  animation:none !important;
+}
+
+#page-empresas .inner-hero,
+#page-eventos .inner-hero,
+#page-empresas .highlight,
+#page-eventos .highlight{
+  animation:none !important;
+}
+
+body::after{
+  will-change:transform, opacity;
+}
+
+@media(max-width:768px){
+  body::after{
+    filter:blur(22px) !important;
+    opacity:.72 !important;
+  }
+
+  .action::before{
+    animation-duration:12s !important;
+    opacity:.20 !important;
+  }
+
+  .quick-point::before,
+  .action::after,
+  .info-strip::before{
+    animation-duration:11s !important;
+  }
+}
+
+
+/* ===== Fix final: WhatsApp, carregamento e skeleton ===== */
+.skeleton,
+.skeleton-card,
+.skeleton-line,
+.shimmer,
+.loading,
+.loader,
+.preloader,
+.page-loader,
+#loader,
+#preloader{
+  display:none !important;
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  animation:none !important;
+}
+
+.whatsapp-brand-icon svg,
+.social.whatsapp-footer svg{
+  width:22px;
+  height:22px;
+  display:block;
+  fill:currentColor !important;
+  stroke:none !important;
+}
+
+.social.whatsapp-footer{color:#48E5C2;}
+.action.primary .whatsapp-brand-icon svg{fill:#07110F !important;}
+
+body::after{
+  filter:blur(18px) !important;
+  opacity:.58 !important;
+  animation:bgGlowMove 28s ease-in-out infinite alternate !important;
+}
+
+.quick-point::before,
+.quick-point::after,
+.action::after,
+.info-strip::before{
+  animation-duration:16s !important;
+}
+
+.action::before{
+  animation-duration:18s !important;
+  opacity:.16 !important;
+}
+
+.quick-point .icon,
+.action .icon-box,
+.action .arrow-circle{
+  animation:none !important;
+}
+
+#page-empresas .company-service,
+#page-empresas .connectflow-card,
+#page-empresas .company-delivery-row,
+#page-eventos .event-type,
+#page-eventos .video-flow-card,
+#page-eventos .delivery-row,
+#page-empresas .inner-hero,
+#page-eventos .inner-hero,
+#page-empresas .highlight,
+#page-eventos .highlight{
+  animation:none !important;
+}
+
+.logo-top,
+.inner-logo,
+.icon,
+.icon-box,
+.action,
+.quick-point,
+.info-strip{
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+
+
+/* ===== Headline do link da bio: degradê animado + shimmer ===== */
+.hero-title{
+  position:relative;
+  isolation:isolate;
+}
+
+.hero-title .gradient-text{
+  position:relative;
+  display:inline-block;
+  background:
+    linear-gradient(115deg,
+      #B6EF59 0%,
+      #48E5C2 22%,
+      #E8FFFB 38%,
+      #48E5C2 54%,
+      #B6EF59 72%,
+      #48E5C2 100%);
+  background-size:240% 100%;
+  background-position:0% 50%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:headlineGradientFlow 6.2s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px rgba(72,229,194,.14));
+}
+
+.hero-title .gradient-text::after{
+  content:"";
+  position:absolute;
+  inset:-2px -6px;
+  border-radius:18px;
+  pointer-events:none;
+  background:
+    linear-gradient(105deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 36%,
+      rgba(255,255,255,.10) 45%,
+      rgba(255,255,255,.46) 50%,
+      rgba(255,255,255,.10) 55%,
+      rgba(255,255,255,0) 64%,
+      rgba(255,255,255,0) 100%);
+  mix-blend-mode:screen;
+  transform:translateX(-145%) skewX(-18deg);
+  animation:headlineShimmerSweep 5.6s ease-in-out infinite;
+  opacity:.9;
+}
+
+@keyframes headlineGradientFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@keyframes headlineShimmerSweep{
+  0%, 58%, 100%{
+    transform:translateX(-145%) skewX(-18deg);
+    opacity:0;
+  }
+  66%{
+    opacity:.75;
+  }
+  78%{
+    transform:translateX(145%) skewX(-18deg);
+    opacity:.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-title .gradient-text,
+  .hero-title .gradient-text::after{
+    animation:none !important;
+  }
+}
+
+
+/* ===== Refinamento: shimmer mais discreto + degradê animado só no "DNA" ===== */
+.hero-title .gradient-text{
+  position:relative;
+  display:inline-block;
+  background:
+    linear-gradient(115deg,
+      #B6EF59 0%,
+      #48E5C2 28%,
+      #EFFFFA 48%,
+      #48E5C2 68%,
+      #B6EF59 100%);
+  background-size:180% 100%;
+  background-position:0% 50%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:headlineGradientFlowRefined 8.8s ease-in-out infinite;
+  filter:drop-shadow(0 0 8px rgba(72,229,194,.10));
+}
+
+.hero-title .gradient-text::after{
+  content:"";
+  position:absolute;
+  inset:-1px -3px;
+  border-radius:14px;
+  pointer-events:none;
+  background:
+    linear-gradient(102deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 42%,
+      rgba(255,255,255,.05) 47%,
+      rgba(255,255,255,.16) 50%,
+      rgba(255,255,255,.05) 53%,
+      rgba(255,255,255,0) 58%,
+      rgba(255,255,255,0) 100%);
+  mix-blend-mode:screen;
+  transform:translateX(-155%) skewX(-16deg);
+  animation:headlineShimmerSweepRefined 8.8s ease-in-out infinite;
+  opacity:.42;
+}
+
+@keyframes headlineGradientFlowRefined{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@keyframes headlineShimmerSweepRefined{
+  0%, 72%, 100%{
+    transform:translateX(-155%) skewX(-16deg);
+    opacity:0;
+  }
+  79%{
+    opacity:.22;
+  }
+  87%{
+    transform:translateX(135%) skewX(-16deg);
+    opacity:.06;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-title .gradient-text,
+  .hero-title .gradient-text::after{
+    animation:none !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="page active" id="page-home">
+  <main class="app">
+    <header class="hero">
+      <img loading="eager" decoding="async" src="assets/logo-horizontal.png" alt="ConnectPixel" class="logo-top">
+      <div class="kicker">Estratégia · Conteúdo · Resultado</div>
+      <h1 class="hero-title">Comunicação com <span class="gradient-text">DNA</span> de marca</h1>
+      <p class="hero-copy">A ConnectPixel cria conteúdo, estratégia e presença digital para marcas que querem comunicar melhor, gerar conexão real e transformar atenção em oportunidade.</p>
+    </header>
+
+    <section class="quick-points" aria-label="Destaques">
+      <div class="quick-point tilt-card">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"/></svg></span>
+        <span>Entendimento antes da criação</span>
+      </div>
+      <div class="quick-point tilt-card">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+        <span>Conteúdo com intenção</span>
+      </div>
+      <div class="quick-point tilt-card">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span>Conexão que gera confiança</span>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="Links principais">
+      <a class="action primary tilt-card" href="https://api.whatsapp.com/send?phone=55+55 88 92178-8255&text=Ol%C3%A1%20ConnectPixel!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20falar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer">
+        <span class="icon-box"><span class="icon whatsapp-brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true">
+  <path d="M16.04 3.2c-7.02 0-12.72 5.68-12.72 12.68 0 2.23.58 4.4 1.69 6.3L3.2 28.8l6.78-1.78a12.72 12.72 0 0 0 6.06 1.54h.01c7.01 0 12.71-5.68 12.71-12.68S23.06 3.2 16.04 3.2Zm0 23.18h-.01c-1.84 0-3.64-.5-5.2-1.45l-.38-.23-4.02 1.05 1.07-3.92-.25-.4a10.42 10.42 0 0 1-1.6-5.55c0-5.79 4.72-10.5 10.52-10.5 2.81 0 5.45 1.09 7.43 3.07a10.43 10.43 0 0 1 3.08 7.43c0 5.79-4.72 10.5-10.64 10.5Zm5.77-7.86c-.32-.16-1.87-.92-2.16-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1.01 1.23-.18.21-.37.24-.69.08-.32-.16-1.33-.49-2.54-1.56-.94-.84-1.57-1.87-1.75-2.18-.18-.32-.02-.49.14-.65.14-.14.32-.37.47-.55.16-.18.21-.32.32-.53.11-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.23 3.4 5.4 4.76.75.32 1.34.52 1.8.66.76.24 1.45.21 1.99.13.61-.09 1.87-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+</svg></span></span>
+        <span class="action-text">
+          <span class="action-kicker">Atendimento direto</span>
+          <span class="action-title">Falar com a ConnectPixel</span>
+          <span class="action-sub">Atendimento direto para entender sua necessidade</span>
+        </span>
+        <span class="arrow-circle">→</span>
+      </a>
+
+      <a class="action tilt-card" href="https://connectpixel.online" target="_blank" rel="noopener noreferrer">
+        <span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span></span>
+        <span class="action-text">
+          <span class="action-kicker">Portfólio completo</span>
+          <span class="action-title">Ver portfólio e trabalhos</span>
+          <span class="action-sub">Produções, cases, conteúdos e entregas recentes</span>
+        </span>
+        <span class="arrow-circle">→</span>
+      </a>
+
+      <button class="action company tilt-card" type="button" onclick="openPage('empresas')">
+        <span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01M15 13v.01M15 17v.01"/></svg></span></span>
+        <span class="action-text">
+          <span class="action-kicker">Para empresas</span>
+          <span class="action-title">Soluções para empresas</span>
+          <span class="action-sub">Conteúdo, estratégia, tráfego e direção comercial</span>
+        </span>
+        <span class="arrow-circle">→</span>
+      </button>
+
+      <button class="action event tilt-card" type="button" onclick="openPage('eventos')">
+        <span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 10h18"/><path d="M8 15h.01M12 15h.01M16 15h.01"/></svg></span></span>
+        <span class="action-text">
+          <span class="action-kicker">Pessoas e eventos</span>
+          <span class="action-title">Cobertura de eventos em vídeo</span>
+          <span class="action-sub">Corporativos, inaugurações, aniversários, casamentos e mais</span>
+        </span>
+        <span class="arrow-circle">→</span>
+      </button>
+
+      <a class="action tilt-card" href="https://www.instagram.com/agenciaconnectpixel/" target="_blank" rel="noopener noreferrer">
+        <span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span></span>
+        <span class="action-text">
+          <span class="action-kicker">Instagram</span>
+          <span class="action-title">Acompanhar no Instagram</span>
+          <span class="action-sub">Bastidores, processos, entregas e novidades</span>
+        </span>
+        <span class="arrow-circle">→</span>
+      </a>
+    </section>
+
+    <section class="info-strip"><strong>Nosso método é o ConnectFlow™:</strong> entendemos a marca, revelamos seu DNA, criamos conteúdo com intenção, direcionamos para o público certo e ajustamos com base nos sinais reais das pessoas.</section>
+
+    <footer>
+      <div class="social-row">
+        <a class="social" href="https://www.instagram.com/agenciaconnectpixel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span></a>
+        <a class="social whatsapp-footer" href="https://api.whatsapp.com/send?phone=55+55 88 92178-8255&text=Ol%C3%A1%20ConnectPixel!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20falar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><span class="icon whatsapp-brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true">
+  <path d="M16.04 3.2c-7.02 0-12.72 5.68-12.72 12.68 0 2.23.58 4.4 1.69 6.3L3.2 28.8l6.78-1.78a12.72 12.72 0 0 0 6.06 1.54h.01c7.01 0 12.71-5.68 12.71-12.68S23.06 3.2 16.04 3.2Zm0 23.18h-.01c-1.84 0-3.64-.5-5.2-1.45l-.38-.23-4.02 1.05 1.07-3.92-.25-.4a10.42 10.42 0 0 1-1.6-5.55c0-5.79 4.72-10.5 10.52-10.5 2.81 0 5.45 1.09 7.43 3.07a10.43 10.43 0 0 1 3.08 7.43c0 5.79-4.72 10.5-10.64 10.5Zm5.77-7.86c-.32-.16-1.87-.92-2.16-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1.01 1.23-.18.21-.37.24-.69.08-.32-.16-1.33-.49-2.54-1.56-.94-.84-1.57-1.87-1.75-2.18-.18-.32-.02-.49.14-.65.14-.14.32-.37.47-.55.16-.18.21-.32.32-.53.11-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.23 3.4 5.4 4.76.75.32 1.34.52 1.8.66.76.24 1.45.21 1.99.13.61-.09 1.87-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+</svg></span></a>
+        <a class="social" href="https://connectpixel.online" target="_blank" rel="noopener noreferrer" aria-label="Site oficial"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg></span></a>
+      </div>
+      <p class="footer-text">© 2026 ConnectPixel — pixels de inovação e estratégias de sucesso.</p>
+    </footer>
+  </main>
+</div>
+
+<div class="page hidden" id="page-empresas">
+  <main class="app">
+    <header class="inner-top">
+      <button class="back-btn" type="button" onclick="closePage('empresas')" aria-label="Voltar"><span class="icon"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></span></button>
+      <img loading="eager" decoding="async" src="assets/logo-horizontal.png" alt="ConnectPixel" class="inner-logo">
+    </header>
+    <section class="inner-hero">
+      <div class="kicker">Soluções para empresas</div>
+      <h1 class="inner-title">Sua marca precisa comunicar com <span class="gradient-text">intenção.</span></h1>
+      <p class="inner-copy">Trabalhamos com empresas que querem sair do conteúdo solto e construir uma presença digital mais clara, humana e estratégica — com identidade, constância e direção comercial.</p>
+    </section>
+    <section class="highlight"><div class="highlight-title"><span class="icon method-brand-icon"><img loading="eager" decoding="async" src="assets/logo-icon.png" alt=""></span>Método ConnectFlow™</div><p>Nossa metodologia guia o processo por trás de cada entrega: entendemos a marca, identificamos seu DNA, criamos com intenção e direcionamos a comunicação para gerar conexão e oportunidade.</p></section>
+    <div class="section-label">Serviços que podemos entregar</div>
+    <section class="company-services-grid">
+      <article class="company-service">
+        <span class="company-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 5h16v14H4"/><path d="M8 9h8"/><path d="M8 13h5"/></svg></span></span>
+        <div>
+          <strong>Gestão de redes sociais</strong>
+          <small>Planejamento, organização editorial, acompanhamento e direção da presença digital.</small>
+        </div>
+      </article>
+
+      <article class="company-service">
+        <span class="company-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span></span>
+        <div>
+          <strong>Criação de conteúdo</strong>
+          <small>Reels, cards, carrosséis, stories, campanhas e textos com identidade.</small>
+        </div>
+      </article>
+
+      <article class="company-service">
+        <span class="company-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.5-2.5v9L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></span></span>
+        <div>
+          <strong>Vídeos e audiovisual</strong>
+          <small>Roteiro, captação, direção de cena, edição e finalização para redes sociais.</small>
+        </div>
+      </article>
+
+      <article class="company-service">
+        <span class="company-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg></span></span>
+        <div>
+          <strong>Tráfego e campanhas</strong>
+          <small>Anúncios para ampliar alcance, gerar visitas, WhatsApp e oportunidades.</small>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-label">Como conduzimos o processo</div>
+    <section class="connectflow-flow">
+      <article class="connectflow-card" data-step="01">
+        <h3>Entender a marca</h3>
+        <p>Conhecemos o negócio, o público, o atendimento, as objeções e o que ainda não está sendo comunicado com clareza.</p>
+      </article>
+      <article class="connectflow-card" data-step="02">
+        <h3>Revelar o DNA</h3>
+        <p>Identificamos tom, estética, diferenciais, bastidores e mensagens que tornam a marca mais reconhecível.</p>
+      </article>
+      <article class="connectflow-card" data-step="03">
+        <h3>Criar com intenção</h3>
+        <p>Transformamos a estratégia em conteúdos com função: atrair, conectar, gerar confiança e levar para a ação.</p>
+      </article>
+      <article class="connectflow-card" data-step="04">
+        <h3>Direcionar e ajustar</h3>
+        <p>Organizamos a comunicação, potencializamos com tráfego quando faz sentido e refinamos pelo que o público responde.</p>
+      </article>
+    </section>
+    <div class="section-label">O que pode fazer parte do projeto</div>
+    <section class="company-deliveries-box">
+      <div class="company-delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></span>
+        <div><strong>Planejamento e calendário</strong><span>Organização de temas, formatos, campanhas e prioridades de comunicação.</span></div>
+      </div>
+      <div class="company-delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+        <div><strong>Peças e conteúdos</strong><span>Cards, carrosséis, reels, stories, legendas, roteiros e campanhas.</span></div>
+      </div>
+      <div class="company-delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.5-2.5v9L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></span>
+        <div><strong>Produção audiovisual</strong><span>Captação, direção criativa, edição e vídeos pensados para redes sociais.</span></div>
+      </div>
+      <div class="company-delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-7"/></svg></span>
+        <div><strong>Acompanhamento e tráfego</strong><span>Ajustes de rota, campanhas pagas e leitura dos sinais que geram oportunidade.</span></div>
+      </div>
+    </section>
+    <section class="cta-box">
+      <h2>Quer aplicar o ConnectFlow™ na sua marca?</h2>
+      <p>Chame no WhatsApp e vamos entender o momento da sua empresa, seus objetivos e o melhor formato de trabalho para começar.</p>
+      <a class="action primary tilt-card" href="https://api.whatsapp.com/send?phone=55+55 88 92178-8255&text=Ol%C3%A1%20ConnectPixel!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20falar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer">
+        <span class="icon-box"><span class="icon whatsapp-brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true">
+  <path d="M16.04 3.2c-7.02 0-12.72 5.68-12.72 12.68 0 2.23.58 4.4 1.69 6.3L3.2 28.8l6.78-1.78a12.72 12.72 0 0 0 6.06 1.54h.01c7.01 0 12.71-5.68 12.71-12.68S23.06 3.2 16.04 3.2Zm0 23.18h-.01c-1.84 0-3.64-.5-5.2-1.45l-.38-.23-4.02 1.05 1.07-3.92-.25-.4a10.42 10.42 0 0 1-1.6-5.55c0-5.79 4.72-10.5 10.52-10.5 2.81 0 5.45 1.09 7.43 3.07a10.43 10.43 0 0 1 3.08 7.43c0 5.79-4.72 10.5-10.64 10.5Zm5.77-7.86c-.32-.16-1.87-.92-2.16-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1.01 1.23-.18.21-.37.24-.69.08-.32-.16-1.33-.49-2.54-1.56-.94-.84-1.57-1.87-1.75-2.18-.18-.32-.02-.49.14-.65.14-.14.32-.37.47-.55.16-.18.21-.32.32-.53.11-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.23 3.4 5.4 4.76.75.32 1.34.52 1.8.66.76.24 1.45.21 1.99.13.61-.09 1.87-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+</svg></span></span>
+        <span class="action-text"><span class="action-kicker">WhatsApp</span><span class="action-title">Solicitar proposta</span><span class="action-sub">Atendimento personalizado</span></span>
+        <span class="arrow-circle">→</span>
+      </a>
+    </section>
+  </main>
+</div>
+
+<div class="page hidden" id="page-eventos">
+  <main class="app">
+    <header class="inner-top">
+      <button class="back-btn" type="button" onclick="closePage('eventos')" aria-label="Voltar"><span class="icon"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></span></button>
+      <img loading="eager" decoding="async" src="assets/logo-horizontal.png" alt="ConnectPixel" class="inner-logo">
+    </header>
+    <section class="inner-hero">
+      <div class="kicker">Pessoas e eventos</div>
+      <h1 class="inner-title">Seu evento em vídeo com <span class="gradient-text">direção.</span></h1>
+      <p class="inner-copy">Fazemos cobertura de eventos em vídeo, com planejamento, captação e edição pensados para transformar momentos importantes em conteúdos vivos, emocionais e prontos para compartilhar.</p>
+    </section>
+    <section class="highlight"><div class="highlight-title"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/><path d="m5 5 14 14"/><path d="M19 5 5 19"/></svg></span>Cobertura em vídeo com intenção</div><p>Antes de gravar, entendemos o tipo de evento, os momentos mais importantes, o clima da ocasião e o formato ideal de entrega. Assim, o vídeo não vira apenas registro: vira memória, presença e conteúdo.</p></section>
+    <div class="section-label">Eventos que podemos cobrir em vídeo</div>
+    <section class="event-type-grid">
+      <article class="event-type">
+        <span class="event-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></span></span>
+        <div>
+          <strong>Corporativos</strong>
+          <small>Eventos de empresas, ações, treinamentos e encontros institucionais.</small>
+        </div>
+      </article>
+
+      <article class="event-type">
+        <span class="event-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-8h6v8"/><path d="M3 9h18"/></svg></span></span>
+        <div>
+          <strong>Inaugurações</strong>
+          <small>Aberturas de lojas, lançamentos, ativações e momentos de marca.</small>
+        </div>
+      </article>
+
+      <article class="event-type">
+        <span class="event-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/><path d="M12 7c-1.7 0-3-1-3-2.4S10.3 2 12 4.5c1.7-2.5 3-1.3 3 .1S13.7 7 12 7Z"/></svg></span></span>
+        <div>
+          <strong>Celebrações</strong>
+          <small>Aniversários, chás de bebê e eventos pessoais especiais.</small>
+        </div>
+      </article>
+
+      <article class="event-type">
+        <span class="event-icon"><span class="icon"><svg viewBox="0 0 24 24"><path d="M19 14c1.5 1.5 1.5 4 0 5.5s-4 1.5-5.5 0L12 18l-1.5 1.5c-1.5 1.5-4 1.5-5.5 0s-1.5-4 0-5.5L12 7l7 7Z"/><path d="M12 7 9.5 4.5a3.5 3.5 0 0 0-5 5L7 12"/><path d="M12 7l2.5-2.5a3.5 3.5 0 0 1 5 5L17 12"/></svg></span></span>
+        <div>
+          <strong>Pré-wedding e casamentos</strong>
+          <small>Registros em vídeo com emoção, detalhes e memória.</small>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-label">Como conduzimos a cobertura</div>
+    <section class="video-flow">
+      <article class="video-flow-card" data-step="01">
+        <h3>Alinhamento do evento</h3>
+        <p>Entendemos data, local, tipo de evento, programação e momentos que não podem ficar de fora.</p>
+      </article>
+      <article class="video-flow-card" data-step="02">
+        <h3>Direção da cobertura</h3>
+        <p>Definimos o estilo do vídeo, cenas prioritárias, ritmo da captação e formato ideal para entrega.</p>
+      </article>
+      <article class="video-flow-card" data-step="03">
+        <h3>Captação em vídeo</h3>
+        <p>Filmamos detalhes, bastidores, pessoas, emoções e momentos-chave com olhar profissional.</p>
+      </article>
+      <article class="video-flow-card" data-step="04">
+        <h3>Edição e finalização</h3>
+        <p>Selecionamos os melhores momentos e entregamos vídeos prontos para compartilhar, divulgar ou guardar.</p>
+      </article>
+    </section>
+    <div class="section-label">Formatos de entrega</div>
+    <section class="deliveries-box">
+      <div class="delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.5-2.5v9L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></span>
+        <div><strong>Vídeo principal</strong><span>Um material editado para resumir, emocionar e valorizar o momento.</span></div>
+      </div>
+      <div class="delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"/></svg></span>
+        <div><strong>Cortes para redes sociais</strong><span>Versões em formato de reels, stories ou pós-evento, conforme o combinado.</span></div>
+      </div>
+      <div class="delivery-row">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg></span>
+        <div><strong>Entrega organizada</strong><span>Arquivos finalizados e separados para uso em divulgação, redes sociais ou memória.</span></div>
+      </div>
+    </section>
+    <section class="cta-box">
+      <h2>Quer uma cobertura em vídeo para seu evento?</h2>
+      <p>Envie a data, o local e o tipo de evento para montarmos o formato ideal de captação e entrega.</p>
+      <a class="action primary tilt-card" href="https://api.whatsapp.com/send?phone=55+55 88 92178-8255&text=Ol%C3%A1%20ConnectPixel!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20falar%20com%20a%20equipe." target="_blank" rel="noopener noreferrer">
+        <span class="icon-box"><span class="icon whatsapp-brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true">
+  <path d="M16.04 3.2c-7.02 0-12.72 5.68-12.72 12.68 0 2.23.58 4.4 1.69 6.3L3.2 28.8l6.78-1.78a12.72 12.72 0 0 0 6.06 1.54h.01c7.01 0 12.71-5.68 12.71-12.68S23.06 3.2 16.04 3.2Zm0 23.18h-.01c-1.84 0-3.64-.5-5.2-1.45l-.38-.23-4.02 1.05 1.07-3.92-.25-.4a10.42 10.42 0 0 1-1.6-5.55c0-5.79 4.72-10.5 10.52-10.5 2.81 0 5.45 1.09 7.43 3.07a10.43 10.43 0 0 1 3.08 7.43c0 5.79-4.72 10.5-10.64 10.5Zm5.77-7.86c-.32-.16-1.87-.92-2.16-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1.01 1.23-.18.21-.37.24-.69.08-.32-.16-1.33-.49-2.54-1.56-.94-.84-1.57-1.87-1.75-2.18-.18-.32-.02-.49.14-.65.14-.14.32-.37.47-.55.16-.18.21-.32.32-.53.11-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.23 3.4 5.4 4.76.75.32 1.34.52 1.8.66.76.24 1.45.21 1.99.13.61-.09 1.87-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37Z"/>
+</svg></span></span>
+        <span class="action-text"><span class="action-kicker">WhatsApp</span><span class="action-title">Solicitar orçamento</span><span class="action-sub">Atendimento personalizado</span></span>
+        <span class="arrow-circle">→</span>
+      </a>
+    </section>
+  </main>
+</div>
+<script>
+const pages = {
+  empresas: document.getElementById('page-empresas'),
+  eventos: document.getElementById('page-eventos')
+};
+function openPage(id){
+  const page = pages[id];
+  if(!page) return;
+  page.classList.remove('hidden');
+  requestAnimationFrame(()=>{
+    page.classList.add('active');
+    page.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  });
+}
+function closePage(id){
+  const page = pages[id];
+  if(!page) return;
+  page.classList.remove('active');
+  page.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape'){
+    closePage('empresas');
+    closePage('eventos');
+  }
+});
+
+const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (canTilt) {
+  document.querySelectorAll('.tilt-card').forEach((card) => {
+    let raf;
+    const setTilt = (x, y) => {
+      const rect = card.getBoundingClientRect();
+      const px = (x - rect.left) / rect.width;
+      const py = (y - rect.top) / rect.height;
+      const ry = (px - 0.5) * 12;
+      const rx = (0.5 - py) * 9;
+      card.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+      card.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+      card.style.setProperty('--tx', `${((px - 0.5) * 7).toFixed(2)}px`);
+      card.style.setProperty('--ty', `${((py - 0.5) * -5).toFixed(2)}px`);
+      card.style.setProperty('--gx', `${(px * 100).toFixed(1)}%`);
+      card.style.setProperty('--gy', `${(py * 100).toFixed(1)}%`);
+      card.classList.add('is-tilting');
+    };
+    const resetTilt = () => {
+      card.classList.remove('is-tilting');
+      card.style.removeProperty('--rx');
+      card.style.removeProperty('--ry');
+      card.style.removeProperty('--tx');
+      card.style.removeProperty('--ty');
+      card.style.removeProperty('--gx');
+      card.style.removeProperty('--gy');
+    };
+    card.addEventListener('pointermove', (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setTilt(e.clientX, e.clientY));
+    });
+    card.addEventListener('pointerleave', resetTilt);
+    card.addEventListener('pointercancel', resetTilt);
+    card.addEventListener('blur', resetTilt, true);
+  });
+}
+</script>
+</body>
+</html>

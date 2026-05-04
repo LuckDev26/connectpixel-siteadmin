@@ -1,0 +1,26 @@
+name = "connectpixel-siteadmin"
+main = "src/index.js"
+compatibility_date = "2026-05-04"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+html_handling = "auto-trailing-slash"
+
+[vars]
+PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
+
+# IMPORTANTE:
+# Depois do primeiro deploy, configure no painel do Cloudflare:
+# 1) Variables/Secrets:
+#    ADMIN_TOKEN = sua senha forte do painel
+# 2) R2 binding:
+#    Variable name: R2_BUCKET
+#    Bucket: o bucket R2 da ConnectPixel
+#
+# Se preferir controlar pelo arquivo, descomente e ajuste:
+# [[r2_buckets]]
+# binding = "R2_BUCKET"
+# bucket_name = "NOME_DO_SEU_BUCKET_R2"
