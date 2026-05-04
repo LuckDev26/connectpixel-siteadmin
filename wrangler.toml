@@ -1,0 +1,16 @@
+name = "connectpixel-siteadmin"
+main = "src/index.js"
+compatibility_date = "2026-05-04"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+html_handling = "auto-trailing-slash"
+
+[vars]
+PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
+
+# Configure no Cloudflare:
+# ADMIN_TOKEN como Secret
+# R2_BUCKET como binding R2
