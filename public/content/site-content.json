@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0.0",
-    "updatedAt": "2026-05-04T15:28:58.703984+00:00",
-    "source": "admin-panel",
+    "updatedAt": "2026-05-04T15:13:10.480131+00:00",
+    "source": "pre-admin-review",
     "method": "ConnectFlow™"
   },
   "site": {
@@ -53,19 +53,6 @@
     },
     "segments": [],
     "clients": [],
-    "feedbacks": [],
-    "hero": {
-      "kicker": "Estratégia digital para marcas reais",
-      "headline": "Transformamos marcas em presença digital com direção",
-      "subtitle": "Estratégia, conteúdo, design, vídeo e tráfego para marcas que querem crescer com identidade."
-    },
-    "settings": {
-      "whatsapp": {
-        "display": "+55 88 92178-8255",
-        "phone": "5588921788255"
-      },
-      "instagram": "https://instagram.com/agenciaconnectpixel",
-      "portfolio": "https://connectpixel.online"
-    }
+    "feedbacks": []
   }
 }
