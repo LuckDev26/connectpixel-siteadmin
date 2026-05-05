@@ -1,71 +1,312 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Painel ConnectPixel</title>
+<meta name="theme-color" content="#05080D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#05080D;--panel:#0d1825;--line:rgba(255,255,255,.09);--text:#f7fbfc;--muted:#94a4b5;--teal:#48E5C2;--green:#B6EF59;--danger:#ff5f78;--grad:linear-gradient(135deg,#B6EF59,#48E5C2)}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,sans-serif;color:var(--text);background:radial-gradient(circle at 8% 0%,rgba(182,239,89,.13),transparent 28%),radial-gradient(circle at 96% 4%,rgba(72,229,194,.14),transparent 30%),linear-gradient(180deg,#04070C,#07111B);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:290px 1fr;min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:22px;border-right:1px solid var(--line);background:rgba(5,8,13,.82);backdrop-filter:blur(16px)}.brand{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid rgba(72,229,194,.16);border-radius:22px;background:rgba(72,229,194,.055);margin-bottom:18px}.brand img{width:44px}.brand h1{font-family:Space Grotesk;font-size:1.08rem}.brand span{display:block;color:var(--muted);font-size:.75rem}.nav{display:grid;gap:8px;margin:10px 0 18px}.nav button{border:1px solid transparent;background:transparent;color:var(--muted);padding:12px;border-radius:15px;text-align:left;font-weight:800}.nav button.active,.nav button:hover{background:rgba(72,229,194,.08);border-color:rgba(72,229,194,.18);color:#fff}.logout{width:100%;margin-top:12px}.main{padding:28px;max-width:1280px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px}.top h2{font-family:Space Grotesk;font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.06em;line-height:.95}.top p{color:var(--muted);margin-top:8px}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:11px 15px;font-weight:800}.primary{background:var(--grad);color:#07110f}.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff}.danger{background:rgba(255,95,120,.10);border:1px solid rgba(255,95,120,.28);color:#ffb4c0}.mini{padding:8px 10px;font-size:.82rem}.section{display:none}.section.active{display:block}.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.014));border-radius:25px;padding:18px;margin-bottom:16px;box-shadow:0 22px 55px rgba(0,0,0,.25)}.card h3{font-family:Space Grotesk;font-size:1.2rem}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}label{display:block;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:.72rem;font-weight:800;margin:13px 0 7px}input,textarea,select{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(5,8,13,.6);color:#fff;border-radius:14px;padding:12px;outline:none}textarea{min-height:105px;resize:vertical;line-height:1.55}.list{display:grid;gap:10px}.item{border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:18px;padding:14px}.item-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}.small,.status{color:var(--muted);font-size:.86rem;line-height:1.55}.login{position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 10% 0%,rgba(182,239,89,.16),transparent 28%),radial-gradient(circle at 92% 4%,rgba(72,229,194,.18),transparent 30%),linear-gradient(180deg,#04070C,#07111B)}.login-card{width:min(470px,100%);border:1px solid rgba(72,229,194,.18);border-radius:32px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.018));box-shadow:0 28px 80px rgba(0,0,0,.38)}.login h2{font-family:Space Grotesk;font-size:2.6rem;letter-spacing:-.06em;line-height:.95}.login p{color:var(--muted);line-height:1.6;margin:10px 0}.locked .app{filter:blur(10px);pointer-events:none}.logged .login{display:none}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);border-radius:999px;padding:9px 12px;font-weight:800}.tabs button.active{background:var(--grad);color:#07110f}.subsec{display:none}.subsec.active{display:block}.copybox{display:none;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:15px;padding:12px;margin-top:10px;color:var(--muted)}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid,.grid3{grid-template-columns:1fr}.top{flex-direction:column}.main{padding:18px}}
+:root{
+  --bg:#05080D;--bg2:#07111B;--panel:#0D1825;--panel2:#111F30;
+  --line:rgba(255,255,255,.09);--line2:rgba(72,229,194,.25);
+  --text:#F7FBFC;--muted:#9CAFC1;--soft:#DCE7EA;
+  --teal:#48E5C2;--green:#B6EF59;--danger:#ff5f78;--warn:#ffd166;
+  --grad:linear-gradient(135deg,#B6EF59 0%,#48E5C2 82%);
+  --shadow:0 24px 64px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 5% 0%,rgba(182,239,89,.12),transparent 28%),
+    radial-gradient(circle at 95% 3%,rgba(72,229,194,.14),transparent 30%),
+    linear-gradient(180deg,#04070C 0%,#07111B 100%);
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;opacity:.18;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='88' height='102' viewBox='0 0 88 102' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M44 1 L87 26 L87 76 L44 101 L1 76 L1 26Z' fill='none' stroke='rgba(72,229,194,0.055)' stroke-width='1'/%3E%3C/svg%3E");
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{position:relative;z-index:1;display:grid;grid-template-columns:292px 1fr;min-height:100vh}
+.side{
+  position:sticky;top:0;height:100vh;padding:20px;border-right:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(5,8,13,.90),rgba(7,17,27,.78));backdrop-filter:blur(18px);overflow:auto;
+}
+.brand{
+  display:flex;gap:12px;align-items:center;padding:12px;border:1px solid rgba(72,229,194,.16);
+  border-radius:22px;background:rgba(72,229,194,.055);margin-bottom:18px;
+}
+.brand img{width:44px;height:44px;object-fit:contain}
+.brand h1{font-family:Space Grotesk;font-size:1.08rem;letter-spacing:-.04em}
+.brand span{display:block;color:var(--muted);font-size:.75rem;margin-top:3px}
+.nav-title{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(156,175,193,.72);font-weight:800;margin:18px 0 8px}
+.nav{display:grid;gap:7px}
+.nav button{
+  border:1px solid transparent;background:transparent;color:var(--muted);padding:12px;border-radius:15px;text-align:left;font-weight:800;
+  display:flex;align-items:center;gap:9px;transition:.2s ease;
+}
+.nav button.active,.nav button:hover{background:rgba(72,229,194,.08);border-color:rgba(72,229,194,.18);color:#fff;transform:translateX(2px)}
+.nav button small{display:block;font-weight:600;color:rgba(156,175,193,.75);font-size:.72rem;margin-top:2px}
+.side-note{margin-top:18px;color:var(--muted);font-size:.82rem;line-height:1.5;border:1px solid rgba(182,239,89,.12);background:rgba(182,239,89,.045);border-radius:18px;padding:13px}
+.logout{width:100%;margin-top:12px}
+.main{padding:28px;max-width:1280px;width:100%;margin:0 auto}
+.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:20px}
+.top h2{font-family:Space Grotesk;font-size:clamp(2rem,4vw,3.35rem);line-height:.95;letter-spacing:-.06em}
+.top p{color:var(--muted);margin-top:8px;line-height:1.55;max-width:720px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:0;border-radius:14px;padding:11px 15px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s ease}
+.btn:active{transform:scale(.98)}
+.primary{background:var(--grad);color:#07110f;box-shadow:0 16px 34px rgba(72,229,194,.16)}
+.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff}
+.danger{background:rgba(255,95,120,.10);border:1px solid rgba(255,95,120,.28);color:#ffb4c0}
+.mini{padding:8px 10px;font-size:.82rem;border-radius:12px}
+.section{display:none}.section.active{display:block;animation:fade .24s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.014));
+  border-radius:26px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 0 0,rgba(72,229,194,.075),transparent 36%);pointer-events:none}
+.card>*{position:relative;z-index:1}
+.card h3{font-family:Space Grotesk;font-size:1.22rem;letter-spacing:-.035em}
+.card p{color:var(--muted);line-height:1.55}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.action-card{
+  min-height:150px;border:1px solid rgba(72,229,194,.13);border-radius:24px;padding:18px;background:rgba(255,255,255,.035);
+  display:flex;flex-direction:column;justify-content:space-between;transition:.2s ease;
+}
+.action-card:hover{transform:translateY(-4px);border-color:rgba(72,229,194,.28);box-shadow:0 20px 46px rgba(0,0,0,.22)}
+.action-card strong{font-family:Space Grotesk;font-size:1.16rem;letter-spacing:-.03em}
+.action-card span{color:var(--muted);font-size:.88rem;line-height:1.45;margin-top:6px;display:block}
+label{display:block;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:.72rem;font-weight:800;margin:13px 0 7px}
+input,textarea,select{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(5,8,13,.62);color:#fff;border-radius:14px;padding:12px;outline:none}
+textarea{min-height:105px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{border-color:rgba(72,229,194,.36);box-shadow:0 0 0 3px rgba(72,229,194,.08)}
+.list{display:grid;gap:10px}
+.item{border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:18px;padding:14px}
+.item-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.item h4{font-family:Space Grotesk;letter-spacing:-.03em}
+.small,.status{color:var(--muted);font-size:.86rem;line-height:1.55}
+.help{border:1px solid rgba(72,229,194,.14);background:rgba(72,229,194,.055);border-radius:18px;padding:14px;color:var(--muted);font-size:.88rem;line-height:1.55;margin-bottom:14px}
+.warn{border-color:rgba(255,209,102,.25);background:rgba(255,209,102,.065);color:#ffe5a3}
+.copybox{display:none;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:15px;padding:12px;margin-top:10px;color:var(--muted);word-break:break-all}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabs button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);border-radius:999px;padding:9px 12px;font-weight:800}
+.tabs button.active{background:var(--grad);color:#07110f}
+.subsec{display:none}.subsec.active{display:block}
+.login{position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 10% 0%,rgba(182,239,89,.16),transparent 28%),radial-gradient(circle at 92% 4%,rgba(72,229,194,.18),transparent 30%),linear-gradient(180deg,#04070C,#07111B)}
+.login-card{width:min(470px,100%);border:1px solid rgba(72,229,194,.18);border-radius:32px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.018));box-shadow:0 28px 80px rgba(0,0,0,.38)}
+.login h2{font-family:Space Grotesk;font-size:2.55rem;letter-spacing:-.06em;line-height:.95}
+.login p{color:var(--muted);line-height:1.6;margin:10px 0}
+.locked .app{filter:blur(10px);pointer-events:none}.logged .login{display:none}
+.toast{
+  position:fixed;right:22px;bottom:22px;z-index:20;border:1px solid rgba(72,229,194,.20);background:rgba(8,14,22,.92);
+  backdrop-filter:blur(14px);border-radius:18px;padding:13px 16px;color:#dffaf4;box-shadow:0 18px 44px rgba(0,0,0,.25);display:none;
+}
+@media(max-width:1050px){.action-grid,.grid3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid,.grid3,.action-grid{grid-template-columns:1fr}.top{flex-direction:column}.btns{justify-content:flex-start}.main{padding:18px}}
 </style>
 </head>
 <body class="locked">
 <div class="login">
  <div class="login-card">
   <div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Painel administrativo</span></div></div>
-  <h2>Acesso restrito</h2><p>Digite a senha do painel para editar o site, bio, portfólio e mídias.</p>
-  <label>Senha</label><input id="loginToken" type="password" placeholder="ADMIN_TOKEN"><br><br>
-  <button class="btn primary" id="loginBtn">Entrar</button><p class="status" id="loginError"></p>
+  <h2>Acesso restrito</h2>
+  <p>Digite a senha do painel para editar o site, bio, portfólio e mídias.</p>
+  <label>Senha do painel</label>
+  <input id="loginToken" type="password" placeholder="ADMIN_TOKEN">
+  <br><br>
+  <button class="btn primary" id="loginBtn">Entrar no painel</button>
+  <p class="status" id="loginError"></p>
  </div>
 </div>
+
 <div class="app">
 <aside class="side">
- <div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Painel simples</span></div></div>
+ <div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Painel guiado</span></div></div>
+
+ <div class="nav-title">Comece aqui</div>
  <nav class="nav">
-  <button class="active" data-tab="home">Início</button><button data-tab="site">Site principal</button><button data-tab="bio">Link da bio</button><button data-tab="method">Método</button><button data-tab="portfolio">Portfólio</button><button data-tab="media">Mídias</button><button data-tab="publish">Publicação</button><button data-tab="json">Avançado</button><button data-tab="config">Configuração</button>
+  <button class="active" data-tab="home">Início <small>atalhos principais</small></button>
  </nav>
- <p class="small">Crie, edite, apague e organize conteúdos sem mexer em código.</p>
+
+ <div class="nav-title">Editar conteúdo</div>
+ <nav class="nav">
+  <button data-tab="site">Site principal <small>topo, sobre e menu</small></button>
+  <button data-tab="bio">Link da bio <small>botões, empresas e eventos</small></button>
+  <button data-tab="method">Método <small>ConnectFlow™</small></button>
+  <button data-tab="portfolio">Portfólio <small>reels, cards e carrosséis</small></button>
+  <button data-tab="media">Mídias <small>upload para R2</small></button>
+ </nav>
+
+ <div class="nav-title">Finalizar</div>
+ <nav class="nav">
+  <button data-tab="publish">Publicação <small>salvar e backup</small></button>
+  <button data-tab="json">Avançado <small>JSON bruto</small></button>
+  <button data-tab="config">Configuração <small>senha local</small></button>
+ </nav>
+
+ <div class="side-note">Fluxo ideal: edite → salve → teste no site → crie backup antes de mudanças grandes.</div>
  <button class="btn ghost logout" onclick="logout()">Sair</button>
 </aside>
+
 <main class="main">
- <div class="top"><div><h2 id="title">Início</h2><p>Painel visual para controlar site, bio, portfólio e conteúdo.</p></div><div class="btns"><button class="btn ghost" onclick="loadAll()">Recarregar</button><button class="btn primary" onclick="saveAll()">Salvar alterações</button></div></div>
- <section id="home" class="section active"><div class="grid3"><div class="card"><h3 id="nReels">0</h3><p class="small">Reels</p></div><div class="card"><h3 id="nCards">0</h3><p class="small">Cards</p></div><div class="card"><h3 id="nCar">0</h3><p class="small">Carrosséis</p></div></div><div class="card"><h3>Resumo</h3><p class="small">Esse painel salva os dados no R2 e o site lê os JSONs em /api/content/site-content e /api/content/bio-content.</p></div></section>
- <section id="site" class="section"><div class="card"><h3>Topo do site</h3><div class="grid"><div><label>Kicker</label><input id="hero_kicker"></div><div><label>Headline</label><input id="hero_headline"></div></div><label>Subtítulo</label><textarea id="hero_subtitle"></textarea></div><div class="card"><h3>Sobre nós</h3><div class="grid"><div><label>Badge</label><input id="about_badge"></div><div><label>Headline</label><input id="about_headline"></div></div><label>Parágrafo 1</label><textarea id="about_p1"></textarea><label>Parágrafo 2</label><textarea id="about_p2"></textarea></div><div class="card"><div class="item-head"><div><h3>Menu</h3><p class="small">Crie, apague e ordene itens da navbar.</p></div><button class="btn ghost" onclick="addNav()">Adicionar</button></div><div id="navList" class="list"></div></div><div class="card"><div class="item-head"><div><h3>Ordem das seções</h3><p class="small">Controle visibilidade e ordem salvas no JSON.</p></div><button class="btn ghost" onclick="addSection()">Adicionar</button></div><div id="sectionsList" class="list"></div></div></section>
- <section id="bio" class="section"><div class="card"><h3>Home da bio</h3><label>Headline</label><input id="bio_headline"><label>Subtítulo</label><textarea id="bio_subtitle"></textarea></div><div class="card"><h3>WhatsApp</h3><div class="grid"><div><label>Número exibido</label><input id="wa_display"></div><div><label>Número DDI+DDD</label><input id="wa_phone"></div></div><label>Mensagem</label><textarea id="wa_msg"></textarea></div><div class="card"><div class="item-head"><div><h3>Botões da bio</h3><p class="small">Destino: whatsapp, empresas, eventos ou URL.</p></div><button class="btn ghost" onclick="addBioLink()">Adicionar</button></div><div id="bioLinks" class="list"></div></div><div class="card"><h3>Página Empresas</h3><label>Headline</label><input id="emp_head"><label>Texto</label><textarea id="emp_copy"></textarea><div class="item-head"><h3>Serviços</h3><button class="btn ghost mini" onclick="addBioService()">Adicionar</button></div><div id="servicesList" class="list"></div></div><div class="card"><h3>Página Eventos</h3><label>Headline</label><input id="evt_head"><label>Texto</label><textarea id="evt_copy"></textarea><div class="item-head"><h3>Tipos</h3><button class="btn ghost mini" onclick="addEventType()">Adicionar</button></div><div id="eventsList" class="list"></div></div></section>
- <section id="method" class="section"><div class="card"><h3>ConnectFlow™</h3><label>Badge</label><input id="cf_badge"><label>Headline</label><input id="cf_head"><label>Subheadline</label><textarea id="cf_sub"></textarea></div><div class="card"><div class="item-head"><div><h3>Etapas</h3><p class="small">Crie, edite e apague pilares.</p></div><button class="btn ghost" onclick="addStep()">Adicionar etapa</button></div><div id="stepsList" class="list"></div></div><div class="card"><label>Frase final</label><textarea id="cf_footer"></textarea></div></section>
- <section id="portfolio" class="section"><div class="tabs"><button class="active" data-sub="reels">Reels</button><button data-sub="cards">Cards</button><button data-sub="carousels">Carrosséis</button><button data-sub="clients">Clientes</button><button data-sub="feedbacks">Feedbacks</button><button data-sub="segments">Segmentos</button></div><div id="reels" class="subsec active"><div class="card"><div class="item-head"><h3>Reels</h3><button class="btn ghost" onclick="addPort('reels')">Adicionar</button></div><div id="reelsList" class="list"></div></div></div><div id="cards" class="subsec"><div class="card"><div class="item-head"><h3>Cards</h3><button class="btn ghost" onclick="addPort('cards')">Adicionar</button></div><div id="cardsList" class="list"></div></div></div><div id="carousels" class="subsec"><div class="card"><div class="item-head"><h3>Carrosséis</h3><button class="btn ghost" onclick="addPort('carousels')">Adicionar</button></div><p class="small">Coloque 1 URL de slide por linha, na ordem correta.</p><br><div id="carouselsList" class="list"></div></div></div><div id="clients" class="subsec"><div class="card"><div class="item-head"><h3>Clientes</h3><button class="btn ghost" onclick="addSimple('clients')">Adicionar</button></div><div id="clientsList" class="list"></div></div></div><div id="feedbacks" class="subsec"><div class="card"><div class="item-head"><h3>Feedbacks</h3><button class="btn ghost" onclick="addFeedback()">Adicionar</button></div><div id="feedbacksList" class="list"></div></div></div><div id="segments" class="subsec"><div class="card"><div class="item-head"><h3>Segmentos</h3><button class="btn ghost" onclick="addSimple('segments')">Adicionar</button></div><div id="segmentsList" class="list"></div></div></div></section>
- <section id="media" class="section"><div class="card"><h3>Enviar mídia para R2</h3><p class="small">Depois copie a URL e cole no item desejado.</p><label>Arquivo</label><input type="file" id="mediaFile" accept="image/*,video/*"><div class="grid"><div><label>Destino</label><select id="mediaFolder"><option>site</option><option>bio</option><option>reels</option><option>cards</option><option>carrosseis</option><option>clientes</option><option>feedbacks</option></select></div><div><label>Nome opcional</label><input id="mediaName"></div></div><br><button class="btn primary" onclick="uploadMedia()">Enviar</button><div id="mediaBox" class="copybox"><span id="mediaUrl"></span><button class="btn ghost mini" onclick="copyMedia()">Copiar</button></div><p class="status" id="mediaStatus"></p></div></section>
- <section id="publish" class="section"><div class="card"><h3>Publicação segura</h3><p class="small">Salve e gere backup antes de mudanças grandes.</p><br><div class="grid"><button class="btn primary" onclick="saveAll()">Salvar alterações</button><button class="btn ghost" onclick="backup()">Criar backup no R2</button></div><br><div class="grid"><button class="btn ghost" onclick="downloadJson('site')">Baixar JSON do site</button><button class="btn ghost" onclick="downloadJson('bio')">Baixar JSON da bio</button></div><p class="status" id="backupStatus"></p></div></section>
- <section id="json" class="section"><div class="card"><h3>Editor avançado</h3><div class="grid"><div><label>site-content.json</label><textarea id="siteJson" style="min-height:420px;font-family:monospace"></textarea></div><div><label>bio-content.json</label><textarea id="bioJson" style="min-height:420px;font-family:monospace"></textarea></div></div></div></section>
- <section id="config" class="section"><div class="card"><h3>Senha do painel</h3><label>ADMIN_TOKEN</label><input id="tokenInput"><br><br><button class="btn primary" onclick="saveToken()">Salvar token</button></div></section><p class="status" id="status"></p>
-</main></div>
+ <div class="top">
+  <div><h2 id="title">Início</h2><p id="subtitle">Escolha o que você quer alterar. O painel foi organizado por tarefas, não por código.</p></div>
+  <div class="btns"><button class="btn ghost" onclick="loadAll()">Recarregar</button><button class="btn primary" onclick="saveAll()">Salvar alterações</button></div>
+ </div>
+
+ <section id="home" class="section active">
+  <div class="action-grid">
+    <button class="action-card" onclick="go('site')"><strong>Mudar textos do site</strong><span>Hero, Sobre, menu e ordem das seções.</span></button>
+    <button class="action-card" onclick="go('bio')"><strong>Editar link da bio</strong><span>Botões, WhatsApp, página de empresas e eventos.</span></button>
+    <button class="action-card" onclick="go('method')"><strong>Ajustar ConnectFlow™</strong><span>Etapas, títulos e frase final da metodologia.</span></button>
+    <button class="action-card" onclick="go('portfolio')"><strong>Cadastrar portfólio</strong><span>Reels, cards, carrosséis, clientes e feedbacks.</span></button>
+    <button class="action-card" onclick="go('media')"><strong>Subir imagem ou vídeo</strong><span>Upload para R2 e cópia da URL pública.</span></button>
+    <button class="action-card" onclick="go('publish')"><strong>Salvar com segurança</strong><span>Salvar alterações, baixar JSON e criar backup.</span></button>
+  </div>
+  <br>
+  <div class="grid3">
+    <div class="card"><h3 id="nReels">0</h3><p>Reels cadastrados</p></div>
+    <div class="card"><h3 id="nCards">0</h3><p>Cards cadastrados</p></div>
+    <div class="card"><h3 id="nCar">0</h3><p>Carrosséis cadastrados</p></div>
+  </div>
+  <div class="card"><h3>Status</h3><p id="homeStatus">Carregando dados...</p></div>
+ </section>
+
+ <section id="site" class="section">
+  <div class="help">Use esta área para mexer nos textos principais do site. Depois clique em <strong>Salvar alterações</strong> e atualize o site.</div>
+  <div class="card"><h3>Topo do site</h3><div class="grid"><div><label>Kicker</label><input id="hero_kicker"></div><div><label>Headline</label><input id="hero_headline"></div></div><label>Subtítulo</label><textarea id="hero_subtitle"></textarea></div>
+  <div class="card"><h3>Sobre nós</h3><div class="grid"><div><label>Badge</label><input id="about_badge"></div><div><label>Headline</label><input id="about_headline"></div></div><label>Parágrafo 1</label><textarea id="about_p1"></textarea><label>Parágrafo 2</label><textarea id="about_p2"></textarea></div>
+  <div class="card"><div class="item-head"><div><h3>Menu do site</h3><p class="small">Crie, apague e ordene itens da navbar.</p></div><button class="btn ghost" onclick="addNav()">Adicionar item</button></div><div id="navList" class="list"></div></div>
+  <div class="card"><div class="item-head"><div><h3>Ordem das seções</h3><p class="small">Controle visibilidade e ordem salvas no JSON.</p></div><button class="btn ghost" onclick="addSection()">Adicionar seção</button></div><div id="sectionsList" class="list"></div></div>
+ </section>
+
+ <section id="bio" class="section">
+  <div class="help">Aqui fica tudo que aparece no link da bio: texto inicial, WhatsApp, botões e páginas internas.</div>
+  <div class="card"><h3>Home da bio</h3><label>Headline</label><input id="bio_headline"><label>Subtítulo</label><textarea id="bio_subtitle"></textarea></div>
+  <div class="card"><h3>WhatsApp</h3><div class="grid"><div><label>Número exibido</label><input id="wa_display"></div><div><label>Número DDI + DDD</label><input id="wa_phone"></div></div><label>Mensagem inicial</label><textarea id="wa_msg"></textarea></div>
+  <div class="card"><div class="item-head"><div><h3>Botões da bio</h3><p class="small">Destino pode ser: whatsapp, empresas, eventos ou URL.</p></div><button class="btn ghost" onclick="addBioLink()">Adicionar botão</button></div><div id="bioLinks" class="list"></div></div>
+  <div class="card"><h3>Página Empresas</h3><label>Headline</label><input id="emp_head"><label>Texto</label><textarea id="emp_copy"></textarea><div class="item-head"><h3>Serviços</h3><button class="btn ghost mini" onclick="addBioService()">Adicionar serviço</button></div><div id="servicesList" class="list"></div></div>
+  <div class="card"><h3>Página Eventos</h3><label>Headline</label><input id="evt_head"><label>Texto</label><textarea id="evt_copy"></textarea><div class="item-head"><h3>Tipos de eventos</h3><button class="btn ghost mini" onclick="addEventType()">Adicionar tipo</button></div><div id="eventsList" class="list"></div></div>
+ </section>
+
+ <section id="method" class="section">
+  <div class="help">Edite a metodologia ConnectFlow™ com segurança. Cada etapa aparece na timeline do site.</div>
+  <div class="card"><h3>Texto principal</h3><label>Badge</label><input id="cf_badge"><label>Headline</label><input id="cf_head"><label>Subheadline</label><textarea id="cf_sub"></textarea></div>
+  <div class="card"><div class="item-head"><div><h3>Etapas / pilares</h3><p class="small">Crie, edite ou apague etapas.</p></div><button class="btn ghost" onclick="addStep()">Adicionar etapa</button></div><div id="stepsList" class="list"></div></div>
+  <div class="card"><label>Frase final</label><textarea id="cf_footer"></textarea></div>
+ </section>
+
+ <section id="portfolio" class="section">
+  <div class="help">Cadastre os trabalhos da agência. Para carrosséis, cole uma URL por linha na ordem correta.</div>
+  <div class="tabs"><button class="active" data-sub="reels">Reels</button><button data-sub="cards">Cards</button><button data-sub="carousels">Carrosséis</button><button data-sub="clients">Clientes</button><button data-sub="feedbacks">Feedbacks</button><button data-sub="segments">Segmentos</button></div>
+  <div id="reels" class="subsec active"><div class="card"><div class="item-head"><h3>Reels</h3><button class="btn ghost" onclick="addPort('reels')">Adicionar reel</button></div><div id="reelsList" class="list"></div></div></div>
+  <div id="cards" class="subsec"><div class="card"><div class="item-head"><h3>Cards</h3><button class="btn ghost" onclick="addPort('cards')">Adicionar card</button></div><div id="cardsList" class="list"></div></div></div>
+  <div id="carousels" class="subsec"><div class="card"><div class="item-head"><h3>Carrosséis</h3><button class="btn ghost" onclick="addPort('carousels')">Adicionar carrossel</button></div><div id="carouselsList" class="list"></div></div></div>
+  <div id="clients" class="subsec"><div class="card"><div class="item-head"><h3>Clientes</h3><button class="btn ghost" onclick="addSimple('clients')">Adicionar cliente</button></div><div id="clientsList" class="list"></div></div></div>
+  <div id="feedbacks" class="subsec"><div class="card"><div class="item-head"><h3>Feedbacks</h3><button class="btn ghost" onclick="addFeedback()">Adicionar feedback</button></div><div id="feedbacksList" class="list"></div></div></div>
+  <div id="segments" class="subsec"><div class="card"><div class="item-head"><h3>Segmentos</h3><button class="btn ghost" onclick="addSimple('segments')">Adicionar segmento</button></div><div id="segmentsList" class="list"></div></div></div>
+ </section>
+
+ <section id="media" class="section">
+  <div class="help">Suba o arquivo, copie a URL retornada e cole no campo de imagem, vídeo, card, reel ou carrossel.</div>
+  <div class="card"><h3>Enviar mídia para R2</h3><label>Arquivo</label><input type="file" id="mediaFile" accept="image/*,video/*"><div class="grid"><div><label>Destino</label><select id="mediaFolder"><option>site</option><option>bio</option><option>reels</option><option>cards</option><option>carrosseis</option><option>clientes</option><option>feedbacks</option></select></div><div><label>Nome opcional</label><input id="mediaName" placeholder="ex: cliente-fontnet"></div></div><br><button class="btn primary" onclick="uploadMedia()">Enviar mídia</button><div id="mediaBox" class="copybox"><span id="mediaUrl"></span><button class="btn ghost mini" onclick="copyMedia()">Copiar</button></div><p class="status" id="mediaStatus"></p></div>
+ </section>
+
+ <section id="publish" class="section">
+  <div class="card"><h3>Publicação segura</h3><p>Salve e faça backup antes de mudanças grandes.</p><br><div class="grid"><button class="btn primary" onclick="saveAll()">Salvar alterações</button><button class="btn ghost" onclick="backup()">Criar backup no R2</button></div><br><div class="grid"><button class="btn ghost" onclick="downloadJson('site')">Baixar JSON do site</button><button class="btn ghost" onclick="downloadJson('bio')">Baixar JSON da bio</button></div><p class="status" id="backupStatus"></p></div>
+ </section>
+
+ <section id="json" class="section"><div class="card"><h3>Editor avançado</h3><p class="small">Use apenas para ajustes mais técnicos.</p><div class="grid"><div><label>site-content.json</label><textarea id="siteJson" style="min-height:430px;font-family:monospace"></textarea></div><div><label>bio-content.json</label><textarea id="bioJson" style="min-height:430px;font-family:monospace"></textarea></div></div></div></section>
+ <section id="config" class="section"><div class="card"><h3>Senha local do painel</h3><label>ADMIN_TOKEN</label><input id="tokenInput"><br><br><button class="btn primary" onclick="saveToken()">Salvar senha neste navegador</button></div></section>
+ <p class="status" id="status"></p>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+
 <script>
 const $=id=>document.getElementById(id);let siteData,bioData,lastMediaUrl="";
-function token(){return localStorage.getItem("cp_token")||""}function exp(){return +(localStorage.getItem("cp_exp")||0)}function setSession(v){localStorage.setItem("cp_token",v);localStorage.setItem("cp_exp",Date.now()+1000*60*60*8)}function logout(){localStorage.removeItem("cp_token");localStorage.removeItem("cp_exp");location.reload()}function headers(j=true){let h={Authorization:"Bearer "+token()};if(j)h["Content-Type"]="application/json";return h}function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}function st(m){$("status").textContent=m||""}
-document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active");$("title").textContent=b.textContent});
+function token(){return localStorage.getItem("cp_token")||""}
+function exp(){return +(localStorage.getItem("cp_exp")||0)}
+function setSession(v){localStorage.setItem("cp_token",v);localStorage.setItem("cp_exp",Date.now()+1000*60*60*8)}
+function logout(){localStorage.removeItem("cp_token");localStorage.removeItem("cp_exp");location.reload()}
+function headers(j=true){let h={Authorization:"Bearer "+token()};if(j)h["Content-Type"]="application/json";return h}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function st(m){$("status").textContent=m||""}
+function toast(m){$("toast").textContent=m;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",2800)}
+function go(tab){document.querySelector(`[data-tab="${tab}"]`)?.click()}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active");$("title").textContent=b.childNodes[0].textContent.trim()});
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".subsec").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.sub).classList.add("active")});
-async function login(){let v=$("loginToken").value.trim();if(!v)return $("loginError").textContent="Digite a senha.";let r=await fetch("/api/admin/content/site-content",{headers:{Authorization:"Bearer "+v},cache:"no-store"}).catch(()=>null);if(!r||!r.ok)return $("loginError").textContent="Senha incorreta ou API indisponível.";setSession(v);$("tokenInput").value=v;document.body.className="logged";loadAll()}$("loginBtn").onclick=login;$("loginToken").onkeydown=e=>{if(e.key==="Enter")login()};
-async function loadJson(n){let r=await fetch("/api/admin/content/"+n,{headers:headers(false),cache:"no-store"});if(!r.ok)throw new Error("Erro "+r.status+" em "+n);return r.json()}async function saveJson(n,d){let r=await fetch("/api/admin/content/"+n,{method:"PUT",headers:headers(true),body:JSON.stringify(d,null,2)});if(!r.ok)throw new Error("Erro ao salvar "+n);return r.json()}
-function shape(){siteData.site??={};bioData.bio??={};siteData.site.hero??={};siteData.site.about??={paragraphs:["",""]};siteData.site.navbar??=[];siteData.site.sections??=[];siteData.site.connectflow??={steps:[]};siteData.site.portfolio??={};siteData.site.portfolio.reels??=[];siteData.site.portfolio.cards??=[];siteData.site.portfolio.carousels??=[];siteData.site.clients??=[];siteData.site.feedbacks??=[];siteData.site.segments??=[];bioData.bio.whatsapp??={};bioData.bio.links??=[];bioData.bio.pages??={};bioData.bio.pages.empresas??={services:[]};bioData.bio.pages.eventos??={types:[]}}
-async function loadAll(){try{st("Carregando...");siteData=await loadJson("site-content");bioData=await loadJson("bio-content");shape();render();st("Carregado.")}catch(e){st(e.message)}}
-function render(){let s=siteData.site,b=bioData.bio;$("hero_kicker").value=s.hero.kicker||"";$("hero_headline").value=s.hero.headline||"";$("hero_subtitle").value=s.hero.subtitle||"";$("about_badge").value=s.about.badge||"";$("about_headline").value=s.about.headline||"";$("about_p1").value=s.about.paragraphs?.[0]||"";$("about_p2").value=s.about.paragraphs?.[1]||"";$("bio_headline").value=b.headline||"";$("bio_subtitle").value=b.subtitle||"";$("wa_display").value=b.whatsapp.display||"";$("wa_phone").value=b.whatsapp.phone||"";$("wa_msg").value=b.whatsapp.message||"";$("emp_head").value=b.pages.empresas.headline||"";$("emp_copy").value=b.pages.empresas.copy||"";$("evt_head").value=b.pages.eventos.headline||"";$("evt_copy").value=b.pages.eventos.copy||"";$("cf_badge").value=s.connectflow.badge||"";$("cf_head").value=s.connectflow.headline||"";$("cf_sub").value=s.connectflow.subheadline||"";$("cf_footer").value=s.connectflow.footer||"";renderNav();renderSections();renderBioLinks();renderBioServices();renderEvents();renderSteps();renderPorts();renderSimple("clients","clientsList");renderSimple("segments","segmentsList");renderFeedbacks();counts();$("siteJson").value=JSON.stringify(siteData,null,2);$("bioJson").value=JSON.stringify(bioData,null,2)}
-function collect(){let s=siteData.site,b=bioData.bio;s.hero.kicker=$("hero_kicker").value;s.hero.headline=$("hero_headline").value;s.hero.subtitle=$("hero_subtitle").value;s.about.badge=$("about_badge").value;s.about.headline=$("about_headline").value;s.about.paragraphs=[$("about_p1").value,$("about_p2").value];b.headline=$("bio_headline").value;b.subtitle=$("bio_subtitle").value;b.whatsapp.display=$("wa_display").value;b.whatsapp.phone=$("wa_phone").value.replace(/\D/g,"");b.whatsapp.message=$("wa_msg").value;b.pages.empresas.headline=$("emp_head").value;b.pages.empresas.copy=$("emp_copy").value;b.pages.eventos.headline=$("evt_head").value;b.pages.eventos.copy=$("evt_copy").value;s.connectflow.badge=$("cf_badge").value;s.connectflow.headline=$("cf_head").value;s.connectflow.subheadline=$("cf_sub").value;s.connectflow.footer=$("cf_footer").value}
-async function saveAll(){try{if(document.querySelector("#json.active")){siteData=JSON.parse($("siteJson").value);bioData=JSON.parse($("bioJson").value)}else collect();siteData.meta??={};bioData.meta??={};siteData.meta.updatedAt=new Date().toISOString();bioData.meta.updatedAt=new Date().toISOString();await saveJson("site-content",siteData);await saveJson("bio-content",bioData);render();st("Salvo com sucesso.")}catch(e){st(e.message)}}
+async function login(){let v=$("loginToken").value.trim();$("loginError").textContent="";if(!v)return $("loginError").textContent="Digite a senha.";try{let r=await fetch("/api/admin/content/site-content",{headers:{Authorization:"Bearer "+v},cache:"no-store"});if(!r.ok)return $("loginError").textContent=r.status===401?"Senha incorreta.":"API indisponível: erro "+r.status;setSession(v);$("tokenInput").value=v;document.body.className="logged";await loadAll()}catch(e){$("loginError").textContent="Não foi possível conectar com a API."}}
+$("loginBtn").onclick=login;$("loginToken").onkeydown=e=>{if(e.key==="Enter")login()};
+async function loadJson(n){let r=await fetch("/api/admin/content/"+n,{headers:headers(false),cache:"no-store"});if(!r.ok)throw new Error("Erro "+r.status+" ao carregar "+n);return r.json()}
+async function saveJson(n,d){let r=await fetch("/api/admin/content/"+n,{method:"PUT",headers:headers(true),body:JSON.stringify(d,null,2)});if(!r.ok)throw new Error("Erro ao salvar "+n+": "+r.status);return r.json()}
+function shape(){
+ siteData = (siteData&&typeof siteData==="object")?siteData:{}; bioData=(bioData&&typeof bioData==="object")?bioData:{};
+ siteData.meta??={}; bioData.meta??={}; siteData.site??={}; bioData.bio??={};
+ let s=siteData.site,b=bioData.bio;
+ s.hero??={}; s.about??={}; s.about.paragraphs=Array.isArray(s.about.paragraphs)?s.about.paragraphs:["",""];
+ s.navbar=Array.isArray(s.navbar)?s.navbar:[]; s.sections=Array.isArray(s.sections)?s.sections:[];
+ if(!s.sections.length)s.sections=[{id:"hero",label:"Hero",visible:true,order:1},{id:"sobre",label:"Sobre",visible:true,order:2},{id:"connectflow",label:"Método",visible:true,order:3},{id:"portfolio",label:"Portfólio",visible:true,order:4},{id:"nichos",label:"Segmentos",visible:true,order:5},{id:"clientes",label:"Clientes",visible:true,order:6},{id:"depoimentos",label:"Feedbacks",visible:true,order:7},{id:"contato",label:"Contato",visible:true,order:8}];
+ s.connectflow??={}; s.connectflow.steps=Array.isArray(s.connectflow.steps)?s.connectflow.steps:[];
+ s.portfolio??={}; s.portfolio.reels=Array.isArray(s.portfolio.reels)?s.portfolio.reels:[]; s.portfolio.cards=Array.isArray(s.portfolio.cards)?s.portfolio.cards:[]; s.portfolio.carousels=Array.isArray(s.portfolio.carousels)?s.portfolio.carousels:[];
+ s.clients=Array.isArray(s.clients)?s.clients:[]; s.feedbacks=Array.isArray(s.feedbacks)?s.feedbacks:[]; s.segments=Array.isArray(s.segments)?s.segments:[];
+ b.whatsapp??={}; b.links=Array.isArray(b.links)?b.links:[]; b.pages??={}; b.pages.empresas??={}; b.pages.eventos??={};
+ b.pages.empresas.services=Array.isArray(b.pages.empresas.services)?b.pages.empresas.services:[]; b.pages.eventos.types=Array.isArray(b.pages.eventos.types)?b.pages.eventos.types:[];
+}
+async function loadAll(){try{st("Carregando...");siteData=await loadJson("site-content");bioData=await loadJson("bio-content");shape();render();st("Carregado.");toast("Painel carregado")}catch(e){st(e.message);$("homeStatus").textContent=e.message}}
+function render(){
+ let s=siteData.site,b=bioData.bio;
+ $("hero_kicker").value=s.hero.kicker||"";$("hero_headline").value=s.hero.headline||"";$("hero_subtitle").value=s.hero.subtitle||"";
+ $("about_badge").value=s.about.badge||"";$("about_headline").value=s.about.headline||"";$("about_p1").value=s.about.paragraphs?.[0]||"";$("about_p2").value=s.about.paragraphs?.[1]||"";
+ $("bio_headline").value=b.headline||"";$("bio_subtitle").value=b.subtitle||"";$("wa_display").value=b.whatsapp.display||"";$("wa_phone").value=b.whatsapp.phone||"";$("wa_msg").value=b.whatsapp.message||"";
+ $("emp_head").value=b.pages.empresas.headline||"";$("emp_copy").value=b.pages.empresas.copy||"";$("evt_head").value=b.pages.eventos.headline||"";$("evt_copy").value=b.pages.eventos.copy||"";
+ $("cf_badge").value=s.connectflow.badge||"";$("cf_head").value=s.connectflow.headline||"";$("cf_sub").value=s.connectflow.subheadline||"";$("cf_footer").value=s.connectflow.footer||"";
+ renderNav();renderSections();renderBioLinks();renderBioServices();renderEvents();renderSteps();renderPorts();renderSimple("clients","clientsList");renderSimple("segments","segmentsList");renderFeedbacks();counts();
+ $("siteJson").value=JSON.stringify(siteData,null,2);$("bioJson").value=JSON.stringify(bioData,null,2);$("homeStatus").textContent="Tudo carregado. Escolha um atalho acima para editar."
+}
+function collect(){
+ let s=siteData.site,b=bioData.bio;
+ s.hero.kicker=$("hero_kicker").value;s.hero.headline=$("hero_headline").value;s.hero.subtitle=$("hero_subtitle").value;
+ s.about.badge=$("about_badge").value;s.about.headline=$("about_headline").value;s.about.paragraphs=[$("about_p1").value,$("about_p2").value];
+ b.headline=$("bio_headline").value;b.subtitle=$("bio_subtitle").value;b.whatsapp.display=$("wa_display").value;b.whatsapp.phone=$("wa_phone").value.replace(/\D/g,"");b.whatsapp.message=$("wa_msg").value;
+ b.pages.empresas.headline=$("emp_head").value;b.pages.empresas.copy=$("emp_copy").value;b.pages.eventos.headline=$("evt_head").value;b.pages.eventos.copy=$("evt_copy").value;
+ s.connectflow.badge=$("cf_badge").value;s.connectflow.headline=$("cf_head").value;s.connectflow.subheadline=$("cf_sub").value;s.connectflow.footer=$("cf_footer").value;
+}
+async function saveAll(){try{if(document.querySelector("#json.active")){siteData=JSON.parse($("siteJson").value);bioData=JSON.parse($("bioJson").value);shape()}else collect();siteData.meta.updatedAt=new Date().toISOString();bioData.meta.updatedAt=new Date().toISOString();await saveJson("site-content",siteData);await saveJson("bio-content",bioData);render();st("Salvo com sucesso.");toast("Alterações salvas")}catch(e){st(e.message);toast("Erro ao salvar")}}
 function saveToken(){setSession($("tokenInput").value.trim());document.body.className="logged";loadAll()}
-function itemControls(type,i){return `<button class="btn danger mini" onclick="${type}(${i})">Apagar</button>`}
-function bind(sel,arr){document.querySelectorAll(sel).forEach(el=>el.oninput=e=>{let i=+e.target.dataset.i,k=e.target.dataset.k;let v=e.target.value;if(k==="order"||k==="rating")v=+v;arr[i][k]=v})}
-function renderNav(){let box=$("navList");box.innerHTML="";siteData.site.navbar.sort((a,b)=>(a.order||0)-(b.order||0)).forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Item ${i+1}</h4><button class="btn danger mini" onclick="delNav(${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-nav data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>Destino</label><input data-nav data-i=${i} data-k=target value="${esc(it.target)}"></div></div><div class=grid><div><label>Ordem</label><input type=number data-nav data-i=${i} data-k=order value="${it.order||i+1}"></div><div><label>Visível</label><select data-nav data-i=${i} data-k=visible><option value=true ${it.visible!==false?"selected":""}>Sim</option><option value=false ${it.visible===false?"selected":""}>Não</option></select></div></div></div>`});document.querySelectorAll("[data-nav]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="order")v=+v;if(k==="visible")v=v==="true";siteData.site.navbar[i][k]=v})}function addNav(){siteData.site.navbar.push({label:"Novo item",target:"#",visible:true,order:siteData.site.navbar.length+1});renderNav()}function delNav(i){if(confirm("Apagar?")){siteData.site.navbar.splice(i,1);renderNav()}}
-function renderSections(){let box=$("sectionsList");box.innerHTML="";siteData.site.sections.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=grid><div><label>Nome</label><input data-sec data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>ID</label><input data-sec data-i=${i} data-k=id value="${esc(it.id)}"></div></div><div class=grid><div><label>Ordem</label><input type=number data-sec data-i=${i} data-k=order value="${it.order||i+1}"></div><div><label>Visível</label><select data-sec data-i=${i} data-k=visible><option value=true ${it.visible!==false?"selected":""}>Sim</option><option value=false ${it.visible===false?"selected":""}>Não</option></select></div></div></div>`});document.querySelectorAll("[data-sec]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="order")v=+v;if(k==="visible")v=v==="true";siteData.site.sections[i][k]=v})}function addSection(){siteData.site.sections.push({id:"nova-secao",label:"Nova seção",visible:true,order:siteData.site.sections.length+1});renderSections()}
-function renderBioLinks(){let box=$("bioLinks");box.innerHTML="";bioData.bio.links.sort((a,b)=>(a.order||0)-(b.order||0)).forEach((it,i)=>{let dest=it.type||it.page||it.url||"";box.innerHTML+=`<div class=item><div class=item-head><h4>Botão ${i+1}</h4><button class="btn danger mini" onclick="delBioLink(${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-bl data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>Descrição</label><input data-bl data-i=${i} data-k=description value="${esc(it.description)}"></div></div><div class=grid><div><label>Destino</label><input data-bl data-i=${i} data-k=dest value="${esc(dest)}"></div><div><label>Ordem</label><input type=number data-bl data-i=${i} data-k=order value="${it.order||i+1}"></div></div></div>`});document.querySelectorAll("[data-bl]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="dest"){delete bioData.bio.links[i].url;delete bioData.bio.links[i].page;delete bioData.bio.links[i].type;if(v==="whatsapp")bioData.bio.links[i].type="whatsapp";else if(["empresas","eventos"].includes(v))bioData.bio.links[i].page=v;else bioData.bio.links[i].url=v;return}if(k==="order")v=+v;bioData.bio.links[i][k]=v})}function addBioLink(){bioData.bio.links.push({label:"Novo botão",description:"Descrição",url:"#",visible:true,order:bioData.bio.links.length+1});renderBioLinks()}function delBioLink(i){if(confirm("Apagar?")){bioData.bio.links.splice(i,1);renderBioLinks()}}
-function renderList(boxId,arr,delFn,prefix){let box=$(boxId);box.innerHTML="";arr.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>${prefix} ${i+1}</h4><button class="btn danger mini" onclick="${delFn}(${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-list="${boxId}" data-i=${i} data-k=title value="${esc(it.title||it.name||"")}"></div><div><label>Texto/Imagem</label><input data-list="${boxId}" data-i=${i} data-k=text value="${esc(it.text||it.image||it.logo||"")}"></div></div></div>`});document.querySelectorAll(`[data-list="${boxId}"]`).forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k;if(k==="text")arr[i].text=x.target.value;else arr[i][k]=x.target.value})}
-function renderBioServices(){bioData.bio.pages.empresas.services??=[];renderList("servicesList",bioData.bio.pages.empresas.services,"delBioService","Serviço")}function addBioService(){bioData.bio.pages.empresas.services.push({title:"Novo serviço",text:"Descrição"});renderBioServices()}function delBioService(i){bioData.bio.pages.empresas.services.splice(i,1);renderBioServices()}
-function renderEvents(){bioData.bio.pages.eventos.types??=[];renderList("eventsList",bioData.bio.pages.eventos.types,"delEventType","Tipo")}function addEventType(){bioData.bio.pages.eventos.types.push({title:"Novo tipo",text:"Descrição"});renderEvents()}function delEventType(i){bioData.bio.pages.eventos.types.splice(i,1);renderEvents()}
-function renderSteps(){let box=$("stepsList");box.innerHTML="";siteData.site.connectflow.steps.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Etapa ${i+1}</h4><button class="btn danger mini" onclick="delStep(${i})">Apagar</button></div><div class=grid><div><label>Número</label><input data-step data-i=${i} data-k=number value="${esc(it.number)}"></div><div><label>Título</label><input data-step data-i=${i} data-k=title value="${esc(it.title)}"></div></div><label>Texto</label><textarea data-step data-i=${i} data-k=text>${esc(it.text)}</textarea></div>`});document.querySelectorAll("[data-step]").forEach(e=>e.oninput=x=>siteData.site.connectflow.steps[+x.target.dataset.i][x.target.dataset.k]=x.target.value)}function addStep(){siteData.site.connectflow.steps.push({number:String(siteData.site.connectflow.steps.length+1).padStart(2,"0"),title:"Nova etapa",text:"Descrição"});renderSteps()}function delStep(i){siteData.site.connectflow.steps.splice(i,1);renderSteps()}
-function renderPorts(){renderPort("reels","reelsList");renderPort("cards","cardsList");renderPort("carousels","carouselsList")}function renderPort(t,boxId){let arr=siteData.site.portfolio[t],box=$(boxId);box.innerHTML="";arr.forEach((it,i)=>{let media=it.video||it.image||it.url||"";let slides=(it.slides||[]).map(s=>typeof s==="string"?s:s.url).join("\\n");box.innerHTML+=`<div class=item><div class=item-head><h4>${t} ${i+1}</h4><button class="btn danger mini" onclick="delPort('${t}',${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-port="${t}" data-i=${i} data-k=title value="${esc(it.title)}"></div><div><label>Segmento</label><input data-port="${t}" data-i=${i} data-k=segment value="${esc(it.segment)}"></div></div><div class=grid><div><label>Mídia/Capa URL</label><input data-port="${t}" data-i=${i} data-k=media value="${esc(media)}"></div><div><label>Ordem</label><input type=number data-port="${t}" data-i=${i} data-k=order value="${it.order||i+1}"></div></div>${t==="reels"?`<label>Thumb</label><input data-port="${t}" data-i=${i} data-k=thumb value="${esc(it.thumb||"")}">`:""}${t==="carousels"?`<label>Slides</label><textarea data-port="${t}" data-i=${i} data-k=slides>${esc(slides)}</textarea>`:""}</div>`});document.querySelectorAll(`[data-port="${t}"]`).forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value,it=siteData.site.portfolio[t][i];if(k==="order")v=+v;if(k==="media"){if(t==="reels")it.video=v;else if(t==="cards")it.image=v;else it.url=v;return}if(k==="slides"){it.slides=v.split("\\n").map((url,idx)=>({url:url.trim(),order:idx+1})).filter(s=>s.url);return}it[k]=v})}function addPort(t){siteData.site.portfolio[t].push({title:"Novo item",segment:"",order:siteData.site.portfolio[t].length+1,visible:true});renderPorts();counts()}function delPort(t,i){siteData.site.portfolio[t].splice(i,1);renderPorts();counts()}
-function renderSimple(t,boxId){let box=$(boxId),arr=siteData.site[t];box.innerHTML="";arr.forEach((it,i)=>{if(typeof it==="string")arr[i]={title:it,image:""};it=arr[i];box.innerHTML+=`<div class=item><div class=item-head><h4>${t} ${i+1}</h4><button class="btn danger mini" onclick="delSimple('${t}',${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-simple="${t}" data-i=${i} data-k=title value="${esc(it.title||it.name)}"></div><div><label>Imagem/Logo</label><input data-simple="${t}" data-i=${i} data-k=image value="${esc(it.image||it.logo)}"></div></div></div>`});document.querySelectorAll(`[data-simple="${t}"]`).forEach(e=>e.oninput=x=>siteData.site[t][+x.target.dataset.i][x.target.dataset.k]=x.target.value)}function addSimple(t){siteData.site[t].push({title:"Novo item",image:""});renderSimple(t,t+"List")}function delSimple(t,i){siteData.site[t].splice(i,1);renderSimple(t,t+"List")}
-function renderFeedbacks(){let box=$("feedbacksList"),arr=siteData.site.feedbacks;box.innerHTML="";arr.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Feedback ${i+1}</h4><button class="btn danger mini" onclick="delFeedback(${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-feed data-i=${i} data-k=name value="${esc(it.name)}"></div><div><label>Cargo</label><input data-feed data-i=${i} data-k=role value="${esc(it.role)}"></div></div><div class=grid><div><label>Nota</label><input type=number data-feed data-i=${i} data-k=rating value="${it.rating||5}"></div><div><label>Imagem</label><input data-feed data-i=${i} data-k=image value="${esc(it.image)}"></div></div><label>Texto</label><textarea data-feed data-i=${i} data-k=text>${esc(it.text)}</textarea></div>`});document.querySelectorAll("[data-feed]").forEach(e=>e.oninput=x=>{let v=x.target.value;if(x.target.dataset.k==="rating")v=+v;siteData.site.feedbacks[+x.target.dataset.i][x.target.dataset.k]=v})}function addFeedback(){siteData.site.feedbacks.push({name:"Novo feedback",role:"Cliente",rating:5,text:"Texto",image:""});renderFeedbacks()}function delFeedback(i){siteData.site.feedbacks.splice(i,1);renderFeedbacks()}
+function fieldList(boxId,arr,delFn,prefix){let box=$(boxId);box.innerHTML="";arr.forEach((it,i)=>{if(typeof it==="string")it=arr[i]={title:it,text:""};box.innerHTML+=`<div class=item><div class=item-head><h4>${prefix} ${i+1}</h4><button class="btn danger mini" onclick="${delFn}(${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-fl="${boxId}" data-i=${i} data-k=title value="${esc(it.title||it.name||"")}"></div><div><label>Texto/URL</label><input data-fl="${boxId}" data-i=${i} data-k=text value="${esc(it.text||it.image||it.logo||"")}"></div></div></div>`});document.querySelectorAll(`[data-fl="${boxId}"]`).forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k;if(k==="text")arr[i].text=x.target.value;else arr[i][k]=x.target.value})}
+function renderNav(){let box=$("navList");box.innerHTML="";siteData.site.navbar.sort((a,b)=>(a.order||0)-(b.order||0)).forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Item ${i+1}</h4><button class="btn danger mini" onclick="delNav(${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-nav data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>Destino</label><input data-nav data-i=${i} data-k=target value="${esc(it.target)}"></div></div><div class=grid><div><label>Ordem</label><input type=number data-nav data-i=${i} data-k=order value="${it.order||i+1}"></div><div><label>Visível</label><select data-nav data-i=${i} data-k=visible><option value=true ${it.visible!==false?"selected":""}>Sim</option><option value=false ${it.visible===false?"selected":""}>Não</option></select></div></div></div>`});document.querySelectorAll("[data-nav]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="order")v=+v;if(k==="visible")v=v==="true";siteData.site.navbar[i][k]=v})}
+function addNav(){siteData.site.navbar.push({label:"Novo item",target:"#",visible:true,order:siteData.site.navbar.length+1});renderNav()}function delNav(i){if(confirm("Apagar este item?")){siteData.site.navbar.splice(i,1);renderNav()}}
+function renderSections(){let box=$("sectionsList");box.innerHTML="";siteData.site.sections.sort((a,b)=>(a.order||0)-(b.order||0)).forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=grid><div><label>Nome</label><input data-sec data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>ID</label><input data-sec data-i=${i} data-k=id value="${esc(it.id)}"></div></div><div class=grid><div><label>Ordem</label><input type=number data-sec data-i=${i} data-k=order value="${it.order||i+1}"></div><div><label>Visível</label><select data-sec data-i=${i} data-k=visible><option value=true ${it.visible!==false?"selected":""}>Sim</option><option value=false ${it.visible===false?"selected":""}>Não</option></select></div></div></div>`});document.querySelectorAll("[data-sec]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="order")v=+v;if(k==="visible")v=v==="true";siteData.site.sections[i][k]=v})}
+function addSection(){siteData.site.sections.push({id:"nova-secao",label:"Nova seção",visible:true,order:siteData.site.sections.length+1});renderSections()}
+function renderBioLinks(){let box=$("bioLinks");box.innerHTML="";bioData.bio.links.sort((a,b)=>(a.order||0)-(b.order||0)).forEach((it,i)=>{let dest=it.type||it.page||it.url||"";box.innerHTML+=`<div class=item><div class=item-head><h4>Botão ${i+1}</h4><button class="btn danger mini" onclick="delBioLink(${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-bl data-i=${i} data-k=label value="${esc(it.label)}"></div><div><label>Descrição</label><input data-bl data-i=${i} data-k=description value="${esc(it.description)}"></div></div><div class=grid><div><label>Destino</label><input data-bl data-i=${i} data-k=dest value="${esc(dest)}"></div><div><label>Ordem</label><input type=number data-bl data-i=${i} data-k=order value="${it.order||i+1}"></div></div></div>`});document.querySelectorAll("[data-bl]").forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value;if(k==="dest"){delete bioData.bio.links[i].url;delete bioData.bio.links[i].page;delete bioData.bio.links[i].type;if(v==="whatsapp")bioData.bio.links[i].type="whatsapp";else if(["empresas","eventos"].includes(v))bioData.bio.links[i].page=v;else bioData.bio.links[i].url=v;return}if(k==="order")v=+v;bioData.bio.links[i][k]=v})}
+function addBioLink(){bioData.bio.links.push({label:"Novo botão",description:"Descrição",url:"#",visible:true,order:bioData.bio.links.length+1});renderBioLinks()}function delBioLink(i){if(confirm("Apagar este botão?")){bioData.bio.links.splice(i,1);renderBioLinks()}}
+function renderBioServices(){fieldList("servicesList",bioData.bio.pages.empresas.services,"delBioService","Serviço")}function addBioService(){bioData.bio.pages.empresas.services.push({title:"Novo serviço",text:"Descrição"});renderBioServices()}function delBioService(i){bioData.bio.pages.empresas.services.splice(i,1);renderBioServices()}
+function renderEvents(){fieldList("eventsList",bioData.bio.pages.eventos.types,"delEventType","Tipo")}function addEventType(){bioData.bio.pages.eventos.types.push({title:"Novo tipo",text:"Descrição"});renderEvents()}function delEventType(i){bioData.bio.pages.eventos.types.splice(i,1);renderEvents()}
+function renderSteps(){let box=$("stepsList");box.innerHTML="";siteData.site.connectflow.steps.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Etapa ${i+1}</h4><button class="btn danger mini" onclick="delStep(${i})">Apagar</button></div><div class=grid><div><label>Número</label><input data-step data-i=${i} data-k=number value="${esc(it.number)}"></div><div><label>Título</label><input data-step data-i=${i} data-k=title value="${esc(it.title)}"></div></div><label>Texto</label><textarea data-step data-i=${i} data-k=text>${esc(it.text)}</textarea></div>`});document.querySelectorAll("[data-step]").forEach(e=>e.oninput=x=>siteData.site.connectflow.steps[+x.target.dataset.i][x.target.dataset.k]=x.target.value)}
+function addStep(){siteData.site.connectflow.steps.push({number:String(siteData.site.connectflow.steps.length+1).padStart(2,"0"),title:"Nova etapa",text:"Descrição"});renderSteps()}function delStep(i){siteData.site.connectflow.steps.splice(i,1);renderSteps()}
+function renderPorts(){renderPort("reels","reelsList");renderPort("cards","cardsList");renderPort("carousels","carouselsList")}function renderPort(t,boxId){let arr=siteData.site.portfolio[t],box=$(boxId);box.innerHTML="";arr.forEach((it,i)=>{let media=it.video||it.image||it.url||"";let slides=(it.slides||[]).map(s=>typeof s==="string"?s:s.url).join("\\n");box.innerHTML+=`<div class=item><div class=item-head><h4>${t} ${i+1}</h4><button class="btn danger mini" onclick="delPort('${t}',${i})">Apagar</button></div><div class=grid><div><label>Título</label><input data-port="${t}" data-i=${i} data-k=title value="${esc(it.title)}"></div><div><label>Segmento</label><input data-port="${t}" data-i=${i} data-k=segment value="${esc(it.segment)}"></div></div><div class=grid><div><label>Mídia/Capa URL</label><input data-port="${t}" data-i=${i} data-k=media value="${esc(media)}"></div><div><label>Ordem</label><input type=number data-port="${t}" data-i=${i} data-k=order value="${it.order||i+1}"></div></div>${t==="reels"?`<label>Thumb</label><input data-port="${t}" data-i=${i} data-k=thumb value="${esc(it.thumb||"")}">`:""}${t==="carousels"?`<label>Slides — 1 URL por linha</label><textarea data-port="${t}" data-i=${i} data-k=slides>${esc(slides)}</textarea>`:""}</div>`});document.querySelectorAll(`[data-port="${t}"]`).forEach(e=>e.oninput=x=>{let i=+x.target.dataset.i,k=x.target.dataset.k,v=x.target.value,it=siteData.site.portfolio[t][i];if(k==="order")v=+v;if(k==="media"){if(t==="reels")it.video=v;else if(t==="cards")it.image=v;else it.url=v;return}if(k==="slides"){it.slides=v.split("\\n").map((url,idx)=>({url:url.trim(),order:idx+1})).filter(s=>s.url);return}it[k]=v})}
+function addPort(t){siteData.site.portfolio[t].push({title:"Novo item",segment:"",order:siteData.site.portfolio[t].length+1,visible:true});renderPorts();counts()}function delPort(t,i){siteData.site.portfolio[t].splice(i,1);renderPorts();counts()}
+function renderSimple(t,boxId){let box=$(boxId),arr=siteData.site[t];box.innerHTML="";arr.forEach((it,i)=>{if(typeof it==="string")arr[i]={title:it,image:""};it=arr[i];box.innerHTML+=`<div class=item><div class=item-head><h4>${t} ${i+1}</h4><button class="btn danger mini" onclick="delSimple('${t}',${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-simple="${t}" data-i=${i} data-k=title value="${esc(it.title||it.name||"")}"></div><div><label>Imagem/Logo</label><input data-simple="${t}" data-i=${i} data-k=image value="${esc(it.image||it.logo||"")}"></div></div></div>`});document.querySelectorAll(`[data-simple="${t}"]`).forEach(e=>e.oninput=x=>siteData.site[t][+x.target.dataset.i][x.target.dataset.k]=x.target.value)}
+function addSimple(t){siteData.site[t].push({title:"Novo item",image:""});renderSimple(t,t+"List")}function delSimple(t,i){siteData.site[t].splice(i,1);renderSimple(t,t+"List")}
+function renderFeedbacks(){let box=$("feedbacksList"),arr=siteData.site.feedbacks;box.innerHTML="";arr.forEach((it,i)=>{box.innerHTML+=`<div class=item><div class=item-head><h4>Feedback ${i+1}</h4><button class="btn danger mini" onclick="delFeedback(${i})">Apagar</button></div><div class=grid><div><label>Nome</label><input data-feed data-i=${i} data-k=name value="${esc(it.name)}"></div><div><label>Cargo</label><input data-feed data-i=${i} data-k=role value="${esc(it.role)}"></div></div><div class=grid><div><label>Nota</label><input type=number data-feed data-i=${i} data-k=rating value="${it.rating||5}"></div><div><label>Imagem</label><input data-feed data-i=${i} data-k=image value="${esc(it.image)}"></div></div><label>Texto</label><textarea data-feed data-i=${i} data-k=text>${esc(it.text)}</textarea></div>`});document.querySelectorAll("[data-feed]").forEach(e=>e.oninput=x=>{let v=x.target.value;if(x.target.dataset.k==="rating")v=+v;siteData.site.feedbacks[+x.target.dataset.i][x.target.dataset.k]=v})}
+function addFeedback(){siteData.site.feedbacks.push({name:"Novo feedback",role:"Cliente",rating:5,text:"Texto",image:""});renderFeedbacks()}function delFeedback(i){siteData.site.feedbacks.splice(i,1);renderFeedbacks()}
 function counts(){$("nReels").textContent=siteData.site.portfolio.reels.length;$("nCards").textContent=siteData.site.portfolio.cards.length;$("nCar").textContent=siteData.site.portfolio.carousels.length}
-async function uploadMedia(){try{let f=$("mediaFile").files[0];if(!f)return $("mediaStatus").textContent="Escolha um arquivo.";let fd=new FormData();fd.append("file",f);fd.append("folder",$("mediaFolder").value);fd.append("name",$("mediaName").value);let r=await fetch("/api/admin/media",{method:"POST",headers:{Authorization:"Bearer "+token()},body:fd});let d=await r.json();if(!r.ok)throw new Error(d.error);lastMediaUrl=d.url;$("mediaUrl").textContent=d.url;$("mediaBox").style.display="flex";$("mediaStatus").textContent="Enviado."}catch(e){$("mediaStatus").textContent=e.message}}function copyMedia(){navigator.clipboard.writeText(lastMediaUrl);$("mediaStatus").textContent="URL copiada."}
-async function backup(){try{collect();let stamp=new Date().toISOString().replace(/[:.]/g,"-");await saveJson("backup-site-"+stamp,siteData);await saveJson("backup-bio-"+stamp,bioData);$("backupStatus").textContent="Backup criado."}catch(e){$("backupStatus").textContent=e.message}}function downloadJson(t){let d=t==="site"?siteData:bioData,a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:"application/json"}));a.download="connectpixel-"+t+".json";a.click()}
+async function uploadMedia(){try{let f=$("mediaFile").files[0];if(!f)return $("mediaStatus").textContent="Escolha um arquivo.";let fd=new FormData();fd.append("file",f);fd.append("folder",$("mediaFolder").value);fd.append("name",$("mediaName").value);let r=await fetch("/api/admin/media",{method:"POST",headers:{Authorization:"Bearer "+token()},body:fd});let d=await r.json();if(!r.ok)throw new Error(d.error);lastMediaUrl=d.url;$("mediaUrl").textContent=d.url;$("mediaBox").style.display="flex";$("mediaStatus").textContent="Enviado.";toast("Mídia enviada")}catch(e){$("mediaStatus").textContent=e.message}}function copyMedia(){navigator.clipboard.writeText(lastMediaUrl);$("mediaStatus").textContent="URL copiada.";toast("URL copiada")}
+async function backup(){try{collect();let stamp=new Date().toISOString().replace(/[:.]/g,"-");await saveJson("backup-site-"+stamp,siteData);await saveJson("backup-bio-"+stamp,bioData);$("backupStatus").textContent="Backup criado.";toast("Backup criado")}catch(e){$("backupStatus").textContent=e.message}}function downloadJson(t){let d=t==="site"?siteData:bioData,a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:"application/json"}));a.download="connectpixel-"+t+".json";a.click()}
 if(token()&&Date.now()<exp()){document.body.className="logged";$("tokenInput").value=token();loadAll()}
-</script></body></html>
+</script>
+</body>
+</html>
