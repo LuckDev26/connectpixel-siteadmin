@@ -1,0 +1,20 @@
+# LEIA - Configuração obrigatória do R2
+
+Esta versão já vem com o binding R2 no `wrangler.toml`.
+
+Antes de fazer deploy, abra o arquivo `wrangler.toml` e troque:
+
+bucket_name = "COLOQUE_AQUI_O_NOME_EXATO_DO_BUCKET"
+
+pelo nome EXATO do seu bucket no Cloudflare R2.
+
+Onde encontrar:
+Cloudflare > R2 Object Storage > Buckets
+
+Exemplo:
+bucket_name = "connectpixel-media"
+
+Não altere o binding:
+binding = "R2_BUCKET"
+
+Esse nome precisa continuar exatamente assim, porque o painel usa `env.R2_BUCKET`.
