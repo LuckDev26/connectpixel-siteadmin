@@ -1,0 +1,14 @@
+# V11 - Visual refinado + botão para conferir site
+
+Mudanças:
+- Botão "Abrir site" no topo do painel.
+- Botão "Preview rascunho" no topo do painel.
+- Bloco inicial mais profissional.
+- Menu lateral com ícones padronizados por número.
+- Cards, campos, botões e contrastes refinados.
+- Topbar mais parecida com painel premium.
+- Mantém todos os recursos da V10: rascunho, publicação, preview real, histórico, biblioteca de mídia e saúde do sistema.
+
+Atenção:
+Confira o wrangler.toml antes do deploy:
+bucket_name precisa ter o nome real do bucket R2.

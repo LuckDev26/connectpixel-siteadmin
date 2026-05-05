@@ -1,0 +1,41 @@
+REVISÃO TÉCNICA — BASE SITE CONNECTPIXEL
+
+Arquivo base revisado:
+SITE_CONNECTPIXEL_PREMIUM_3D_GLOW_HOVER.zip
+
+Status:
+A base está boa para receber um painel administrativo, mas precisava de alguns ajustes antes para evitar bugs.
+
+Ajustes aplicados nesta versão:
+1. Corrigidos links do WhatsApp na bio.
+   - Havia links com phone=55+55 88 92178-8255, o que pode gerar erro.
+   - Agora os links usam:
+     https://api.whatsapp.com/send?phone=5588921788255&text=Ol%C3%A1%20ConnectPixel!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20falar%20com%20a%20equipe.
+
+2. Sincronizados:
+   - /bio/index.html
+   - /bio/bio.html
+   - /bio.html
+
+3. Ajustado cache em _headers:
+   - HTML, bio, config, content, admin e API ficam sem cache.
+   - Assets continuam com cache longo.
+
+4. Ajustado service worker:
+   - Nova versão de cache: connectpixel-v38-pre-admin-safe
+   - /api, /admin e /content não serão cacheados.
+   - Isso evita o painel salvar conteúdo e o site continuar mostrando conteúdo antigo.
+
+5. Criado content/site-content.json base.
+   - A pasta content já tinha bio-content.json.
+   - Agora já existe também uma estrutura para o site principal.
+
+Pontos observados:
+- O site principal ainda é majoritariamente estático/hardcoded.
+- Para o painel controlar tudo de verdade, será necessário mapear cada seção do HTML para JSON:
+  navbar, sobre, ConnectFlow, reels, cards, carrosséis, segmentos, clientes, feedbacks e contato.
+- A estrutura de /bio já está mais fácil de adaptar ao painel.
+- O service worker era o ponto mais sensível para bugs de cache com painel administrativo.
+
+Recomendação:
+Usar esta versão revisada como base antes de implementar o painel.
