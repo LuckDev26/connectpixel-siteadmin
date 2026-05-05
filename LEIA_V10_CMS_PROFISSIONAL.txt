@@ -1,0 +1,36 @@
+# V10 - CMS profissional ConnectPixel
+
+Esta versão adiciona:
+
+1. Rascunho e publicação
+- Salvar rascunho salva em:
+  content/draft-site-content.json
+  content/draft-bio-content.json
+- Publicar salva em:
+  content/site-content.json
+  content/bio-content.json
+- Antes de publicar, o Worker cria uma versão de backup em:
+  content/versions/
+
+2. Preview real
+- Aba "Preview real"
+- Site publicado: /
+- Rascunho: /?preview=draft
+
+3. Histórico restaurável
+- Aba Log > Histórico restaurável
+- Permite restaurar versão como rascunho ou como publicado.
+
+4. Biblioteca de mídia
+- Lista arquivos em media/
+- Copia URL
+- Exclui mídia
+
+5. Saúde do sistema
+- Verifica ADMIN_TOKEN, R2_BUCKET e PUBLIC_R2_BASE_URL.
+
+6. Validação
+- Alerta campos vazios, WhatsApp incompleto e carrosséis sem mídia.
+
+Atenção:
+O R2_BUCKET precisa estar configurado no wrangler.toml com o nome real do bucket.
