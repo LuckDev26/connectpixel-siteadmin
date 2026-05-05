@@ -1,0 +1,10 @@
+# V12 - Upload guiado + preview real por seção
+
+- Remove a sombra marcada no topo.
+- Upload pergunta tipo de conteúdo, nicho/segmento, título e posição.
+- Sugere nomenclatura padronizada: connectpixel-tipo-nicho-titulo.
+- Ao enviar, pode adicionar automaticamente em Reels, Cards, Carrosséis, Clientes ou Feedbacks.
+- Mostra o último envio e permite apagar o arquivo enviado.
+- Adiciona preview real por seção usando /?preview=draft.
+
+Depois de enviar e adicionar ao conteúdo, salve rascunho ou publique.
