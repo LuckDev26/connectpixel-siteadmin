@@ -90,7 +90,33 @@ async function assetText(env, key) {
   return text;
 }
 
+// Optional published-only CRM bridge. R2/static content remains the fallback.
+async function crmPublishedContent(env,key) {
+ if(env.CRM_CMS_BRIDGE_ENABLED!=='true'||!['site-content','bio-content'].includes(key))return null;
+ if(!env.CRM_SUPABASE_URL||!env.CRM_SUPABASE_PUBLISHABLE_KEY||!env.CRM_ORGANIZATION_ID)return null;
+ try {
+  const endpoint=String(env.CRM_SUPABASE_URL).replace(/\/$/,'')+'/rest/v1/rpc/crm_get_published_site_content';
+  const response=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/json','apikey':String(env.CRM_SUPABASE_PUBLISHABLE_KEY)},body:JSON.stringify({p_org:env.CRM_ORGANIZATION_ID,p_section:key==='bio-content'?'bio':'site'}),signal:AbortSignal.timeout(3500)});
+  if(!response.ok)return null;
+  const data=await response.json();
+  return data&&typeof data==='object'&&!Array.isArray(data)&&Object.keys(data).length?data:null;
+ }catch{return null}
+}
+function applyCrmOverlay(existing,override,key){
+ if(key==='bio-content')return {...existing,...override,bio:{...(existing.bio||{}),...override}};
+ const site=existing.site||{},incoming=override.site||{};
+ return {...existing,...override,site:{...site,...incoming,branding:{...(site.branding||{}),...(incoming.branding||{})},portfolio:{...(site.portfolio||{}),...(incoming.portfolio||{})}}};
+}
 async function getContent(env, key) {
+  const overlay=await crmPublishedContent(env,key);
+  if(overlay){
+   let existing={};
+   try{
+    const obj=hasBucket(env)?await bucket(env).get('content/'+key+'.json'):null;
+    existing=obj?JSON.parse(await obj.text()):JSON.parse(await assetText(env,key));
+   }catch{}
+   return json(applyCrmOverlay(existing,overlay,key));
+  }
   if (hasBucket(env)) {
     const obj = await bucket(env).get(`content/${key}.json`);
     if (obj) {
