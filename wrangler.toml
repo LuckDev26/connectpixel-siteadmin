@@ -10,6 +10,10 @@ html_handling = "auto-trailing-slash"
 
 [vars]
 PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
+CRM_CMS_BRIDGE_ENABLED = "true"
+CRM_SUPABASE_URL = "https://zabntyzdhfaapnjdlzop.supabase.co"
+CRM_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_8G2mpbEaciBsvE33CNwz_A_BPcRCKeL"
+CRM_ORGANIZATION_ID = "84d76747-6dc0-4a40-8306-33ece06e8cb7"
 
 # Configure no Cloudflare:
 # ADMIN_TOKEN como Secret
