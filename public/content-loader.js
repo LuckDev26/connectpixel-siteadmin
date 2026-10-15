@@ -36,6 +36,15 @@ function bio(d){
  container.innerHTML=links.map((x,i)=>{const url=allowedUrl(x.url);if(!url)return '';return '<a class="cp-managed-link cp-effect-'+effect+'" data-bio-button="'+esc(String(x.id||i).slice(0,80))+'" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;border-radius:'+radius+';background:'+accent+';color:#10261d;padding:15px 18px;font-weight:700;text-align:center;transition:transform .2s,box-shadow .2s">'+esc(x.label)+'</a>'}).join('');
  if(!q('#cp-managed-bio-style')){const style=document.createElement('style');style.id='cp-managed-bio-style';style.textContent='.cp-managed-link.cp-effect-lift:hover{transform:translateY(-4px)}.cp-managed-link.cp-effect-glow:hover{box-shadow:0 0 24px rgba(182,239,89,.65)}@media(prefers-reduced-motion:reduce){.cp-managed-link{transition:none!important}.cp-managed-link:hover{transform:none!important}}';document.head.append(style)}
  original.hidden=true;
+ // Anonymous session identifier: no IP, cookies, e-mail or form content is transmitted.
+ let sid='';
+ try{sid=sessionStorage.getItem('cp-bio-anon-session')||'';if(!/^[a-zA-Z0-9_-]{16,64}$/.test(sid)){sid=crypto.randomUUID().replace(/-/g,'');sessionStorage.setItem('cp-bio-anon-session',sid)}}catch{sid=crypto.randomUUID().replace(/-/g,'')}
+ const send=(event,button)=>{const body=JSON.stringify({event,button,session:sid});
+  if(navigator.sendBeacon){navigator.sendBeacon('/api/bio-event',new Blob([body],{type:'application/json'}))}
+  else fetch('/api/bio-event',{method:'POST',headers:{'content-type':'application/json'},body,keepalive:true}).catch(()=>{});
+ };
+ send('view',null);
+ container.addEventListener('click',ev=>{const a=ev.target.closest('[data-bio-button]');if(a)send('click',a.dataset.bioButton)});
 }
 document.addEventListener("DOMContentLoaded",async()=>{try{let isBio=location.pathname.startsWith("/bio")||location.pathname.endsWith("/bio.html");let params=new URLSearchParams(location.search);let draft=params.get("preview")==="draft";let d=await get(isBio?(draft?"draft-bio-content":"bio-content"):(draft?"draft-site-content":"site-content"));window.CONNECTPIXEL_CONTENT=d;isBio?bio(d):site(d)}catch(e){console.warn("content loader",e)}})
 function renderDynamicPortfolio(site){
