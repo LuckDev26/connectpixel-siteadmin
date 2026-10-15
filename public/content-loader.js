@@ -7,6 +7,18 @@
   if(first)first.innerHTML=cards;
   if(second)second.innerHTML=cards;
  }
+ const design=s.design||{};
+ if(/^#[0-9a-f]{6}$/i.test(design.accent||''))document.documentElement.style.setProperty('--accent',design.accent);
+ const animation=q('#clientes .clientes-track');
+ if(animation&&design.clientCarousel==='static')animation.style.animation='none';
+ else if(animation&&design.clientCarousel==='scroll')animation.style.removeProperty('animation');
+ let css=q('#cp-site-motion');
+ if(css)css.remove();
+ if(['subtle','reduced'].includes(design.motion)){
+  css=document.createElement('style');css.id='cp-site-motion';
+  css.textContent=design.motion==='reduced'?'.reveal,.reveal *,.clientes-track,.tilt-card{animation:none!important;transition:none!important;transform:none!important}':'.clientes-track{animation-duration:180s!important}.reveal{transition-duration:.8s!important}';
+  document.head.append(css);
+ }
  if(s.branding?.logo&&/^https:\/\//i.test(s.branding.logo)){
   const navbar=q('nav img[alt="ConnectPixel"]');if(navbar)navbar.src=s.branding.logo;
  }
