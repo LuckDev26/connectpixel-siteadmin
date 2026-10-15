@@ -45,6 +45,7 @@ async function api(req, env, url) {
   if (admin && parts[1] === "media" && req.method === "POST") return upload(req, env);
   if (admin && parts[1] === "media" && req.method === "DELETE") return deleteMedia(env, url);
 
+  if (parts[0] === "bio-event" && req.method === "POST") return recordBioEvent(req, env);
   if (parts[0] === "content") {
     return getContent(env, safe(parts[1] || "site-content"));
   }
@@ -91,6 +92,20 @@ async function assetText(env, key) {
 }
 
 // Optional published-only CRM bridge. R2/static content remains the fallback.
+async function recordBioEvent(req,env){
+ if(env.CRM_CMS_BRIDGE_ENABLED!=='true'||!env.CRM_SUPABASE_URL||!env.CRM_SUPABASE_PUBLISHABLE_KEY||!env.CRM_ORGANIZATION_ID)return json({ok:false},503);
+ const origin=req.headers.get('origin');
+ if(origin){try{if(new URL(origin).host!==new URL(req.url).host)return json({ok:false},403)}catch{return json({ok:false},403)}}
+ let value;try{const raw=await req.text();if(raw.length>512)return json({ok:false},413);value=JSON.parse(raw)}catch{return json({ok:false},400)}
+ const event=value?.event,button=value?.button,session=value?.session;
+ if(!['view','click'].includes(event)||!(/^[a-zA-Z0-9_-]{16,64}$/).test(session||'')||(button&&String(button).length>80))return json({ok:false},400);
+ try{
+  const endpoint=String(env.CRM_SUPABASE_URL).replace(/\/$/,'')+'/rest/v1/rpc/crm_record_public_bio_event';
+  const response=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/json','apikey':String(env.CRM_SUPABASE_PUBLISHABLE_KEY)},body:JSON.stringify({p_org:env.CRM_ORGANIZATION_ID,p_event:event,p_button:button||null,p_session:session}),signal:AbortSignal.timeout(2500)});
+  if(!response.ok)return json({ok:false},503);
+  return json({ok:true,recorded:await response.json()});
+ }catch{return json({ok:false},503)}
+}
 async function crmPublishedContent(env,key) {
  if(env.CRM_CMS_BRIDGE_ENABLED!=='true'||!['site-content','bio-content'].includes(key))return null;
  if(!env.CRM_SUPABASE_URL||!env.CRM_SUPABASE_PUBLISHABLE_KEY||!env.CRM_ORGANIZATION_ID)return null;
