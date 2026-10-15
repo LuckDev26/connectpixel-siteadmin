@@ -19,6 +19,7 @@ function bio(d){
  if(c&&b.subtitle)c.textContent=b.subtitle;
  const logo=q(".logo-top");if(logo&&b.logo&&/^https:\/\//.test(b.logo))logo.src=b.logo;
  if(b.whatsapp?.phone){let msg=encodeURIComponent(b.whatsapp.message||"Olá ConnectPixel! Vim pelo link da bio.");qa('a[href*="wa.me"],a[href*="whatsapp.com"]').forEach(a=>a.href="https://api.whatsapp.com/send?phone="+String(b.whatsapp.phone).replace(/\D/g,"")+"&text="+msg)}
+ if(d.meta?.crmPublished!==true)return;
  const links=Array.isArray(b.links)?b.links.filter(x=>x.active!==false&&x.label&&x.url).slice(0,20):[];
  if(!links.length)return;
  const allowedUrl=x=>{try{const u=new URL(x,location.origin);return ['http:','https:'].includes(u.protocol)?u.href:null}catch{return null}};
