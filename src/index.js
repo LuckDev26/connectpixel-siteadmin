@@ -103,7 +103,7 @@ async function crmPublishedContent(env,key) {
  }catch{return null}
 }
 function applyCrmOverlay(existing,override,key){
- if(key==='bio-content')return {...existing,...override,bio:{...(existing.bio||{}),...override}};
+ if(key==='bio-content')return {...existing,...override,meta:{...(existing.meta||{}),crmPublished:true},bio:{...(existing.bio||{}),...override}};
  const site=existing.site||{},incoming=override.site||{};
  return {...existing,...override,site:{...site,...incoming,branding:{...(site.branding||{}),...(incoming.branding||{})},portfolio:{...(site.portfolio||{}),...(incoming.portfolio||{})}}};
 }
