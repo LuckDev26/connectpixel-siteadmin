@@ -40,3 +40,13 @@ bucket_name = "connectpixel-cms-private"
 [[r2_buckets]]
 binding = "R2_PUBLISHED"
 bucket_name = "connectpixel-studio-preview"
+
+# Limita tentativas de login por localização do Cloudflare (aproximado).
+# Recurso nativo do Workers; sem armazenar senhas nem endereços IP em R2.
+[[ratelimits]]
+name = "LOGIN_RATE_LIMIT"
+namespace_id = "27102644"
+
+  [ratelimits.simple]
+  limit = 8
+  period = 60
