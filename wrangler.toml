@@ -34,3 +34,9 @@ bucket_name = "connectpixel-media"
 [[r2_buckets]]
 binding = "R2_PRIVATE"
 bucket_name = "connectpixel-cms-private"
+
+# Conteúdo publicado da homologação. Bucket privado, sem domínio público.
+# Mantém os JSONs de teste separados do connectpixel-media.
+[[r2_buckets]]
+binding = "R2_PUBLISHED"
+bucket_name = "connectpixel-studio-preview"
