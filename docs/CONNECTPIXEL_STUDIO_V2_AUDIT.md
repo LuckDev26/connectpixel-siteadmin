@@ -83,3 +83,13 @@ npm test
 ```
 
 **Esta branch é preparação, não publicação.** O workflow da branch não usa credenciais Cloudflare nem chama Wrangler deploy.
+
+## Painel Studio — melhorias já implementadas em staging
+
+- `public/admin/studio.css`: tratamento visual premium mais limpo, sidebar 264 px e estado recolhido de 78 px, cards responsivos, foco acessível e menu mobile.
+- `public/admin/studio.js`: recolher menu, abrir/fechar menu no celular, persistência da aba e da subaba abertas na sessão do navegador, atributos ARIA e tecla Escape.
+- `public/admin/index.html`: inclusão dos assets do Studio; correção da versão V12 que continha sequências literais `\\n` entre instruções JavaScript e impedia a interpretação adequada; correção da referência `window.siteData` que ignorava o estado léxico `siteData`.
+- `scripts/studio-ui.test.mjs`: valida que os scripts inline do painel compilam, que os assets carregam e que o recurso de navegação está referenciado.
+- GitHub Actions `studio-checks.yml` valida testes legado, frontend Studio, catálogo, amostra R2 e consistência do manifesto. **Não faz deploy.**
+- Não foi feita inspeção visual do novo layout no navegador. Antes de produção, validar contrastes, menu recolhido, navegação e persistência em staging.
+- **Autenticação e separação do R2 privado continuam pendentes**: a melhoria de interface NÃO torna a versão legado segura para produção.
