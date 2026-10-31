@@ -13,13 +13,16 @@ html_handling = "auto-trailing-slash"
 PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
 # Homologação segura: bloqueia todas as mutações do painel até revisão final.
 STUDIO_READ_ONLY = "true"
+# Usuário administrativo inicial, alterável nas variáveis do Worker.
+ADMIN_USERNAME = "admin"
 CRM_CMS_BRIDGE_ENABLED = "true"
 CRM_SUPABASE_URL = "https://zabntyzdhfaapnjdlzop.supabase.co"
 CRM_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_8G2mpbEaciBsvE33CNwz_A_BPcRCKeL"
 CRM_ORGANIZATION_ID = "84d76747-6dc0-4a40-8306-33ece06e8cb7"
 
 # Configure no Cloudflare:
-# ADMIN_TOKEN como Secret
+# ADMIN_TOKEN como Secret (senha, nunca exponha em arquivo ou frontend)
+# ADMIN_USERNAME como variável (nome de usuário)
 # R2_BUCKET como binding R2
 
 # Binding R2 do painel administrativo.
