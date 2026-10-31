@@ -1,0 +1,38 @@
+name: Deploy ConnectPixel Studio staging
+
+on:
+  push:
+    branches: [feat/connectpixel-studio-v2]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: connectpixel-studio-staging
+  cancel-in-progress: true
+
+jobs:
+  deploy-staging:
+    name: Deploy isolated read-only Worker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source, staged session security, R2 and interface
+        run: |
+          npm test
+          node scripts/studio-security.test.mjs
+          node scripts/studio-ui.test.mjs
+          node scripts/portfolio-migration.test.mjs
+      - name: Verify read-only staging and private R2 binding
+        run: |
+          grep -q 'STUDIO_READ_ONLY = "true"' wrangler.toml
+          grep -q 'binding = "R2_PRIVATE"' wrangler.toml
+          grep -q 'bucket_name = "connectpixel-cms-private"' wrangler.toml
+      - name: Deploy to new Worker only, never to existing siteadmin or domain
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy --name connectpixel-studio-staging
