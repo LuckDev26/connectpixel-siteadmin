@@ -22,6 +22,15 @@ assert.ok(redesignCSS.includes('.login-story') && redesignCSS.includes('.login-a
 assert.ok(redesignCSS.includes('body.logged .card') && redesignCSS.includes('.studio-preview-cards'), 'Dashboard design and decorative login preview');
 assert.ok(enhancedLogin.includes('getModifierState("CapsLock")') && enhancedLogin.includes('studioPasswordToggle'), 'Password UX');
 assert.ok(!html.includes('localStorage.getItem("cp_token")'), 'No shared admin secret in localStorage');
+assert.ok(html.includes('id="loginUsername"') && html.includes('autocomplete="username"'), 'Real username field must be present');
+assert.ok(html.includes('id="loginToken"') && html.includes('autocomplete="current-password"'), 'Password field retains browser autocomplete semantics');
+assert.ok(html.indexOf('id="loginUsername"') < html.indexOf('id="loginToken"'), 'Username must precede password');
+assert.equal((html.match(/class="login-mobile-brand"/g)||[]).length,1,'Only one mobile brand mark');
+assert.equal((html.match(/class="login-emblem"/g)||[]).length,0,'Duplicate login emblem removed');
+assert.ok(html.includes('JSON.stringify({username,password})'), 'Login must send username and password to API');
+assert.ok(redesignCSS.includes('Studio Auth 2.1') && redesignCSS.includes('.login-emblem { display:none!important; }'), 'Compact mobile layout removes duplicate logo');
+assert.ok(enhancedLogin.includes('byId("loginUsername")'), 'Username errors can clear on input');
+
 new Script(enhancedLogin, {filename:'login-experience.js'});
 
 
@@ -35,4 +44,4 @@ scripts.forEach(([, , source], index) => {
     throw new Error('Invalid inline admin script #' + index + ': ' + error.message);
   }
 });
-console.log('Studio UI: redesigned login, accessible password field, dashboard polish, mobile menu, script validation OK.');
+console.log('Studio UI: single logo on mobile, two real auth fields, compact layout and dashboard scripts valid.');
