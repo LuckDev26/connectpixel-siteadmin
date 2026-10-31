@@ -48,8 +48,14 @@ async function api(req, env, url) {
   if (admin && parts[1] === "restore-version" && req.method === "POST") return restoreVersion(req, env);
   if (admin && parts[1] === "reset-defaults" && req.method === "POST") return resetDefaults(env);
   if (admin && parts[1] === "media" && parts[2] === "list" && req.method === "GET") return listMedia(env, url);
-  if (admin && parts[1] === "media" && req.method === "POST") return upload(req, env);
-  if (admin && parts[1] === "media" && req.method === "DELETE") return deleteMedia(env, url);
+  if (admin && parts[1] === "media" && req.method === "POST") {
+    if (env.R2_PUBLISHED) return json({ok:false,error:"Uploads ficam bloqueados no ambiente de homologação."},403);
+    return upload(req, env);
+  }
+  if (admin && parts[1] === "media" && req.method === "DELETE") {
+    if (env.R2_PUBLISHED) return json({ok:false,error:"Exclusões de mídia não são permitidas na homologação."},403);
+    return deleteMedia(env, url);
+  }
 
   if (parts[0] === "bio-event" && req.method === "POST") return recordBioEvent(req, env);
   if (parts[0] === "content" && req.method === "GET") {
@@ -110,12 +116,18 @@ function bucket(env) {
   return b;
 }
 
+function publishedBucket(env) {
+  // Isolated staging uses a separate, private R2 for published JSON only.
+  // In production the original media bucket remains the published source.
+  return env.R2_PUBLISHED || bucket(env);
+}
 function diagnostics(env) {
   return json({
     ok: true,
     hasAdminToken: !!env.ADMIN_TOKEN,
     hasR2Bucket: hasBucket(env),
     hasPrivateBucket: !!env.R2_PRIVATE,
+    hasIsolatedPublishedBucket: !!env.R2_PUBLISHED,
     stagingReadOnly: env.STUDIO_READ_ONLY !== "false",
     hasPublicR2BaseUrl: !!env.PUBLIC_R2_BASE_URL,
     publicR2BaseUrl: env.PUBLIC_R2_BASE_URL || "",
@@ -164,17 +176,17 @@ function applyCrmOverlay(existing,override,key){
  return {...existing,...override,site:{...site,...incoming,branding:{...(site.branding||{}),...(incoming.branding||{})},portfolio:{...(site.portfolio||{}),...(incoming.portfolio||{})}}};
 }
 async function getContent(env, key) {
-  const overlay=await crmPublishedContent(env,key);
+  const overlay=env.R2_PUBLISHED?null:await crmPublishedContent(env,key);
   if(overlay){
    let existing={};
    try{
-    const obj=hasBucket(env)?await bucket(env).get('content/'+key+'.json'):null;
+    const obj=hasBucket(env)?await publishedBucket(env).get('content/'+key+'.json'):null;
     existing=obj?JSON.parse(await obj.text()):JSON.parse(await assetText(env,key));
    }catch{}
    return json(applyCrmOverlay(existing,overlay,key));
   }
   if (hasBucket(env)) {
-    const obj = await bucket(env).get(`content/${key}.json`);
+    const obj = await publishedBucket(env).get(`content/${key}.json`);
     if (obj) {
       return new Response(await obj.text(), {
         headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
@@ -225,7 +237,7 @@ async function saveDraft(req, env) {
 
 async function publishContent(req, env) {
   const data = await req.json();
-  const b = bucket(env);
+  const b = publishedBucket(env);
   const archives = privateBucket(env);
   const now = new Date().toISOString();
   const versionId = now.replace(/[:.]/g, "-");
@@ -277,7 +289,7 @@ function validatePublishPayload(siteText,bioText) {
 
 async function readCurrentOrDefaultText(env, key) {
   if (hasBucket(env)) {
-    const obj = await bucket(env).get(`content/${key}.json`);
+    const obj = await publishedBucket(env).get(`content/${key}.json`);
     if (obj) return await obj.text();
   }
   return await assetText(env, key);
@@ -307,7 +319,7 @@ async function restoreVersion(req, env) {
   const versionId = safeVersion(data.versionId || "");
   const target = data.target === "live" ? "live" : "draft";
   const b = privateBucket(env);
-  const publicBucket = bucket(env);
+  const publicBucket = publishedBucket(env);
 
   const site = await b.get(`content/versions/${versionId}/site-content.json`);
   const bio = await b.get(`content/versions/${versionId}/bio-content.json`);
@@ -340,7 +352,7 @@ async function restoreVersion(req, env) {
 
 async function resetDefaults(env) {
   const b = privateBucket(env);
-  const publicBucket = bucket(env);
+  const publicBucket = publishedBucket(env);
   const now = new Date().toISOString();
   const versionId = "before-reset-" + now.replace(/[:.]/g, "-");
 
