@@ -90,6 +90,11 @@ export async function sessionRoute(req,env,url) {
   try {
     if(url.pathname==='/api/session/login' && req.method==='POST') {
       if(!checkSameOrigin(req))return respond({ok:false,error:'Origem não autorizada'},403);
+      if(!env.LOGIN_RATE_LIMIT) return respond({ok:false,error:'Proteção de acesso indisponível'},503);
+      const address=(req.headers.get('cf-connecting-ip')||'unknown').slice(0,64);
+      const agent=(req.headers.get('user-agent')||'unknown').slice(0,64);
+      const verdict=await env.LOGIN_RATE_LIMIT.limit({key:address+'|'+agent});
+      if(!verdict.success) return respond({ok:false,error:'Muitas tentativas de acesso'},429,{'Retry-After':'60'});
       const length=Number(req.headers.get('content-length')||0);
       if(length > 8192)return respond({ok:false,error:'Requisição excessiva'},413);
       const text=await req.text();
