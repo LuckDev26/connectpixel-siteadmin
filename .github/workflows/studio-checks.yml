@@ -21,8 +21,8 @@ jobs:
         run: npm test
       - name: Verify migrated portfolio data
         run: node scripts/portfolio-migration.test.mjs
-      - name: Inspect representative R2 media URLs (HEAD only, never modifies R2)
-        run: node scripts/check-r2-media.mjs --sample=18
+      - name: Check all 308 R2 media URLs (HEAD only, never modifies R2)
+        run: node scripts/check-r2-media.mjs --all
       - name: Verify generated manifest is reproducible
         run: |
           node scripts/migrate-portfolio.mjs --write
