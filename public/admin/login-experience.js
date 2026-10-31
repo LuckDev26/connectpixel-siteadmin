@@ -37,6 +37,14 @@
         if(error){error.hidden=true;error.textContent="";}
       });
     }
+    const username = byId("loginUsername");
+    if (username) {
+      username.addEventListener("input", () => {
+        username.removeAttribute("aria-invalid");
+        const error = byId("loginError");
+        if (error) { error.hidden = true; error.textContent = ""; }
+      });
+    }
     for (const tab of document.querySelectorAll(".side .nav button[data-tab]")) {
       const marker=tab.querySelector("i");
       if(!marker || !icons[tab.dataset.tab])continue;
