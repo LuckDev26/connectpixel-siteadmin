@@ -18,9 +18,9 @@ if(Array.isArray(s.sections)&&s.sections.length){
 }
 if(s.navbar?.length){let nav=q("nav .nav-links");if(nav)nav.innerHTML=s.navbar.filter(x=>x.visible!==false).sort((a,b)=>(a.order||0)-(b.order||0)).map(x=>`<li><a href="${esc(x.target||"#")}">${esc(x.label)}</a></li>`).join("")}if(s.about){let l=q("#sobre .section-label");if(l&&s.about.badge)l.textContent=s.about.badge;let h=q("#sobre .section-title");if(h&&s.about.headline)h.innerHTML=accent(s.about.headline);let wrap=q("#sobre .sobre-left");if(wrap&&s.about.paragraphs?.length){qa(".sobre-text",wrap).forEach(p=>p.remove());let ref=q(".section-title",wrap);s.about.paragraphs.forEach(t=>{let p=document.createElement("p");p.className="sobre-text";p.textContent=t;ref.after(p)})}}if(s.connectflow){let sec=q("#connectflow");if(sec){let l=q(".connectflow-head .section-label",sec);if(l&&s.connectflow.badge)l.textContent=s.connectflow.badge;let h=q(".connectflow-head .section-title",sec);if(h&&s.connectflow.headline)h.innerHTML=accent(s.connectflow.headline);let sub=q(".connectflow-sub",sec);if(sub&&s.connectflow.subheadline)sub.textContent=s.connectflow.subheadline;let tl=q(".connectflow-timeline",sec);if(tl&&s.connectflow.steps?.length)tl.innerHTML=s.connectflow.steps.map((x,i)=>`<article class="connectflow-item"><div class="connectflow-marker">${esc(x.number||String(i+1).padStart(2,"0"))}</div><div class="connectflow-card"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div></article>`).join("");let f=q(".connectflow-footer",sec);if(f&&s.connectflow.footer)f.innerHTML=`<span>${esc(s.connectflow.footer)}</span>`}}renderDynamicClients(s);renderDynamicPortfolio(s);}function renderDynamicClients(s){
  const raw=Array.isArray(s.clients)?s.clients:[];
- const clients=raw.filter(x=>x&&x.logo&&/^https:\/\//i.test(x.logo)&&x.name).slice(0,40);
+ const clients=raw.filter(x=>x&&(x.logo||x.image)&&/^https:\/\//i.test(x.logo||x.image)&&(x.name||x.title)).slice(0,40);
  if(clients.length){
-  const cards=clients.map(x=>'<div class="cliente-logo"><img src="'+esc(x.logo)+'" alt="'+esc(x.name)+'" loading="lazy"></div>').join('');
+  const cards=clients.map(x=>'<div class="cliente-logo"><img src="'+esc(x.logo||x.image)+'" alt="'+esc(x.name||x.title)+'" loading="lazy"></div>').join('');
   const first=q('#clientes-logos-a'),second=q('#clientes-logos-b');
   if(first)first.innerHTML=cards;
   if(second)second.innerHTML=cards;
@@ -79,6 +79,21 @@ function bio(d){
 document.addEventListener("DOMContentLoaded",async()=>{try{let isBio=location.pathname.startsWith("/bio")||location.pathname.endsWith("/bio.html");let params=new URLSearchParams(location.search);let draft=params.get("preview")==="draft";let d=await get(isBio?(draft?"draft-bio-content":"bio-content"):(draft?"draft-site-content":"site-content"));window.CONNECTPIXEL_CONTENT=d;isBio?bio(d):site(d)}catch(e){console.warn("content loader",e)}})
 function renderDynamicPortfolio(site){
   const p=site?.portfolio||{};
+  // Preserve the site's original portfolio cards, media controls and modal UX.
+  // main.js is embedded as a classic script in index.html (global PROJETOS).
+  const eligible = items=>Array.isArray(items)?items.filter(x=>x&&x.visible!==false).sort((a,b)=>(Number(a.order)||0)-(Number(b.order)||0)):[];
+  const projects=[
+    ...eligible(p.reels).map(x=>({nicho:x.segment||x.nicho||"Nichos Diversos",subcategoria:x.subcategory||"",tipo:"video",titulo:x.title||x.titulo||"Vídeo",url:x.video||x.url||"",thumb:x.thumb||""})).filter(x=>/^https:\/\//.test(x.url)),
+    ...eligible(p.cards).map(x=>({nicho:x.segment||x.nicho||"Nichos Diversos",subcategoria:x.subcategory||"",tipo:"post",titulo:x.title||x.titulo||"Arte",img:x.image||x.url||"",emoji:x.emoji||"✦"})).filter(x=>/^https:\/\//.test(x.img)),
+    ...eligible(p.carousels).map(x=>({nicho:x.segment||x.nicho||"Nichos Diversos",subcategoria:x.subcategory||"",tipo:"carrossel",titulo:x.title||x.titulo||"Carrossel",imgs:Array.isArray(x.slides)?x.slides.map(v=>typeof v==="string"?v:v.url).filter(v=>/^https:\/\//.test(v)):[]})).filter(x=>x.imgs.length)
+  ];
+  if(projects.length && typeof PROJETOS !== 'undefined' && Array.isArray(PROJETOS) && typeof buildGrid === 'function'){
+    PROJETOS.splice(0,PROJETOS.length,...projects);
+    buildGrid();
+    if(typeof initLazyVideos==='function')initLazyVideos();
+    if(typeof initVideoThumbs==='function')initVideoThumbs();
+    return;
+  }
   const gridReels=document.getElementById("grid-reels");
   const gridCards=document.getElementById("grid-cards");
   const gridCar=document.getElementById("grid-carrosseis");
