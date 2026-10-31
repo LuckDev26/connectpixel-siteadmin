@@ -51,4 +51,10 @@ jobs:
           test "$status" = "401"
           status=$(curl -sS -o /tmp/session.json -w '%{http_code}' "$base/api/session")
           test "$status" = "401"
+          status=$(curl -sS -o /tmp/studio-login.html -w '%{http_code}' "$base/admin/")
+          test "$status" = "200"
+          grep -q 'id="loginUsername"' /tmp/studio-login.html
+          grep -q 'id="loginToken"' /tmp/studio-login.html
+          test "$(grep -o 'class="login-mobile-brand"' /tmp/studio-login.html | wc -l | tr -d ' ')" = "1"
+          echo 'PASS: username and password fields, exactly one mobile brand'
           echo 'PASS: public content JSON, private draft hidden, admin and session protected'
