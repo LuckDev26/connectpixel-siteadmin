@@ -19,6 +19,10 @@ jobs:
           node-version: '22'
       - name: Verify existing Worker and content loader
         run: npm test
+      - name: Validate Studio frontend scripts and HTML integrations
+        run: |
+          node --check public/admin/studio.js
+          node scripts/studio-ui.test.mjs
       - name: Verify migrated portfolio data
         run: node scripts/portfolio-migration.test.mjs
       - name: Check representative R2 media URLs (HEAD only, never modifies R2)
