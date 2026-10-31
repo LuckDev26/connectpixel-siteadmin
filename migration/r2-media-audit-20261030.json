@@ -1,0 +1,2173 @@
+{
+  "meta": {
+    "source": "GitHub Actions workflow run 41157509230, HEAD-only audit of existing public R2 URLs",
+    "checkedAtUTC": "2026-10-31T01:54:27Z",
+    "repository": "LuckDev26/connectpixel-siteadmin",
+    "branch": "feat/connectpixel-studio-v2",
+    "notes": "HTTP HEAD-only; no file downloads, writes or deletions. A 200 means the URL exists at verification time, not a video compatibility guarantee."
+  },
+  "summary": {
+    "checked": 308,
+    "present": 306,
+    "missing": 2,
+    "sumReportedContentLengthBytes": 9319216768
+  },
+  "results": [
+    {
+      "url": "https://media.connectpixel.online/videos/acougue/acougue1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 86316178
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/acougue/acougue2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 61010392
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/acougue/acougue3.mp4",
+      "status": 404,
+      "state": "missing",
+      "type": "text/plain;charset=UTF-8",
+      "bytes": 0
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/acougue/acougue4.mp4",
+      "status": 404,
+      "state": "missing",
+      "type": "text/plain;charset=UTF-8",
+      "bytes": 0
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 24452242
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 22083409
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 90560865
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 71367992
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia13.mov",
+      "status": 200,
+      "state": "present",
+      "type": "video/quicktime",
+      "bytes": 102068099
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 100169360
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55968264
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55675124
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 30360577
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 24330755
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 16197773
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 71381232
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 51066724
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/advocacia/advocacia9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 54237893
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/clinica/clinica1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 544021723
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/clinica/clinica2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 96417239
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/construcao/construcao1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 26678788
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/construcao/construcao2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 36612546
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/academia/academia1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 17890451
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/academia/Academia2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 42772622
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 76950570
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 27433938
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 23710047
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 17374242
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 37314324
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 82714097
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 90887353
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 19595660
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/autocenter/autocenter9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 24954591
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/distribuidora/distribuidora1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 266604596
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/emporio/emporio1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55536824
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/estamparia/Estamparia1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 28734621
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/marmitaria/marmitaria2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 70132942
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/marmitaria/marmitaria3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 66519824
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/padaria/padaria1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 304664338
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/diversos/petshop/petshop1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 26639072
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 102215813
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 32664045
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 81831006
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 87579646
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 94809250
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/Financeiro14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 36045281
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro15.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 107340741
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro16.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 97459742
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 30241664
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 24438304
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55972679
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 45496505
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 63503880
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 37110109
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/financeiro/financeiro9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 100796365
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 73889543
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 84165720
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 36098238
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 61554932
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 26978259
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 32997288
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria15.mov",
+      "status": 200,
+      "state": "present",
+      "type": "video/quicktime",
+      "bytes": 38304206
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/Hotelaria16.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 15723132
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria17.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 46714167
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria18.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 40474138
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/Hotelaria19.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 60466917
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 48023986
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/Hotelaria20.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 95159820
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 51696701
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 99702694
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 54899954
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 47829780
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55407794
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/hotelaria/hotelaria9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 42229456
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 52152407
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 29718122
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 94752572
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 71797410
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 72703245
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 157221038
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 68718580
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 103169022
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 89768846
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 30667233
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 70416195
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 18314094
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/otica/otica8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 21239598
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 63061793
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 74777792
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 96521378
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 47230624
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 50616166
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 27423378
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor15.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 72653701
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor16.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 70822680
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor17.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 69715180
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor18.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 25379625
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor19.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 100347678
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 32753841
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor20.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 60115043
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 31937722
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 32457535
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 49104353
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 100347678
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 57612685
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/provedor/provedor8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 88053124
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 61182359
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 45594024
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 50832053
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 51542120
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 35959934
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares15.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 50192784
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares16.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 57082755
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares17.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 64556803
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares18.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 55547514
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares19.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 33187323
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares2.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 28769913
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares20.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 58062193
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares21.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 22143861
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares22.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 33227376
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares23.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 39347271
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/Celulares24.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 77689012
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares25.mov",
+      "status": 200,
+      "state": "present",
+      "type": "video/quicktime",
+      "bytes": 92993157
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/Celulares26.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 27648418
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/Celulares28.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 87244176
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares29.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 63455111
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 36597170
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares6.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 41761835
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 85076663
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/celulares/celulares9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 58006694
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica10.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 65615081
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica11.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 58964878
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica12.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 71189704
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica13.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 65816949
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica14.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 93373832
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica15.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 58980696
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica16.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 29492238
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/Informatica17.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 31868476
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica18.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 59480957
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/Informatica19.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 21580258
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica20.mov",
+      "status": 200,
+      "state": "present",
+      "type": "video/quicktime",
+      "bytes": 90351888
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/Informatica21.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 28073931
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/Informatica22.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 40824960
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica3.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 25321742
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica4.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 41725583
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica5.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 20489461
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica7.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 22041969
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica8.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 96650478
+    },
+    {
+      "url": "https://media.connectpixel.online/videos/varejo/informatica/informatica9.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 64939624
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/advocacia/card1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 469785
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/advocacia/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1560418
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/advocacia/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 606959
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/advocacia/card4.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 612584
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1320376
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1301749
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 263766
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 262159
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 328886
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1491660
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/açougue/card7.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 962831
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 879772
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 995450
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 904566
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 945621
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 877102
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 781797
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card7.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1017699
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card8.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1480497
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card9.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1414483
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card10.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 786176
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card11.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 758017
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card12.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1049694
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card13.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 859400
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card14.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1230236
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card15.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 878412
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card16.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1516491
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card17.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 972981
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card18.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1005631
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card19.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 836781
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card20.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1284342
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card22.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 266428
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card23.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 293001
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card24.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 253485
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card25.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1700560
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card26.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1359877
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card27.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 965345
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card28.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 950221
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card29.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 751134
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card30.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 646260
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card31.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1192952
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card32.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1218013
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card33.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 677671
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card34.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 449817
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card35.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 356008
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card36.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1372296
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/hotelaria/card37.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1134547
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 218802
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 192187
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 260306
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 296060
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 274648
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card7.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 795447
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card8.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 220036
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card9.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 368436
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card10.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 418021
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card11.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 348073
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card12.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 843085
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/otica/card13.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1521711
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 313207
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 255604
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 304227
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 317262
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 259405
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card7.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 886766
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card9.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1103985
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card10.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 778475
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card12.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 633938
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card13.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 299172
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card14.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 343867
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card16.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1404701
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card17.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1229660
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card18.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 2171737
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card19.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1388530
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card20.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1266825
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/provedor/card21.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 19826863
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/financeiro/card1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 812010
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/financeiro/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 393235
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/financeiro/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 511214
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/financeiro/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 469896
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/financeiro/card5.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1459600
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 750003
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 302977
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 225845
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 230156
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card7.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 274692
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card8.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 255533
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card9.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 165147
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card10.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 254232
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card11.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 404068
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card12.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 867044
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card13.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 1500569
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card14.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 227912
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card15.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 214808
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card16.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 307532
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card17.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 240162
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card18.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 222242
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card19.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 583125
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card20.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 267396
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card21.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 854626
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card22.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 772655
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card23.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 236910
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card24.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 591971
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card25.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1953897
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card26.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 977015
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card27.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1202919
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card28.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1024546
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/varejo/informatica/card29.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 842472
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 187635
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 235765
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 279501
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 285737
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 222981
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel1/6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 121880
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 158740
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 307670
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 129413
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 152182
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 137451
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 136697
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/7.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 174386
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel2/8.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 118523
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel3/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 120886
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel3/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 168506
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel3/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 152442
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel3/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 142840
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel4/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 143197
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel4/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 117234
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel4/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 154376
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel4/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 149269
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel5/1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 6020008
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel5/2.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 600580
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel5/3.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 639611
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel5/4.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 634184
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel6/1.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 1238061
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel6/2.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 936549
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel6/3.png",
+      "status": 200,
+      "state": "present",
+      "type": "image/png",
+      "bytes": 571619
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel7/1.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 100218
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel7/2.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 120141
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel7/3.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 170672
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel7/4.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 126511
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel8/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 124903
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel8/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 97732
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel8/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 70471
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel8/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 102904
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 633199
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 740339
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 768976
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 847495
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/5.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 786436
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel9/6.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 980363
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel10/1.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 183155
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel10/2.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 175511
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel10/3.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 133889
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel10/4.jpg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 112243
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel11/1.mp4",
+      "status": 200,
+      "state": "present",
+      "type": "video/mp4",
+      "bytes": 9516315
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel11/2.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 189438
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel11/3.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 190395
+    },
+    {
+      "url": "https://media.connectpixel.online/imagens/carrosseis/carrossel11/4.jpeg",
+      "status": 200,
+      "state": "present",
+      "type": "image/jpeg",
+      "bytes": 143554
+    }
+  ]
+}
