@@ -28,6 +28,18 @@ Fonte imutável: `public/main.js`, array `PROJETOS` do site legado.
 - Não aplicar esse JSON direto no R2 sem validação; mídia e visualização original devem ser preservadas.
 - O Worker/site atual não interpreta automaticamente todos os campos do manifesto; o loader CMS precisa de integração completa.
 
+
+## Verificação completa de mídia (31/10/2026 UTC)
+
+- Verificador de URLs: `scripts/check-r2-media.mjs --all` (308 requisições HTTP HEAD, sem baixar ou modificar objetos).
+- Resultado: **306 HTTP 200** e **2 HTTP 404** (99,35% de existência confirmada).
+- Ausentes: `videos/acougue/acougue3.mp4` e `videos/acougue/acougue4.mp4`.
+- Relatório com 308 URLs, status, tipos MIME e tamanho: `migration/r2-media-audit-20261030.json`.
+- Somatório aproximado de `Content-Length` para mídias referenciadas: **9.319.216.768 bytes (9,32 GB decimais)**, próximo ao total de 9,38 GB do bucket.
+- Itens grandes identificados: `videos/clinica/clinica1.mp4` (~544 MB), `videos/diversos/padaria/padaria1.mp4` (~305 MB), `videos/diversos/distribuidora/distribuidora1.mp4` (~267 MB). Nenhum arquivo foi recomprimido ou apagado.
+- Não eliminar registros de arquivos ausentes sem revisão editorial; marcar como indisponíveis no futuro painel.
+- A checagem automática em push permanece como amostra de 18 URLs para não gastar requisições adicionais a cada commit; relatório completo disponível para consulta e novo comando manual.
+
 ## Problemas de segurança no CMS legado
 
 1. `/api/content/<qualquer-chave>` é permitido para acesso público pelo código do Worker. Isso inclui chaves de rascunho e de histórico se nomes forem conhecidos.
