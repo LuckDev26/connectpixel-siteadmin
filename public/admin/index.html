@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Painel ConnectPixel</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d10">
+<title>Entrar | ConnectPixel Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#05080D;--panel:#0D1825;--line:rgba(255,255,255,.11);--text:#F7FBFC;--muted:#A7B9C9;--muted2:#7F93A8;--teal:#48E5C2;--green:#B6EF59;--danger:#ff5f78;--grad:linear-gradient(135deg,#B6EF59,#48E5C2)}
@@ -401,25 +401,88 @@ label{color:#c9d9e6!important}
 
 </style>
 <link rel="stylesheet" href="/admin/studio.css">
+<link rel="stylesheet" href="/admin/studio-redesign.css">
 </head>
 <body class="locked">
-<div class="login"><div class="login-card"><div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Painel administrativo</span></div></div><h2>Acesso restrito</h2><p class="small">Acesse com sua senha. O navegador manterá apenas um cookie seguro de sessão.</p><label>Senha do painel</label><input id="loginToken" type="password" placeholder="Sua senha de acesso" autocomplete="current-password"><br><br><button class="btn primary" id="loginBtn">Entrar no painel</button><p class="status" id="loginError"></p></div></div>
+<div class="login" id="studioLoginScreen">
+  <div class="login-shell">
+    <section class="login-story" aria-label="Apresentação do ConnectPixel Studio">
+      <div class="login-story-top">
+        <div class="studio-product-lockup">
+          <img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'">
+          <div><strong>ConnectPixel</strong><span>STUDIO</span></div>
+        </div>
+        <span class="studio-environment"><span aria-hidden="true"></span> Homologação</span>
+      </div>
+      <div class="login-story-body">
+        <div class="studio-story-eyebrow"><span class="studio-eyebrow-rule"></span> SEU ESPAÇO DE CRIAÇÃO</div>
+        <h1>O seu site.<br><span>Nas suas mãos.</span></h1>
+        <p>Um espaço para cuidar da presença digital da ConnectPixel com a atenção que cada detalhe merece.</p>
+        <div class="studio-story-preview" aria-hidden="true">
+          <div class="studio-preview-head">
+            <span class="studio-preview-icon"><img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'"></span>
+            <span class="studio-preview-lines"><i></i><i></i></span>
+            <span class="studio-preview-dots"><i></i><i></i><i></i></span>
+          </div>
+          <div class="studio-preview-columns">
+            <div class="studio-preview-menu"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="studio-preview-content">
+              <div class="studio-preview-kicker"></div>
+              <div class="studio-preview-title"></div><div class="studio-preview-title short"></div>
+              <div class="studio-preview-sub"></div>
+              <div class="studio-preview-cards"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="studio-preview-floating">
+            <span class="studio-preview-floating-mark">✓</span>
+            <div><strong>Organização visual</strong><small>Site, portfólio e conteúdos</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="login-story-footer"><span>CONNECTPIXEL STUDIO</span><span>DESENVOLVIDO PARA SUA AGÊNCIA</span></div>
+    </section>
+    <section class="login-auth" aria-labelledby="studioLoginTitle">
+      <div class="login-auth-header"><span class="login-auth-ambient"><span></span> ÁREA ADMINISTRATIVA</span><a href="/" class="login-back-link" aria-label="Visitar o site da ConnectPixel">Ver site <span aria-hidden="true">↗</span></a></div>
+      <div class="login-card">
+        <div class="login-mobile-brand"><img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'"><span>ConnectPixel <strong>Studio</strong></span></div>
+        <div class="login-emblem" aria-hidden="true"><img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'"></div>
+        <p class="login-kicker">BEM-VINDO DE VOLTA</p>
+        <h2 id="studioLoginTitle">Acesse seu painel<span>.</span></h2>
+        <p class="login-description">Entre para gerenciar conteúdos, portfólio e as páginas da ConnectPixel.</p>
+        <form id="studioLoginForm" novalidate>
+          <div class="login-field-heading"><label for="loginToken">Senha de acesso</label><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Acesso protegido</span></div>
+          <div class="login-password-control">
+            <svg class="login-input-lock" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+            <input id="loginToken" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="loginHelp loginError" maxlength="4096">
+            <button type="button" id="studioPasswordToggle" class="login-password-toggle" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+          <p class="login-caps" id="loginCaps" hidden>Caps Lock ativado. Confira antes de entrar.</p>
+          <p id="loginHelp" class="login-field-help">Use a senha administrativa configurada na Cloudflare.</p>
+          <button type="submit" class="login-submit" id="loginBtn"><span class="login-submit-label">Entrar no Studio</span><span class="login-submit-icon" aria-hidden="true">→</span><span class="login-submit-spinner" aria-hidden="true"></span></button>
+          <p class="login-message" id="loginError" role="alert" aria-live="polite" hidden></p>
+        </form>
+        <div class="login-assurance"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m12 22 7-4V7l-7-4-7 4v11l7 4Z"/><path d="m9 12 2 2 4-4"/></svg><span>Conexão protegida por sessão segura. Sua senha não fica salva no navegador.</span></div>
+      </div>
+      <div class="login-auth-footer"><span>© ConnectPixel Studio</span><span>Ambiente de gerenciamento</span></div>
+    </section>
+  </div>
+</div>
 <div class="app">
 <aside class="side">
- <div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Painel premium</span></div></div>
+ <div class="brand"><img src="/bio/assets/logo-icon.png" onerror="this.src='/logo.png'"><div><h1>ConnectPixel</h1><span>Studio administrativo</span></div></div>
  <div class="nav-title">Comece aqui</div><nav class="nav"><button class="active" data-tab="home"><i>01</i><span>Início <small>atalhos principais</small></span></button></nav>
  <div class="nav-title">Editar conteúdo</div><nav class="nav"><button data-tab="site"><i>02</i><span>Site principal <small>topo, sobre e menu</small></span></button><button data-tab="bio"><i>03</i><span>Link da bio <small>botões, empresas e eventos</small></span></button><button data-tab="method"><i>04</i><span>Método <small>ConnectFlow™</small></span></button><button data-tab="portfolio"><i>05</i><span>Portfólio <small>reels, cards e carrosséis</small></span></button><button data-tab="media"><i>07</i><span>Mídias <small>upload para R2</small></span></button></nav>
- <div class="nav-title">Finalizar</div><nav class="nav"><button data-tab="publish"><i>08</i><span>Publicação <small>salvar e backup</small></span></button><button data-tab="log"><i>09</i><span>Log <small>histórico de mudanças</small></span></button><button data-tab="json"><i>10</i><span>Avançado <small>JSON bruto</small></span></button><button data-tab="config"><i>11</i><span>Configuração <small>senha local</small></span></button></nav>
- <div class="side-note">Fluxo ideal: edite → confira a prévia → salve → teste no site → crie backup antes de mudanças grandes.</div><button class="btn ghost logout" onclick="logout()">Sair</button>
+ <div class="nav-title">Finalizar</div><nav class="nav"><button data-tab="publish"><i>08</i><span>Publicação <small>salvar e backup</small></span></button><button data-tab="log"><i>09</i><span>Log <small>histórico de mudanças</small></span></button><button data-tab="json"><i>10</i><span>Avançado <small>JSON bruto</small></span></button><button data-tab="config"><i>11</i><span>Segurança <small>sessão e acesso</small></span></button></nav>
+ <div class="side-note">Edite o conteúdo, revise a prévia e publique com segurança.</div><button class="btn ghost logout" onclick="logout()">Sair</button>
 </aside>
 <main class="main">
- <div class="top"><div><h2 id="title">Início</h2><p>Escolha uma tarefa para editar. Agora o painel mostra instruções e prévias para facilitar o uso.</p></div><div class="btns"><button class="btn ghost" onclick="openSiteLive()">Abrir site</button><button class="btn ghost" onclick="openSiteDraft()">Preview rascunho</button><button class="btn ghost" onclick="loadAll()">Recarregar</button><button class="btn ghost" onclick="revertCurrentPage()">Reverter tela</button><button class="btn primary" onclick="saveAll()">Salvar rascunho</button></div></div>
+ <div class="top"><div><span class="studio-workspace-tag">CONNECTPIXEL / ADMINISTRAÇÃO</span><h2 id="title">Visão geral</h2><p>Gerencie cada detalhe do seu site em um único lugar.</p></div><div class="btns"><button class="btn ghost" onclick="openSiteLive()">Abrir site</button><button class="btn ghost" onclick="openSiteDraft()">Preview rascunho</button><button class="btn ghost" onclick="loadAll()">Recarregar</button><button class="btn ghost" onclick="revertCurrentPage()">Reverter tela</button><button class="btn primary" onclick="saveAll()">Salvar rascunho</button></div></div>
  <section id="home" class="section active">
   <div class="cms-hero-panel">
     <div>
-      <span class="cms-eyebrow">ConnectPixel CMS</span>
-      <h3>Painel de controle do site e link da bio</h3>
-      <p>Edite, salve como rascunho, visualize no layout real e publique com backup automático.</p>
+      <span class="cms-eyebrow">CONNECTPIXEL STUDIO</span>
+      <h3>Seu espaço de criação, em um só lugar.</h3>
+      <p>Organize o portfólio, atualize suas páginas e cuide de cada detalhe antes de publicar.</p>
     </div>
     <div class="cms-quick-actions">
       <button class="btn ghost" onclick="openSiteLive()">Abrir site publicado</button>
@@ -647,20 +710,39 @@ document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.quer
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".subsec").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.sub).classList.add("active")});
 document.addEventListener("input",e=>{if(e.target.matches("[data-preview]"))renderPreviews()});
 async function login(){
-  const password=$("loginToken").value;
-  $("loginError").textContent="";
-  if(!password)return $("loginError").textContent="Informe sua senha.";
+  const input=$("loginToken"),button=$("loginBtn"),message=$("loginError");
+  const password=input.value;
+  if(button.disabled)return;
+  message.hidden=true;message.textContent="";input.removeAttribute("aria-invalid");
+  if(!password.trim()){
+    message.textContent="Informe sua senha para continuar.";message.hidden=false;
+    input.setAttribute("aria-invalid","true");input.focus();return;
+  }
+  button.disabled=true;button.classList.add("is-loading");button.setAttribute("aria-busy","true");
   try{
-    const res=await fetch("/api/session/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password})});
-    if(!res.ok){$("loginError").textContent=res.status===401?"Senha incorreta.":"Não foi possível autenticar (HTTP "+res.status+").";return;}
-    $("loginToken").value="";
-    document.body.classList.add("logged");
-    document.body.classList.remove("locked");
+    const response=await fetch("/api/session/login",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({password}),credentials:"same-origin",cache:"no-store"
+    });
+    if(!response.ok){
+      message.textContent=response.status===401?"Senha incorreta. Confira e tente novamente."
+        : response.status===429?"Muitas tentativas. Aguarde um pouco antes de tentar novamente."
+        : response.status===503?"A autenticação ainda não foi configurada neste ambiente.":"Não foi possível entrar agora. Tente novamente.";
+      message.hidden=false;input.setAttribute("aria-invalid","true");
+      input.focus();input.select();return;
+    }
+    input.value="";
+    document.body.classList.add("logged");document.body.classList.remove("locked");
+    document.title="ConnectPixel Studio | Painel";
     await loadAll();
-  }catch(e){$("loginError").textContent="Não foi possível acessar o serviço de autenticação."}
+  }catch(err){
+    message.textContent="Não foi possível conectar. Verifique sua internet e tente novamente.";
+    message.hidden=false;
+  }finally{
+    button.disabled=false;button.classList.remove("is-loading");button.removeAttribute("aria-busy");
+  }
 }
-$("loginBtn").onclick=login;
-$("loginToken").onkeydown=e=>{if(e.key==="Enter")login()};
+$("studioLoginForm").addEventListener("submit",e=>{e.preventDefault();login()});
 async function loadJson(n){let r=await fetch("/api/admin/content/"+n,{headers:headers(false),cache:"no-store"});if(!r.ok){let msg=await r.text().catch(()=>"");throw new Error("Erro "+r.status+" ao carregar "+n+" — "+msg.slice(0,120))}return r.json()}async function saveJson(n,d){
   let r=await fetch("/api/admin/content/"+n,{method:"PUT",headers:headers(true),body:JSON.stringify(d,null,2)});
   if(!r.ok){
@@ -787,4 +869,5 @@ document.addEventListener("input",e=>{if(["uploadContentType","uploadSegment","u
 </script>
 
 <script src="/admin/studio.js" defer></script>
+<script src="/admin/login-experience.js" defer></script>
 </body></html>
