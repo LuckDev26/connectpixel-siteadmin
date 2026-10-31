@@ -15,7 +15,7 @@ const publicSite=JSON.stringify({meta:{},site:{navbar:[],portfolio:{reels:[],car
 const publicBio=JSON.stringify({meta:{},bio:{links:[]}});
 media.objects.set('content/site-content.json',publicSite);
 media.objects.set('content/bio-content.json',publicBio);
-const env={ADMIN_TOKEN:SECRET,R2_BUCKET:media,R2_PRIVATE:cms,STUDIO_READ_ONLY:'false',LOGIN_RATE_LIMIT:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('{}')}};
+const env={ADMIN_USERNAME:"admin",ADMIN_TOKEN:SECRET,R2_BUCKET:media,R2_PRIVATE:cms,STUDIO_READ_ONLY:'false',LOGIN_RATE_LIMIT:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('{}')}};
 
 function request(path, method='GET', body, cookie='', origin='https://studio.test') {
   const headers={};
@@ -35,23 +35,30 @@ assert.equal(arbitrary.status,404,'private log cannot be obtained from public AP
 const live=await call('/api/content/site-content');
 assert.equal(live.status,200,'published content is available');
 assert.equal((await live.json()).site.portfolio.reels.length,0);
-const csrfLogin=await call('/api/session/login','POST',{password:SECRET},'', 'https://evil.test');
+const csrfLogin=await call('/api/session/login','POST',{username:"admin",password:SECRET},'', 'https://evil.test');
 assert.equal(csrfLogin.status,403);
-const bad=await call('/api/session/login','POST',{password:'incorrect'});
+const bad=await call('/api/session/login','POST',{username:'admin',password:'incorrect'});
 assert.equal(bad.status,401);
+const invalidUser=await call('/api/session/login','POST',{username:'visitor',password:SECRET});
+assert.equal(invalidUser.status,401,'Correct password with wrong user must fail');
+const absentUsername=await call('/api/session/login','POST',{password:SECRET});
+assert.equal(absentUsername.status,401,'Username is mandatory');
+
 const limitedEnv={...env,LOGIN_RATE_LIMIT:{limit:async()=>({success:false})}};
-const rateLimited=await call('/api/session/login','POST',{password:SECRET},'','https://studio.test',limitedEnv);
+const rateLimited=await call('/api/session/login','POST',{username:"admin",password:SECRET},'','https://studio.test',limitedEnv);
 assert.equal(rateLimited.status,429,'Rate limiter must reject excessive login attempts');
 assert.equal(rateLimited.headers.get('Retry-After'),'60');
 const noLimiterEnv={...env,LOGIN_RATE_LIMIT:undefined};
-assert.equal((await call('/api/session/login','POST',{password:SECRET},'','https://studio.test',noLimiterEnv)).status,503,'Missing protection must fail closed');
+assert.equal((await call('/api/session/login','POST',{username:"admin",password:SECRET},'','https://studio.test',noLimiterEnv)).status,503,'Missing protection must fail closed');
 
-const loggedIn=await call('/api/session/login','POST',{password:SECRET});
+const loggedIn=await call('/api/session/login','POST',{username:"admin",password:SECRET});
 assert.equal(loggedIn.status,200);
+assert.equal((await loggedIn.clone().json()).username,'admin');
 const setCookie=loggedIn.headers.get('set-cookie')||'';
 assert.match(setCookie,/HttpOnly/);assert.match(setCookie,/Secure/);assert.match(setCookie,/SameSite=Strict/);
 const token=setCookie.split(';')[0].split('=')[1];
 assert.ok(await verifySession(token,env));
+assert.equal(await verifySession(token,{...env,ADMIN_USERNAME:'other-admin'}),false,'Changing username invalidates existing session');
 assert.equal(await verifySession(token+'modified',env),false);
 assert.equal(await verifySession(await mintSession(env,Date.now()-9*3600*1000),env),false);
 assert.equal((await call('/api/session','GET',undefined,token)).status,200);
