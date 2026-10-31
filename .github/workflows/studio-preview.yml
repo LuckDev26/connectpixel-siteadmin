@@ -31,6 +31,8 @@ jobs:
           grep -q 'STUDIO_READ_ONLY = "true"' wrangler.toml
           grep -q 'binding = "R2_PRIVATE"' wrangler.toml
           grep -q 'bucket_name = "connectpixel-cms-private"' wrangler.toml
+          grep -q 'binding = "R2_PUBLISHED"' wrangler.toml
+          grep -q 'bucket_name = "connectpixel-studio-preview"' wrangler.toml
       - name: Deploy to new Worker only, never to existing siteadmin or domain
         uses: cloudflare/wrangler-action@v3
         with:
