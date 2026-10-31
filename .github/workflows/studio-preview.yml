@@ -36,3 +36,17 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: deploy --name connectpixel-studio-staging
+      - name: Smoke-test staging HTTP routing and draft privacy
+        run: |
+          set -euo pipefail
+          base="https://connectpixel-studio-staging.mktdigital663.workers.dev"
+          status=$(curl --retry 3 --retry-delay 2 -sS -o /tmp/live.json -w '%{http_code}' "$base/api/content/site-content")
+          test "$status" = "200"
+          grep -q '"site"' /tmp/live.json
+          status=$(curl -sS -o /tmp/draft.json -w '%{http_code}' "$base/api/content/draft-site-content")
+          test "$status" = "404"
+          status=$(curl -sS -o /tmp/admin.json -w '%{http_code}' "$base/api/admin/diagnostics")
+          test "$status" = "401"
+          status=$(curl -sS -o /tmp/session.json -w '%{http_code}' "$base/api/session")
+          test "$status" = "401"
+          echo 'PASS: public content JSON, private draft hidden, admin and session protected'
