@@ -10,6 +10,8 @@ html_handling = "auto-trailing-slash"
 
 [vars]
 PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
+# Homologação segura: bloqueia todas as mutações do painel até revisão final.
+STUDIO_READ_ONLY = "true"
 CRM_CMS_BRIDGE_ENABLED = "true"
 CRM_SUPABASE_URL = "https://zabntyzdhfaapnjdlzop.supabase.co"
 CRM_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_8G2mpbEaciBsvE33CNwz_A_BPcRCKeL"
@@ -25,3 +27,9 @@ CRM_ORGANIZATION_ID = "84d76747-6dc0-4a40-8306-33ece06e8cb7"
 [[r2_buckets]]
 binding = "R2_BUCKET"
 bucket_name = "connectpixel-media"
+
+# Exclusivamente para rascunhos, backups, logs e versões.
+# Bucket R2 PRIVADO, sem r2.dev e sem domínio público.
+[[r2_buckets]]
+binding = "R2_PRIVATE"
+bucket_name = "connectpixel-cms-private"
