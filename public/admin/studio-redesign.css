@@ -304,3 +304,136 @@ body.logged.studio-collapsed .side .logout {height:42px;width:42px!important;ove
   .login-submit-spinner {animation:none!important;}
   .studio-story-preview {transform:none!important;}
 }
+
+
+/* Studio Auth 2.1 — mobile-first sign-in. One brand, two real fields. */
+.login-field-group { margin: 0 0 20px; }
+.login-field-group .login-field-heading { margin-bottom: 10px; }
+.login-username-control input { padding-right: 18px !important; }
+.login-password-control input {
+  min-height: 56px;
+  font-size: 16px !important;
+}
+.login .login-card form .login-field-heading label {
+  font-weight: 680;
+  color: #e4f1e9;
+}
+.login .login-card .login-message {margin-top:14px;}
+.login-auth-header .login-mobile-brand { flex: 0 1 auto; min-width: 0; }
+.login-mobile-brand span {white-space:nowrap;}
+/* Keep the desktop focused on the form instead of a second logo. */
+.login .login-card > .login-kicker {margin-bottom: 14px;}
+.login .login-card > .login-description {max-width: 390px;}
+@media (max-width:900px) {
+  .login-auth {
+    min-height: 100svh !important;
+    padding: max(20px,env(safe-area-inset-top)) clamp(18px,5.5vw,30px)
+             max(16px,env(safe-area-inset-bottom)) !important;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap: 16px;
+    overflow-x:hidden;
+  }
+  .login-shell { min-height:100svh; }
+  .login-story { display:none!important; }
+  .login-auth-header {
+    align-items:center;
+    gap: 12px;
+    flex-shrink: 0;
+    width:100%;
+    min-height:44px;
+  }
+  .login-auth-header .login-auth-ambient { display:none; }
+  .login-auth-header .login-mobile-brand {
+    display:flex;
+    align-items:center;
+    flex:1 1 auto;
+    gap: 9px;
+    margin:0 !important;
+    font-size:clamp(.99rem,3.9vw,1.15rem);
+    min-width:0;
+  }
+  .login-mobile-brand img {
+    width:37px!important;
+    height:37px!important;
+    flex-shrink:0;
+    object-fit:contain;
+  }
+  .login-back-link { font-size:.76rem; flex:none; }
+  .login .login-card {
+    flex:none;
+    width:100%;
+    max-width:430px;
+    margin: auto !important;
+    padding: 5px 0!important;
+  }
+  .login-emblem { display:none!important; }
+  .login-kicker {
+    font-size:.65rem;
+    margin-bottom:11px!important;
+    letter-spacing:.17em;
+  }
+  .login .login-card h2 {
+    font-size:clamp(2rem,8.5vw,2.8rem);
+    line-height:1.09;
+    letter-spacing:-.07em;
+  }
+  .login-description {
+    max-width:340px;
+    font-size:.88rem;
+    line-height:1.55;
+    margin: 12px 0 25px!important;
+  }
+  .login-field-group { margin-bottom: 18px; }
+  .login .login-password-control input {
+    height:56px!important;
+    min-height:56px;
+    border-radius:15px!important;
+    font-size:16px!important;
+  }
+  .login-password-control > .login-input-lock {left:16px;}
+  .login .login-password-control input {padding-left:49px;}
+  .login-field-heading label {font-size:.83rem!important;}
+  .login-field-heading > span {font-size:.66rem!important;}
+  .login-submit {
+    height:56px!important;
+    margin-top:21px;
+    border-radius:15px;
+    font-size:.94rem;
+  }
+  .login-field-help {font-size:.72rem;margin-top:9px;}
+  .login-assurance {
+    margin-top:23px;
+    padding-top:17px;
+    font-size:.71rem;
+    line-height:1.5;
+    max-width:370px;
+  }
+  .login-auth-footer {
+    flex:none;
+    gap: 10px;
+    font-size:.64rem;
+    letter-spacing:0;
+    padding: 3px 0;
+  }
+  .login-auth-footer span:last-child {opacity:.75;}
+}
+@media (max-width:370px) {
+  .login-auth {padding-inline:18px!important;}
+  .login-back-link {font-size:.69rem;}
+  .login-mobile-brand span {font-size:.96rem;}
+  .login .login-card h2 {font-size:2rem;}
+  .login .login-card .login-description {font-size:.83rem;}
+  .login-auth-footer {font-size:.6rem;}
+}
+@media (max-width:900px) and (max-height:720px) {
+  .login-auth {gap:9px;padding-top:14px!important;padding-bottom:12px!important;}
+  .login .login-card {margin: 8px auto 4px!important;}
+  .login-description {margin-bottom:17px!important;}
+  .login-kicker {margin-bottom:7px!important;}
+  .login-field-group {margin-bottom:13px;}
+  .login .login-password-control input {height:52px!important;min-height:52px!important;}
+  .login-submit {height:53px!important;margin-top:15px;}
+  .login-assurance {margin-top:15px;padding-top:13px;}
+}
