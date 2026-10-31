@@ -1,9 +1,10 @@
+import {sessionRoute, requireAdmin} from "./studio-security.js";
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     if (request.method === "OPTIONS") {
-      return new Response(null, { headers: cors() });
+      return new Response(null, { status: 204, headers: { "Allow": "GET,HEAD,POST,PUT,DELETE,OPTIONS" } });
     }
 
     try {
@@ -32,10 +33,15 @@ export default {
 async function api(req, env, url) {
   const parts = url.pathname.replace(/^\/api\/?/, "").split("/").filter(Boolean);
   const admin = parts[0] === "admin";
+  if (parts[0] === "session") return sessionRoute(req, env, url);
+  if (admin) {
+    if (!await requireAdmin(req, env)) return json({ok:false,error:"Não autorizado"},401);
+    if (!["GET","HEAD"].includes(req.method) && env.STUDIO_READ_ONLY !== "false") {
+      return json({ok:false,error:"Publicação/gravação desativada nesta versão de homologação."},403);
+    }
+  }
 
-  if (admin) auth(req, env);
-
-  if (admin && parts[1] === "diagnostics") return diagnostics(env);
+  if (admin && parts[1] === "diagnostics" && req.method === "GET") return diagnostics(env);
   if (admin && parts[1] === "save-draft" && req.method === "POST") return saveDraft(req, env);
   if (admin && parts[1] === "publish" && req.method === "POST") return publishContent(req, env);
   if (admin && parts[1] === "history" && req.method === "GET") return listHistory(env);
@@ -46,18 +52,51 @@ async function api(req, env, url) {
   if (admin && parts[1] === "media" && req.method === "DELETE") return deleteMedia(env, url);
 
   if (parts[0] === "bio-event" && req.method === "POST") return recordBioEvent(req, env);
-  if (parts[0] === "content") {
-    return getContent(env, safe(parts[1] || "site-content"));
+  if (parts[0] === "content" && req.method === "GET") {
+    const key = parts[1];
+    if(parts.length !== 2 || !["site-content","bio-content"].includes(key))
+      return json({ok:false,error:"Conteúdo indisponível"},404);
+    return getContent(env, key);
   }
 
+  if (admin && parts[1] === "preview" && req.method === "GET") {
+    if(parts.length !== 3 || !["site-content","bio-content"].includes(parts[2]))
+      return json({ok:false,error:"Prévia não encontrada"},404);
+    return getPrivateContent(env, "draft-"+parts[2], true);
+  }
   if (admin && parts[1] === "content") {
-    const key = safe(parts[2] || "site-content");
-    if (req.method === "GET") return getContent(env, key);
-    if (req.method === "PUT") return putContent(req, env, key);
+    const key = safe(parts[2] || "");
+    if(parts.length !== 3 || !isManagedKey(key))return json({ok:false,error:"Conteúdo não encontrado"},404);
+    if (req.method === "GET") return getAdminContent(env,key);
+    if (req.method === "PUT") return putContent(req,env,key);
   }
 
   return json({ ok: false, error: "Rota não encontrada" }, 404);
 }
+function isManagedKey(key) {
+  return ["site-content","bio-content","change-log"].includes(key) || /^backup-(site|bio)-[0-9TZ-]{10,60}$/.test(key);
+}
+function privateBucket(env) {
+  if (!env.R2_PRIVATE) throw new E("Binding R2_PRIVATE obrigatório para rascunhos, histórico e backups.",503);
+  return env.R2_PRIVATE;
+}
+async function getPrivateContent(env,key,withFallback=false) {
+  const obj=await privateBucket(env).get("content/"+key+".json");
+  if(obj) return json(JSON.parse(await obj.text()));
+  if(withFallback) return getContent(env,key.replace(/^draft-/,""));
+  return json({logs:[]});
+}
+async function getAdminContent(env,key) {
+  if (["site-content","bio-content"].includes(key)) {
+    if(env.R2_PRIVATE) {
+      const draft=await privateBucket(env).get("content/draft-"+key+".json");
+      if(draft) return json(JSON.parse(await draft.text()));
+    }
+    return getContent(env,key);
+  }
+  return getPrivateContent(env,key);
+}
+
 
 function hasBucket(env) {
   return !!(env.R2_BUCKET || env.CONNECTPIXEL_R2 || env.MEDIA_BUCKET);
@@ -76,6 +115,8 @@ function diagnostics(env) {
     ok: true,
     hasAdminToken: !!env.ADMIN_TOKEN,
     hasR2Bucket: hasBucket(env),
+    hasPrivateBucket: !!env.R2_PRIVATE,
+    stagingReadOnly: env.STUDIO_READ_ONLY !== "false",
     hasPublicR2BaseUrl: !!env.PUBLIC_R2_BASE_URL,
     publicR2BaseUrl: env.PUBLIC_R2_BASE_URL || "",
     mode: "worker-assets-cms-v10"
@@ -136,7 +177,7 @@ async function getContent(env, key) {
     const obj = await bucket(env).get(`content/${key}.json`);
     if (obj) {
       return new Response(await obj.text(), {
-        headers: { "Content-Type": "application/json; charset=utf-8", ...cors() }
+        headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
       });
     }
   }
@@ -144,7 +185,7 @@ async function getContent(env, key) {
   try {
     const text = await assetText(env, key);
     return new Response(text, {
-      headers: { "Content-Type": "application/json; charset=utf-8", ...cors() }
+      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
     });
   } catch (e) {
     return json({ meta: { fallback: true }, site: {}, bio: {} });
@@ -153,8 +194,9 @@ async function getContent(env, key) {
 
 async function putContent(req, env, key) {
   const body = await req.text();
+  if(body.length > 1500000) throw new E("Conteúdo excede limite de 1,5 MB.",413);
   JSON.parse(body);
-  await bucket(env).put(`content/${key}.json`, body, {
+  await privateBucket(env).put(`content/${["site-content","bio-content"].includes(key)?"draft-"+key:key}.json`, body, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
   return json({ ok: true, key, savedAt: new Date().toISOString() });
@@ -391,12 +433,6 @@ async function upload(req, env) {
   return json({ ok: true, key, url: base ? `${base}/${key}` : key });
 }
 
-function auth(req, env) {
-  if (!env.ADMIN_TOKEN) throw new E("ADMIN_TOKEN não configurado em Settings > Variables and Secrets.", 500);
-  if ((req.headers.get("Authorization") || "") !== `Bearer ${env.ADMIN_TOKEN}`) {
-    throw new E("Não autorizado.", 401);
-  }
-}
 
 function safe(k) {
   if (!/^[a-z0-9_-]+$/i.test(k)) throw new E("Chave inválida.", 400);
@@ -420,16 +456,8 @@ function clean(s) {
 function json(d, status = 200) {
   return new Response(JSON.stringify(d, null, 2), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...cors() }
+    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
   });
-}
-
-function cors() {
-  return {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type,Authorization"
-  };
 }
 
 class E extends Error {
