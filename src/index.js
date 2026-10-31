@@ -207,10 +207,10 @@ async function saveDraft(req, env) {
   const siteText = JSON.stringify(data.siteContent || data.site || {}, null, 2);
   const bioText = JSON.stringify(data.bioContent || data.bio || {}, null, 2);
 
-  await bucket(env).put("content/draft-site-content.json", siteText, {
+  await privateBucket(env).put("content/draft-site-content.json", siteText, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
-  await bucket(env).put("content/draft-bio-content.json", bioText, {
+  await privateBucket(env).put("content/draft-bio-content.json", bioText, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
 
@@ -226,19 +226,20 @@ async function saveDraft(req, env) {
 async function publishContent(req, env) {
   const data = await req.json();
   const b = bucket(env);
+  const archives = privateBucket(env);
   const now = new Date().toISOString();
   const versionId = now.replace(/[:.]/g, "-");
 
   const liveSite = await readCurrentOrDefaultText(env, "site-content");
   const liveBio = await readCurrentOrDefaultText(env, "bio-content");
 
-  await b.put(`content/versions/${versionId}/site-content.json`, liveSite, {
+  await archives.put(`content/versions/${versionId}/site-content.json`, liveSite, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
-  await b.put(`content/versions/${versionId}/bio-content.json`, liveBio, {
+  await archives.put(`content/versions/${versionId}/bio-content.json`, liveBio, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
-  await b.put(`content/versions/${versionId}/meta.json`, JSON.stringify({
+  await archives.put(`content/versions/${versionId}/meta.json`, JSON.stringify({
     versionId,
     createdAt: now,
     reason: "Backup automático antes de publicar"
@@ -248,6 +249,7 @@ async function publishContent(req, env) {
 
   const siteText = JSON.stringify(data.siteContent || data.site || {}, null, 2);
   const bioText = JSON.stringify(data.bioContent || data.bio || {}, null, 2);
+  validatePublishPayload(siteText, bioText);
 
   await b.put("content/site-content.json", siteText, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
@@ -266,6 +268,13 @@ async function publishContent(req, env) {
   return json({ ok: true, publishedAt: now, backupVersionId: versionId });
 }
 
+function validatePublishPayload(siteText,bioText) {
+  if(siteText.length > 1500000 || bioText.length > 1500000) throw new E("Publicação excede limite de 1,5MB por documento",413);
+  const s = JSON.parse(siteText), b = JSON.parse(bioText);
+  if(!s || typeof s !== "object" || !s.site || !b || typeof b !== "object")
+    throw new E("Estrutura de conteúdo inválida",400);
+}
+
 async function readCurrentOrDefaultText(env, key) {
   if (hasBucket(env)) {
     const obj = await bucket(env).get(`content/${key}.json`);
@@ -275,7 +284,7 @@ async function readCurrentOrDefaultText(env, key) {
 }
 
 async function listHistory(env) {
-  const res = await bucket(env).list({ prefix: "content/versions/", limit: 1000 });
+  const res = await privateBucket(env).list({ prefix: "content/versions/", limit: 1000 });
   const map = {};
   for (const obj of res.objects || []) {
     const m = obj.key.match(/^content\/versions\/([^/]+)\/(.+)$/);
@@ -297,7 +306,8 @@ async function restoreVersion(req, env) {
   const data = await req.json();
   const versionId = safeVersion(data.versionId || "");
   const target = data.target === "live" ? "live" : "draft";
-  const b = bucket(env);
+  const b = privateBucket(env);
+  const publicBucket = bucket(env);
 
   const site = await b.get(`content/versions/${versionId}/site-content.json`);
   const bio = await b.get(`content/versions/${versionId}/bio-content.json`);
@@ -309,8 +319,8 @@ async function restoreVersion(req, env) {
   const siteKey = target === "live" ? "content/site-content.json" : "content/draft-site-content.json";
   const bioKey = target === "live" ? "content/bio-content.json" : "content/draft-bio-content.json";
 
-  await b.put(siteKey, siteText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
-  await b.put(bioKey, bioText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
+  await (target === "live" ? publicBucket : b).put(siteKey, siteText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
+  await (target === "live" ? publicBucket : b).put(bioKey, bioText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
 
   await appendLog(env, {
     action: target === "live" ? "Versão restaurada no site publicado" : "Versão restaurada como rascunho",
@@ -329,7 +339,8 @@ async function restoreVersion(req, env) {
 }
 
 async function resetDefaults(env) {
-  const b = bucket(env);
+  const b = privateBucket(env);
+  const publicBucket = bucket(env);
   const now = new Date().toISOString();
   const versionId = "before-reset-" + now.replace(/[:.]/g, "-");
 
@@ -346,8 +357,8 @@ async function resetDefaults(env) {
   const siteText = await assetText(env, "site-content");
   const bioText = await assetText(env, "bio-content");
 
-  await b.put("content/site-content.json", siteText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
-  await b.put("content/bio-content.json", bioText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
+  await publicBucket.put("content/site-content.json", siteText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
+  await publicBucket.put("content/bio-content.json", bioText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
   await b.put("content/draft-site-content.json", siteText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
   await b.put("content/draft-bio-content.json", bioText, { httpMetadata: { contentType: "application/json; charset=utf-8" } });
 
@@ -370,7 +381,7 @@ async function resetDefaults(env) {
 async function appendLog(env, entry) {
   let logs = [];
   try {
-    const obj = await bucket(env).get("content/change-log.json");
+    const obj = await privateBucket(env).get("content/change-log.json");
     if (obj) {
       const parsed = JSON.parse(await obj.text());
       logs = Array.isArray(parsed.logs) ? parsed.logs : [];
@@ -384,7 +395,7 @@ async function appendLog(env, entry) {
   });
 
   logs = logs.slice(0, 250);
-  await bucket(env).put("content/change-log.json", JSON.stringify({ logs }, null, 2), {
+  await privateBucket(env).put("content/change-log.json", JSON.stringify({ logs }, null, 2), {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
   });
 }
