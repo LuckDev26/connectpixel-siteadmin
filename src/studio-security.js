@@ -32,6 +32,13 @@ function equalBytes(a,b) {
   for (let i=0;i<a.length;i++) diff |= a[i]^b[i];
   return diff===0;
 }
+function account(env) {
+  const username=String(env.ADMIN_USERNAME || '').trim().toLowerCase();
+  if(username.length<3 || username.length>80 || !/^[a-z0-9._@-]+$/.test(username)) {
+    throw new Error('ADMIN_USERNAME não configurado ou inválido');
+  }
+  return username;
+}
 async function checkPassword(actual, expected) {
   const [a,b] = await Promise.all([digest(String(actual)), digest(String(expected))]);
   return equalBytes(a,b);
@@ -53,7 +60,7 @@ async function sign(value, key) {
 export async function mintSession(env, now=Date.now()) {
   const expires=Math.floor(now/1000)+DURATION;
   const nonce=b64(crypto.getRandomValues(new Uint8Array(20)));
-  const payload=b64(encoder.encode(JSON.stringify({v:1,exp:expires,nonce})));
+  const payload=b64(encoder.encode(JSON.stringify({v:1,exp:expires,nonce,sub:account(env)})));
   return payload+'.'+await sign(payload,secret(env));
 }
 export async function verifySession(token, env, now=Date.now()) {
@@ -65,7 +72,7 @@ export async function verifySession(token, env, now=Date.now()) {
   if(!raw || !sigBytes || sigBytes.length !== 32) return false;
   let session;
   try {session=JSON.parse(new TextDecoder().decode(raw));} catch {return false;}
-  if(session.v!==1||typeof session.exp!=='number'||session.exp<=Math.floor(now/1000)||session.exp>Math.floor(now/1000)+DURATION+60||!/^[-_a-zA-Z0-9]{24,40}$/.test(session.nonce))return false;
+  if(session.v!==1||session.sub!==account(env)||typeof session.exp!=='number'||session.exp<=Math.floor(now/1000)||session.exp>Math.floor(now/1000)+DURATION+60||!/^[-_a-zA-Z0-9]{24,40}$/.test(session.nonce))return false;
   const expected=unb64(await sign(payload,secret(env)));
   return !!expected && equalBytes(expected,sigBytes);
 }
@@ -101,11 +108,15 @@ export async function sessionRoute(req,env,url) {
       if(text.length>8192)return respond({ok:false,error:'Requisição excessiva'},413);
       let value;
       try {value=JSON.parse(text);} catch {return respond({ok:false,error:'JSON inválido'},400);}
-      if(typeof value.password!=='string'||value.password.length>4096)return respond({ok:false,error:'Credenciais inválidas'},401);
-      const good=await checkPassword(value.password,secret(env));
-      if(!good)return respond({ok:false,error:'Credenciais inválidas'},401);
+      if(typeof value.username!=='string'||typeof value.password!=='string'||value.username.length>80||value.password.length>4096)return respond({ok:false,error:'Credenciais inválidas'},401);
+      const suppliedUsername=value.username.trim().toLowerCase();
+      const [correctUsername,correctPassword]=await Promise.all([
+        checkPassword(suppliedUsername,account(env)),
+        checkPassword(value.password,secret(env))
+      ]);
+      if(!correctUsername||!correctPassword)return respond({ok:false,error:'Credenciais inválidas'},401);
       const signed=await mintSession(env);
-      return respond({ok:true,expiresInSeconds:DURATION},200,{'Set-Cookie':COOKIE+'='+signed+'; Max-Age='+DURATION+'; HttpOnly; Secure; SameSite=Strict; Path=/'});
+      return respond({ok:true,username:account(env),expiresInSeconds:DURATION},200,{'Set-Cookie':COOKIE+'='+signed+'; Max-Age='+DURATION+'; HttpOnly; Secure; SameSite=Strict; Path=/'});
     }
     if(url.pathname==='/api/session/logout' && req.method==='POST') {
       if(!checkSameOrigin(req))return respond({ok:false,error:'Origem não autorizada'},403);
@@ -113,7 +124,7 @@ export async function sessionRoute(req,env,url) {
     }
     if(url.pathname==='/api/session' && req.method==='GET') {
       const ok=await verifySession(cookieValue(req),env);
-      return respond({ok},ok?200:401);
+      return respond(ok?{ok:true,username:account(env)}:{ok:false},ok?200:401);
     }
     return respond({ok:false,error:'Rota não encontrada'},404);
   } catch {
