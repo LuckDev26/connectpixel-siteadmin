@@ -1,0 +1,27 @@
+name: Studio validation (no deploy)
+
+on:
+  push:
+    branches:
+      - feat/connectpixel-studio-v2
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify existing Worker and content loader
+        run: npm test
+      - name: Verify migrated portfolio data
+        run: node scripts/portfolio-migration.test.mjs
+      - name: Verify generated manifest is reproducible
+        run: |
+          node scripts/migrate-portfolio.mjs --write
+          git diff --exit-code -- migration/portfolio-manifest.json
