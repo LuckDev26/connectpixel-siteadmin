@@ -15,7 +15,7 @@ const publicSite=JSON.stringify({meta:{},site:{navbar:[],portfolio:{reels:[],car
 const publicBio=JSON.stringify({meta:{},bio:{links:[]}});
 media.objects.set('content/site-content.json',publicSite);
 media.objects.set('content/bio-content.json',publicBio);
-const env={ADMIN_TOKEN:SECRET,R2_BUCKET:media,R2_PRIVATE:cms,STUDIO_READ_ONLY:'false',ASSETS:{fetch:async()=>new Response('{}')}};
+const env={ADMIN_TOKEN:SECRET,R2_BUCKET:media,R2_PRIVATE:cms,STUDIO_READ_ONLY:'false',LOGIN_RATE_LIMIT:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('{}')}};
 
 function request(path, method='GET', body, cookie='', origin='https://studio.test') {
   const headers={};
@@ -39,6 +39,13 @@ const csrfLogin=await call('/api/session/login','POST',{password:SECRET},'', 'ht
 assert.equal(csrfLogin.status,403);
 const bad=await call('/api/session/login','POST',{password:'incorrect'});
 assert.equal(bad.status,401);
+const limitedEnv={...env,LOGIN_RATE_LIMIT:{limit:async()=>({success:false})}};
+const rateLimited=await call('/api/session/login','POST',{password:SECRET},'','https://studio.test',limitedEnv);
+assert.equal(rateLimited.status,429,'Rate limiter must reject excessive login attempts');
+assert.equal(rateLimited.headers.get('Retry-After'),'60');
+const noLimiterEnv={...env,LOGIN_RATE_LIMIT:undefined};
+assert.equal((await call('/api/session/login','POST',{password:SECRET},'','https://studio.test',noLimiterEnv)).status,503,'Missing protection must fail closed');
+
 const loggedIn=await call('/api/session/login','POST',{password:SECRET});
 assert.equal(loggedIn.status,200);
 const setCookie=loggedIn.headers.get('set-cookie')||'';
