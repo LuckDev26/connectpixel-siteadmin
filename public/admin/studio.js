@@ -17,9 +17,9 @@
     const app = document.querySelector('.app');
     const aside = app?.querySelector('.side');
     if (!app || !aside || document.getElementById('studio-collapse')) return;
-    document.title = 'ConnectPixel Studio | Painel';
+    document.title = document.body.classList.contains('logged') ? 'ConnectPixel Studio | Painel' : 'Entrar | ConnectPixel Studio';
     const subtitle = aside.querySelector('.brand span');
-    if (subtitle) subtitle.textContent = 'ConnectPixel Studio';
+    if (subtitle) subtitle.textContent = 'Studio administrativo';
 
     const collapse = document.createElement('button');
     collapse.type = 'button';
