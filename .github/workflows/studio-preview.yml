@@ -61,3 +61,17 @@ jobs:
           test "$(grep -o 'class="login-mobile-brand"' /tmp/studio-login.html | wc -l | tr -d ' ')" = "1"
           echo 'PASS: username and password fields, exactly one mobile brand'
           echo 'PASS: public content JSON, private draft hidden, admin and session protected'
+      - name: Install Chromium for responsive QA
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run mobile login QA in Chromium
+        run: node scripts/studio-mobile-qa.mjs
+      - name: Save responsive screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: connectpixel-studio-responsive-login
+          path: artifacts/studio-mobile-qa/
+          if-no-files-found: ignore
+          retention-days: 7
