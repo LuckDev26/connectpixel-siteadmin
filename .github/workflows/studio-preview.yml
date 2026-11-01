@@ -23,6 +23,8 @@ jobs:
       - name: Check source, staged session security, R2 and interface
         run: |
           npm test
+          node --check src/studio-supabase-auth.js
+          node --check public/admin/studio-users.js
           node scripts/studio-security.test.mjs
           node scripts/studio-ui.test.mjs
           node scripts/portfolio-migration.test.mjs
