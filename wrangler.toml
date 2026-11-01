@@ -11,8 +11,10 @@ html_handling = "auto-trailing-slash"
 
 [vars]
 PUBLIC_R2_BASE_URL = "https://media.connectpixel.online"
-# Homologação segura: bloqueia todas as mutações do painel até revisão final.
-STUDIO_READ_ONLY = "true"
+# Homologação habilitada para EDIÇÃO ISOLADA: conteúdo publicado apenas no R2_PUBLISHED.
+# Proteções adicionais no Worker exigem R2_PRIVATE e R2_PUBLISHED e proíbem uploads/exclusões de mídia.
+STUDIO_ENV = "staging"
+STUDIO_READ_ONLY = "false"
 # Usuário administrativo inicial, alterável nas variáveis do Worker.
 ADMIN_USERNAME = "admin"
 CRM_CMS_BRIDGE_ENABLED = "true"
