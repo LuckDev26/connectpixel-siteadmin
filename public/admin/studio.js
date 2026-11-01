@@ -87,7 +87,7 @@
       });
     }
     const remembered = read(STORAGE_TAB);
-    if (remembered && /^(home|site|bio|method|portfolio|media|publish|log|json|config)$/.test(remembered)) {
+    if (remembered && /^(home|site|bio|method|portfolio|media|publish|log|json|config|users)$/.test(remembered)) {
       aside.querySelector('.nav button[data-tab="' + remembered + '"]')?.click();
     }
     for (const button of document.querySelectorAll('.tabs button[data-sub]')) {
