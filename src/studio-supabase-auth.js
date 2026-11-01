@@ -169,7 +169,11 @@ export async function users(req,env,parts,actor){
    if(actor.role!=='owner'&&actor.role!=='admin')return response({ok:false,error:'Permissão insuficiente'},403);
    if(actor.role==='admin'&&(existing.role==='admin'||patch.role==='admin'))return response({ok:false,error:'Apenas o proprietário gerencia administradores'},403);
    const changes={updated_at:new Date().toISOString()};
-   if(patch.role!==undefined){if(!roles.has(patch.role)||patch.role==='owner')return response({ok:false,error:'Perfil inválido'},400);changes.role=patch.role;}
+   if(patch.role!==undefined){
+     if(!roles.has(patch.role)||patch.role==='owner')return response({ok:false,error:'Perfil inválido'},400);
+     changes.role=patch.role;
+     changes.permissions=patch.role==='viewer'?['site.read']:patch.role==='editor'?['site.read','site.edit','portfolio.edit','media.read']:['site.read','site.edit','portfolio.edit','media.read','publish','users.manage'];
+   }
    if(typeof patch.active==='boolean')changes.is_active=patch.active;
    if(patch.permissions!==undefined){
      const allowed=new Set(['site.read','site.edit','portfolio.edit','media.read','publish','users.manage']);
