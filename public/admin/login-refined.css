@@ -284,8 +284,50 @@ body:not(.logged) .login-assurance {color:#6c837b!important;}
  body:not(.logged) .login .login-card{margin:21px auto 4px!important;}
 }
 
-/* Requested page background: cool ConnectPixel slate-gray, not white or green. */
-body:not(.logged){background:#6f8084!important;}
-body:not(.logged) .login{
-  background:linear-gradient(145deg,#809096 0%,#72848a 48%,#64777d 100%)!important;
+
+/* Identidade oficial ConnectPixel — aplicada a partir da paleta enviada.
+   #333333 grafite / #48E5C2 turquesa / #FCFAF9 off-white. */
+:root {
+ --cp-graphite:#333333;
+ --cp-turquoise:#48E5C2;
+ --cp-offwhite:#FCFAF9;
+}
+body:not(.logged) {background:var(--cp-graphite)!important;}
+body:not(.logged) .login {
+ background:var(--cp-graphite)!important;
+}
+body:not(.logged) .login-shell {
+ background:var(--cp-offwhite)!important;
+ border-color:rgba(255,255,255,.11)!important;
+ box-shadow:0 30px 90px rgba(0,0,0,.24)!important;
+}
+body:not(.logged) .login-story {
+ background:#333333!important;
+}
+body:not(.logged) .login-story::before,
+body:not(.logged) .login-story::after {opacity:.15!important;}
+body:not(.logged) .login-story-body h1 span {
+ background:linear-gradient(105deg,#D5FF73 0%,#9CF58E 35%,#48E5C2 100%)!important;
+ -webkit-background-clip:text!important;
+ background-clip:text!important;
+}
+body:not(.logged) .login-auth {background:var(--cp-offwhite)!important;}
+body:not(.logged) .login .login-card h2 {color:#333333!important;}
+body:not(.logged) .login-description {color:#696967!important;}
+body:not(.logged) .login-kicker {color:#398C78!important;}
+body:not(.logged) .login .login-password-control input {
+ background:#FFFFFF!important;
+ color:#333333!important;
+ border-color:#E0E0DC!important;
+}
+body:not(.logged) .login-submit {
+ background:linear-gradient(105deg,#D5FF73 0%,#9AF28E 39%,#48E5C2 100%)!important;
+ color:#252525!important;
+}
+body:not(.logged) .login-assurance {color:#6B6B67!important;}
+@media(max-width:900px) {
+ body:not(.logged) .login {background:var(--cp-graphite)!important;}
+ body:not(.logged) .login-shell {background:var(--cp-offwhite)!important;}
+ body:not(.logged) .login-auth {background:var(--cp-offwhite)!important;}
+ body:not(.logged) .login-auth-header {background:var(--cp-graphite)!important;}
 }
