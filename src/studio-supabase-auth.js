@@ -85,8 +85,10 @@ export async function authorize(req,env,parts){
  if(!['GET','HEAD'].includes(req.method)&&!sameOrigin(req))return {ok:false,status:403};
  const area=parts[1]||'';
  let cap='site.read';
- if(area==='users'){
-   cap=req.method==='GET'?'users.manage':'users.manage';
+ if(area==='change-password'){
+   cap='site.read';
+ } else if(area==='users'){
+   cap='users.manage';
  } else if(!['GET','HEAD'].includes(req.method)){
    if(area==='publish'||area==='restore-version'||area==='reset-defaults')cap='publish';
    else if(area==='media'&&req.method==='DELETE')cap='media.delete';
