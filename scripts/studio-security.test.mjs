@@ -36,7 +36,7 @@ globalThis.fetch=async(input,options={})=>{
   if(method==='POST'){const p=body;people.set(p.user_id,{...p,created_at:new Date().toISOString()});return json({},201);}
   if(method==='PATCH'){
    const id=(u.searchParams.get('user_id')||'').replace(/^eq\./,'');const p=people.get(id);if(!p)return json({},404);
-   people.set(id,{...p,...body});return json({},204);
+   people.set(id,{...p,...body});return json({},200);
   }
   let rows=[...people.values()];
   for(const field of ['username','email','user_id']){
