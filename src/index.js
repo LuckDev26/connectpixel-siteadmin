@@ -36,6 +36,12 @@ async function api(req, env, url) {
   if (parts[0] === "session") return sessionRoute(req, env, url);
   if (admin) {
     if (!await requireAdmin(req, env)) return json({ok:false,error:"Não autorizado"},401);
+    // Fail closed: staging edits require all isolated buckets, even if a variable
+    // is mistakenly changed or removed from the deployment configuration.
+    if (!["GET","HEAD"].includes(req.method) && env.STUDIO_ENV === "staging" &&
+        (!env.R2_PRIVATE || !env.R2_PUBLISHED)) {
+      return json({ok:false,error:"Ambiente de testes sem armazenamento isolado. Gravação bloqueada."},503);
+    }
     if (!["GET","HEAD"].includes(req.method) && env.STUDIO_READ_ONLY !== "false") {
       return json({ok:false,error:"Publicação/gravação desativada nesta versão de homologação."},403);
     }
@@ -49,11 +55,11 @@ async function api(req, env, url) {
   if (admin && parts[1] === "reset-defaults" && req.method === "POST") return resetDefaults(env);
   if (admin && parts[1] === "media" && parts[2] === "list" && req.method === "GET") return listMedia(env, url);
   if (admin && parts[1] === "media" && req.method === "POST") {
-    if (env.R2_PUBLISHED) return json({ok:false,error:"Uploads ficam bloqueados no ambiente de homologação."},403);
+    if (env.STUDIO_ENV === "staging" || env.R2_PUBLISHED) return json({ok:false,error:"Uploads ficam bloqueados no ambiente de homologação."},403);
     return upload(req, env);
   }
   if (admin && parts[1] === "media" && req.method === "DELETE") {
-    if (env.R2_PUBLISHED) return json({ok:false,error:"Exclusões de mídia não são permitidas na homologação."},403);
+    if (env.STUDIO_ENV === "staging" || env.R2_PUBLISHED) return json({ok:false,error:"Exclusões de mídia não são permitidas na homologação."},403);
     return deleteMedia(env, url);
   }
 
@@ -117,6 +123,8 @@ function bucket(env) {
 }
 
 function publishedBucket(env) {
+  if (env.STUDIO_ENV === "staging" && !env.R2_PUBLISHED)
+    throw new E("Bucket de publicação isolada da homologação não configurado.", 503);
   // Isolated staging uses a separate, private R2 for published JSON only.
   // In production the original media bucket remains the published source.
   return env.R2_PUBLISHED || bucket(env);
@@ -128,6 +136,7 @@ function diagnostics(env) {
     hasR2Bucket: hasBucket(env),
     hasPrivateBucket: !!env.R2_PRIVATE,
     hasIsolatedPublishedBucket: !!env.R2_PUBLISHED,
+    staging: env.STUDIO_ENV === "staging",
     stagingReadOnly: env.STUDIO_READ_ONLY !== "false",
     hasPublicR2BaseUrl: !!env.PUBLIC_R2_BASE_URL,
     publicR2BaseUrl: env.PUBLIC_R2_BASE_URL || "",
@@ -218,6 +227,7 @@ async function saveDraft(req, env) {
   const data = await req.json();
   const siteText = JSON.stringify(data.siteContent || data.site || {}, null, 2);
   const bioText = JSON.stringify(data.bioContent || data.bio || {}, null, 2);
+  validatePublishPayload(siteText, bioText);
 
   await privateBucket(env).put("content/draft-site-content.json", siteText, {
     httpMetadata: { contentType: "application/json; charset=utf-8" }
