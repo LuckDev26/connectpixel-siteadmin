@@ -12,6 +12,7 @@
     publish: '<path d="M12 16V3m0 0-4 4m4-4 4 4"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
     log: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/>',
     json: '<path d="M8 4H6a2 2 0 0 0-2 2v3a3 3 0 0 1-2 3 3 3 0 0 1 2 3v3a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v3a3 3 0 0 0 2 3 3 3 0 0 0-2 3v3a2 2 0 0 1-2 2h-2"/>',
+    users: '<circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 8h5M19.5 5.5v5"/>',
     config: '<path d="M12 2.6 14 4l2.6-.3.8 2.5 2.4 1.3-.6 2.7 1.2 1.8-1.2 1.8.6 2.7-2.4 1.3-.8 2.5-2.6-.3L12 21.4l-2-1.4-2.6.3-.8-2.5-2.4-1.3.6-2.7L3.6 12l1.2-1.8-.6-2.7 2.4-1.3.8-2.5L10 4l2-1.4Z"/><circle cx="12" cy="12" r="3"/>'
   };
   function init() {
@@ -57,7 +58,7 @@
     }
     const title=byId("title");
     if(title) {
-      const names={home:"Visão geral",site:"Editar site",bio:"Link da bio",method:"ConnectFlow™",portfolio:"Portfólio",media:"Biblioteca de mídia",publish:"Publicação",log:"Histórico",json:"Editor avançado",config:"Segurança"};
+      const names={home:"Visão geral",site:"Editar site",bio:"Link da bio",method:"ConnectFlow™",portfolio:"Portfólio",media:"Biblioteca de mídia",publish:"Publicação",log:"Histórico",json:"Editor avançado",config:"Segurança",users:"Usuários e permissões"};
       document.querySelectorAll(".side .nav button[data-tab]").forEach(tab=>tab.addEventListener("click",()=>{
         if(names[tab.dataset.tab])title.textContent=names[tab.dataset.tab];
       }));
