@@ -283,3 +283,9 @@ body:not(.logged) .login-assurance {color:#6c837b!important;}
  body:not(.logged) .login-mobile-brand{width:min(190px,57vw)!important;}
  body:not(.logged) .login .login-card{margin:21px auto 4px!important;}
 }
+
+/* Requested page background: cool ConnectPixel slate-gray, not white or green. */
+body:not(.logged){background:#6f8084!important;}
+body:not(.logged) .login{
+  background:linear-gradient(145deg,#809096 0%,#72848a 48%,#64777d 100%)!important;
+}
