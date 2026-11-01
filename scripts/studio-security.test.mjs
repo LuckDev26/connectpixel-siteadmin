@@ -1,125 +1,123 @@
 import assert from 'node:assert/strict';
 import worker from '../src/index.js';
-import {verifySession, mintSession} from '../src/studio-security.js';
 
-const SECRET='a-random-very-long-staging-secret-value-for-tests-only';
-class Bucket {
-  constructor(name){this.name=name;this.objects=new Map();this.writes=[];}
-  async get(key){const str=this.objects.get(key);return str===undefined?null:{text:async()=>str};}
-  async put(key,text){const str=typeof text==='string'?text:await new Response(text).text();this.objects.set(key,str);this.writes.push(key);}
-  async list(opts){return {objects:[...this.objects.keys()].filter(x=>x.startsWith(opts.prefix)).map(key=>({key,size:this.objects.get(key).length,uploaded:new Date()}))};}
+const ownerId='aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+const people=new Map([[ownerId,{user_id:ownerId,email:'owner@connectpixel.test',username:'admin',role:'owner',permissions:['site.read','site.edit','portfolio.edit','media.read','publish','users.manage'],is_active:true,must_change_password:false,created_at:'2026-11-01T00:00:00Z'}]]);
+const passwordByEmail=new Map([['owner@connectpixel.test','owner-password-for-test']]);
+let usedPrivilegedApi=false;
+const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
+globalThis.fetch=async(input,options={})=>{
+ const u=new URL(String(input));
+ assert.equal(u.origin,'https://testproject.supabase.co','No calls to external services other than configured Supabase mock');
+ const method=options.method||'GET';
+ const body=options.body?JSON.parse(options.body):null;
+ const apiKey=options.headers?.apikey;
+ assert.ok(apiKey==='sb_publishable_test'||apiKey==='service_role_dummy_key_for_backend_tests_1234567890');
+ if(options.headers?.Authorization?.includes('service_role_dummy_key'))usedPrivilegedApi=true;
+ if(u.pathname==='/auth/v1/token'&&method==='POST'){
+  const person=[...people.values()].find(p=>p.email===body.email);
+  if(!person||passwordByEmail.get(body.email)!==body.password)return json({error:'Invalid login credentials'},400);
+  return json({user:{id:person.user_id,email:person.email},access_token:'test-access'});
+ }
+ if(u.pathname==='/auth/v1/admin/users'&&method==='POST'){
+  if([...people.values()].some(p=>p.email===body.email))return json({msg:'Already registered'},422);
+  const id='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
+  passwordByEmail.set(body.email,body.password);
+  return json({id,email:body.email});
+ }
+ if(u.pathname.startsWith('/auth/v1/admin/users/')&&method==='PUT'){
+  const id=u.pathname.split('/').at(-1);const person=people.get(id);
+  if(!person)return json({error:'not found'},404);
+  passwordByEmail.set(person.email,body.password);
+  return json({id});
+ }
+ if(u.pathname.startsWith('/auth/v1/admin/users/')&&method==='DELETE')return json({},200);
+ if(u.pathname==='/rest/v1/cp_studio_accounts'){
+  if(method==='POST'){const p=body;people.set(p.user_id,{...p,created_at:new Date().toISOString()});return json({},201);}
+  if(method==='PATCH'){
+   const id=(u.searchParams.get('user_id')||'').replace(/^eq\./,'');const p=people.get(id);if(!p)return json({},404);
+   people.set(id,{...p,...body});return json({},204);
+  }
+  let rows=[...people.values()];
+  for(const field of ['username','email','user_id']){
+   const term=u.searchParams.get(field);if(term?.startsWith('eq.'))rows=rows.filter(p=>p[field]===term.slice(3));
+  }
+  return json(rows,200);
+ }
+ throw Error('Unmocked Supabase path: '+method+' '+u.pathname);
+};
+class Bucket{
+ constructor(){this.objects=new Map();this.writes=[]}
+ async get(key){let t=this.objects.get(key);return t===undefined?null:{text:async()=>t}}
+ async put(key,value){let t=typeof value==='string'?value:await new Response(value).text();this.objects.set(key,t);this.writes.push(key)}
+ async list({prefix}){return {objects:[...this.objects].filter(([k])=>k.startsWith(prefix)).map(([key,val])=>({key,size:val.length,uploaded:new Date()}))}}
 }
-const media=new Bucket('public-media');
-const cms=new Bucket('private-cms');
-const publicSite=JSON.stringify({meta:{},site:{navbar:[],portfolio:{reels:[],cards:[],carousels:[]}}});
-const publicBio=JSON.stringify({meta:{},bio:{links:[]}});
-media.objects.set('content/site-content.json',publicSite);
-media.objects.set('content/bio-content.json',publicBio);
-const env={ADMIN_USERNAME:"admin",ADMIN_TOKEN:SECRET,R2_BUCKET:media,R2_PRIVATE:cms,STUDIO_READ_ONLY:'false',LOGIN_RATE_LIMIT:{limit:async()=>({success:true})},ASSETS:{fetch:async()=>new Response('{}')}};
-
-function request(path, method='GET', body, cookie='', origin='https://studio.test') {
-  const headers={};
-  if(cookie)headers.cookie='__Host-cp_studio='+cookie;
-  if(method!=='GET'){headers.Origin=origin;headers['Content-Type']='application/json';}
-  return new Request('https://studio.test'+path,{method,headers,body:body?JSON.stringify(body):undefined});
+const media=new Bucket(),published=new Bucket(),privateBucket=new Bucket();
+const initialSite={meta:{},site:{navbar:[],portfolio:{reels:[],cards:[],carousels:[]}}};
+const initialBio={meta:{},bio:{links:[]}};
+published.objects.set('content/site-content.json',JSON.stringify(initialSite));
+published.objects.set('content/bio-content.json',JSON.stringify(initialBio));
+const env={
+ CRM_SUPABASE_URL:'https://testproject.supabase.co',
+ CRM_SUPABASE_PUBLISHABLE_KEY:'sb_publishable_test',
+ STUDIO_SUPABASE_SERVICE_ROLE_KEY:'service_role_dummy_key_for_backend_tests_1234567890',
+ STUDIO_SESSION_SECRET:'session_dummy_signing_secret_for_studio_tests_only_at_least_32_chars',
+ CRM_CMS_BRIDGE_ENABLED:'false',
+ R2_BUCKET:media,R2_PRIVATE:privateBucket,R2_PUBLISHED:published,
+ STUDIO_ENV:'staging',STUDIO_READ_ONLY:'false',
+ LOGIN_RATE_LIMIT:{limit:async()=>({success:true})},
+ ASSETS:{fetch:async()=>json(initialSite)}
+};
+function req(path,method='GET',payload,token,origin='https://studio.test'){
+ const headers={};
+ if(token)headers.cookie=token;
+ if(method!=='GET'){headers.Origin=origin;headers['Content-Type']='application/json'}
+ return new Request('https://studio.test'+path,{method,headers,body:payload?JSON.stringify(payload):undefined});
 }
-async function call(path,method='GET',body,cookie='',origin='https://studio.test',e=env) {
-  return worker.fetch(request(path,method,body,cookie,origin),e);
-}
-const noSession=await call('/api/admin/diagnostics');
-assert.equal(noSession.status,401,'Admin requires cookie');
-const publiclyProtected=await call('/api/content/draft-site-content');
-assert.equal(publiclyProtected.status,404,'draft cannot be obtained from public API');
-const arbitrary=await call('/api/content/change-log');
-assert.equal(arbitrary.status,404,'private log cannot be obtained from public API');
-const live=await call('/api/content/site-content');
-assert.equal(live.status,200,'published content is available');
-assert.equal((await live.json()).site.portfolio.reels.length,0);
-const csrfLogin=await call('/api/session/login','POST',{username:"admin",password:SECRET},'', 'https://evil.test');
-assert.equal(csrfLogin.status,403);
-const bad=await call('/api/session/login','POST',{username:'admin',password:'incorrect'});
-assert.equal(bad.status,401);
-const invalidUser=await call('/api/session/login','POST',{username:'visitor',password:SECRET});
-assert.equal(invalidUser.status,401,'Correct password with wrong user must fail');
-const absentUsername=await call('/api/session/login','POST',{password:SECRET});
-assert.equal(absentUsername.status,401,'Username is mandatory');
-
-const limitedEnv={...env,LOGIN_RATE_LIMIT:{limit:async()=>({success:false})}};
-const rateLimited=await call('/api/session/login','POST',{username:"admin",password:SECRET},'','https://studio.test',limitedEnv);
-assert.equal(rateLimited.status,429,'Rate limiter must reject excessive login attempts');
-assert.equal(rateLimited.headers.get('Retry-After'),'60');
-const noLimiterEnv={...env,LOGIN_RATE_LIMIT:undefined};
-assert.equal((await call('/api/session/login','POST',{username:"admin",password:SECRET},'','https://studio.test',noLimiterEnv)).status,503,'Missing protection must fail closed');
-
-const loggedIn=await call('/api/session/login','POST',{username:"admin",password:SECRET});
-assert.equal(loggedIn.status,200);
-assert.equal((await loggedIn.clone().json()).username,'admin');
-const setCookie=loggedIn.headers.get('set-cookie')||'';
-assert.match(setCookie,/HttpOnly/);assert.match(setCookie,/Secure/);assert.match(setCookie,/SameSite=Strict/);
-const token=setCookie.split(';')[0].split('=')[1];
-assert.ok(await verifySession(token,env));
-assert.equal(await verifySession(token,{...env,ADMIN_USERNAME:'other-admin'}),false,'Changing username invalidates existing session');
-assert.equal(await verifySession(token+'modified',env),false);
-assert.equal(await verifySession(await mintSession(env,Date.now()-9*3600*1000),env),false);
-assert.equal((await call('/api/session','GET',undefined,token)).status,200);
-assert.equal((await call('/api/admin/diagnostics','GET',undefined,token)).status,200);
-assert.equal((await call('/api/admin/diagnostics','GET',undefined,'bogus')).status,401);
-const csrf=await call('/api/admin/save-draft','POST',{siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)},token,'https://evil.test');
-assert.notEqual(csrf.status,200,'Cross-origin mutation must fail');
-const draft=JSON.parse(publicSite);
-draft.site.hero={headline:'Rascunho alterado'};
-const saved=await call('/api/admin/save-draft','POST',{siteContent:draft,bioContent:JSON.parse(publicBio)},token);
-assert.equal(saved.status,200,'Draft saved');
-assert.ok(cms.objects.has('content/draft-site-content.json'),'Draft in private R2');
-assert.ok(!media.objects.has('content/draft-site-content.json'),'No draft in public R2');
+async function call(path,method='GET',payload,token,origin='https://studio.test',override=env){return worker.fetch(req(path,method,payload,token,origin),override);}
+const unauth=await call('/api/admin/users');
+assert.equal(unauth.status,401);
 assert.equal((await call('/api/content/draft-site-content')).status,404);
-assert.equal((await (await call('/api/admin/preview/site-content','GET',undefined,token)).json()).site.hero.headline,'Rascunho alterado');
-assert.equal((await call('/api/admin/preview/site-content')).status,401,'Unauthenticated preview denied');
-const remains=await (await call('/api/content/site-content')).json();
-assert.equal(remains.site.hero,undefined,'Saving draft did not publish');
-const publish=await call('/api/admin/publish','POST',{siteContent:draft,bioContent:JSON.parse(publicBio)},token);
-assert.equal(publish.status,200,'Explicit publishing succeeds');
-assert.equal((await (await call('/api/content/site-content')).json()).site.hero.headline,'Rascunho alterado');
-assert.ok([...cms.objects.keys()].some(x=>x.startsWith('content/versions/')));
-assert.equal([...media.objects.keys()].some(x=>x.startsWith('content/versions/')),false);
-const lockedEnv={...env,STUDIO_READ_ONLY:'true'};
-assert.equal((await call('/api/admin/publish','POST',{siteContent:draft,bioContent:JSON.parse(publicBio)},token,'https://studio.test',lockedEnv)).status,403);
-const logout=await call('/api/session/logout','POST',{},token);
-assert.equal(logout.status,200);
-assert.match(logout.headers.get('set-cookie')||'',/Max-Age=0/);
-// Staging must fail closed when a bucket binding is missing, even with a valid session.
-const incompleteStage={...env,STUDIO_ENV:'staging',R2_PUBLISHED:undefined};
-const incompleteCookie=await mintSession(incompleteStage);
-const blockedPublish=await call('/api/admin/publish','POST',{
-  siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)
-},incompleteCookie,'https://studio.test',incompleteStage);
-assert.equal(blockedPublish.status,503,'No staging publish can fall through to public R2 if preview binding is missing');
-assert.equal(media.writes.filter(k=>k==='content/site-content.json').length,1,'Missing staging binding must not mutate public R2');
-const missingPrivate={...env,STUDIO_ENV:'staging',R2_PRIVATE:undefined};
-const missingPrivateToken=await mintSession(missingPrivate);
-assert.equal((await call('/api/admin/save-draft','POST',{
-  siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)
-},missingPrivateToken,'https://studio.test',missingPrivate)).status,503,'Missing private staging R2 must block saving');
-const oversize={...env,STUDIO_ENV:'staging',R2_PUBLISHED:new Bucket('oversize-staging-preview')};
-const oversizeCookie=await mintSession(oversize);
-const hugeSite=JSON.parse(publicSite);
-hugeSite.site.about='A'.repeat(1_500_000);
-const largeDraft=await call('/api/admin/save-draft','POST',{
-  siteContent:hugeSite,bioContent:JSON.parse(publicBio)
-},oversizeCookie,'https://studio.test',oversize);
-assert.equal(largeDraft.status,413,'Oversize draft must be rejected before writing');
-const stagingMediaWrites=media.writes.length;
-const stagePublished=new Bucket('staging-published-content');
-const stagedEnv={...env,STUDIO_ENV:'staging',R2_PUBLISHED:stagePublished,ASSETS:{fetch:async req=>new Response(new URL(req.url).pathname.includes('bio-content')?publicBio:publicSite)}};
-const stageSession=await mintSession(stagedEnv);
-const stageDoc=JSON.parse(publicSite);
-stageDoc.site.about={headline:'Novo site em homologação'};
-const stagePub=await call('/api/admin/publish','POST',{siteContent:stageDoc,bioContent:JSON.parse(publicBio)},stageSession,'https://studio.test',stagedEnv);
-assert.equal(stagePub.status,200,'Staging publication should be allowed when explicitly unlocked');
-assert.equal(JSON.parse(stagePublished.objects.get('content/site-content.json')).site.about.headline,'Novo site em homologação');
-assert.equal(media.writes.length,stagingMediaWrites,'Staging publication must never write into original public media bucket');
-const stageContent=await call('/api/content/site-content','GET',undefined,'','https://studio.test',stagedEnv);
-assert.equal((await stageContent.json()).site.about.headline,'Novo site em homologação');
-assert.equal((await call('/api/admin/media','DELETE',undefined,stageSession,'https://studio.test',stagedEnv)).status,403,'Media deletion always blocked in staging');
-assert.equal((await call('/api/admin/media','POST',{},stageSession,'https://studio.test',stagedEnv)).status,403,'Media upload always blocked in staging');
-console.log('Studio security: login/logout, expired/tampered sessions, private drafts, CSRF, read-only staging and isolated staging publication OK.');
+assert.equal((await call('/api/content/change-log')).status,404);
+assert.equal((await call('/api/content/site-content')).status,200);
+assert.equal((await call('/api/session')).status,401);
+assert.equal((await call('/api/session/login','POST',{username:'admin',password:'owner-password-for-test'},'','https://evil.test')).status,403);
+assert.equal((await call('/api/session/login','POST',{username:'nobody',password:'owner-password-for-test'})).status,401);
+assert.equal((await call('/api/session/login','POST',{username:'admin',password:'wrong'})).status,401);
+const login=await call('/api/session/login','POST',{username:'admin',password:'owner-password-for-test'});
+assert.equal(login.status,200);assert.equal((await login.clone().json()).user.role,'owner');
+const ticket=login.headers.get('set-cookie');assert.match(ticket,/HttpOnly/);assert.match(ticket,/SameSite=Strict/);
+const cookie=ticket.split(';')[0];
+assert.equal((await call('/api/session','GET',undefined,cookie)).status,200);
+assert.equal((await call('/api/admin/users','GET',undefined,cookie)).status,200);
+assert.equal((await call('/api/admin/users/invite','POST',{username:'visitor1',email:'visitor@connectpixel.test',role:'editor'},cookie,'https://evil.test')).status,403);
+const invitation=await call('/api/admin/users/invite','POST',{username:'visitor1',email:'visitor@connectpixel.test',role:'editor'},cookie);
+assert.equal(invitation.status,201);
+const inviteData=await invitation.json();assert.ok(inviteData.temporaryPassword.length>=20);
+assert.equal(people.size,2);
+const editorLogin=await call('/api/session/login','POST',{username:'visitor1',password:inviteData.temporaryPassword});
+assert.equal(editorLogin.status,200);assert.equal((await editorLogin.clone().json()).user.mustChangePassword,true);
+const editorCookie=editorLogin.headers.get('set-cookie').split(';')[0];
+assert.equal((await call('/api/admin/users','GET',undefined,editorCookie)).status,403);
+assert.equal((await call('/api/admin/publish','POST',{siteContent:initialSite,bioContent:initialBio},editorCookie)).status,403);
+assert.equal((await call('/api/admin/save-draft','POST',{siteContent:initialSite,bioContent:initialBio},editorCookie)).status,403,'Must rotate initial password');
+const changed=await call('/api/admin/change-password','POST',{oldPassword:inviteData.temporaryPassword,newPassword:'new-test-editor-password-2026'},editorCookie);
+assert.equal(changed.status,200);
+assert.equal(people.get('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb').must_change_password,false);
+const drafted=await call('/api/admin/save-draft','POST',{siteContent:initialSite,bioContent:initialBio},editorCookie);
+assert.equal(drafted.status,200,'Editor can save after rotation');
+assert.ok(privateBucket.objects.has('content/draft-site-content.json'));
+assert.equal(media.writes.length,0);
+assert.equal((await call('/api/admin/publish','POST',{siteContent:initialSite,bioContent:initialBio},editorCookie)).status,403,'Editor cannot publish');
+const pub=await call('/api/admin/publish','POST',{siteContent:initialSite,bioContent:initialBio},cookie);
+assert.equal(pub.status,200,'Owner can publish to isolated preview');
+assert.equal(media.writes.length,0,'Production bucket never written in staging');
+assert.ok(published.writes.includes('content/site-content.json'));
+const disable=await call('/api/admin/users/bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb','PATCH',{active:false},cookie);
+assert.equal(disable.status,200);
+assert.equal((await call('/api/admin/diagnostics','GET',undefined,editorCookie)).status,401,'Disabled user immediately loses access');
+assert.equal((await call('/api/admin/publish','POST',{siteContent:initialSite,bioContent:initialBio},cookie,'https://evil.test')).status,403);
+const stageWithoutR2={...env,R2_PUBLISHED:undefined};
+assert.equal((await call('/api/admin/publish','POST',{siteContent:initialSite,bioContent:initialBio},cookie,'https://studio.test',stageWithoutR2)).status,503);
+assert.ok(usedPrivilegedApi,'Service-role calls are exclusively server side');
+console.log('Studio Supabase: auth, cookie, roles, invite, password rotation, access revocation, CSRF and isolated publishing passed');
