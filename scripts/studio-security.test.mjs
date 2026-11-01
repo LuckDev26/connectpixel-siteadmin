@@ -100,7 +100,7 @@ const missingPrivateToken=await mintSession(missingPrivate);
 assert.equal((await call('/api/admin/save-draft','POST',{
   siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)
 },missingPrivateToken,'https://studio.test',missingPrivate)).status,503,'Missing private staging R2 must block saving');
-const oversize={...env,STUDIO_ENV:'staging'};
+const oversize={...env,STUDIO_ENV:'staging',R2_PUBLISHED:new Bucket('oversize-staging-preview')};
 const oversizeCookie=await mintSession(oversize);
 const hugeSite=JSON.parse(publicSite);
 hugeSite.site.about='A'.repeat(1_500_000);
