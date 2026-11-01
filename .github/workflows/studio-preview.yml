@@ -37,9 +37,10 @@ jobs:
           grep -q 'binding = "R2_BUCKET"' wrangler.toml
           grep -q 'name = "LOGIN_RATE_LIMIT"' wrangler.toml
       - name: Deploy to new Worker only, never to existing siteadmin or domain
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          wranglerVersion: "4.156.0"
           command: deploy --name connectpixel-studio-staging
       - name: Smoke-test staging HTTP routing and draft privacy
         run: |
