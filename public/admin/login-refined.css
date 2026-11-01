@@ -165,3 +165,121 @@ body:not(.logged){background:#e5efea!important;}
  .login .login-card{margin:10px auto 8px!important;}
  .login-assurance{margin-top:16px!important;}
 }
+
+
+/* ConnectPixel official brand correction — 2026-11-01.
+   Uses the exact transparent wordmark supplied by the agency. */
+:root {
+ --cp-brand-slate:#4c6971;
+ --cp-paper:#f7faf8;
+ --cp-ink:#203d3b;
+}
+body:not(.logged) {background:var(--cp-paper)!important;}
+body:not(.logged) .login {
+ background:
+   radial-gradient(ellipse 42% 55% at 0% 0%, rgba(174,211,203,.26), transparent 100%),
+   radial-gradient(ellipse 32% 36% at 98% 90%, rgba(167,217,205,.19), transparent 100%),
+   var(--cp-paper)!important;
+}
+body:not(.logged) .login-shell {
+ background:#fff!important;
+ border:1px solid rgba(79,112,109,.12)!important;
+ box-shadow:0 28px 75px rgba(30,65,60,.14),0 3px 12px rgba(42,76,65,.04)!important;
+ border-radius:32px!important;
+}
+body:not(.logged) .login-story {
+ background:
+   radial-gradient(ellipse 100% 55% at 100% 100%,rgba(144,193,185,.10),transparent 78%),
+   var(--cp-brand-slate)!important;
+ border:0!important;
+}
+body:not(.logged) .login-story::before {border-color:rgba(255,255,255,.075)!important;}
+body:not(.logged) .login-story::after {opacity:.35;}
+body:not(.logged) .login-auth {background:#fff!important;}
+body:not(.logged) .login-story-body > p {color:rgba(255,255,255,.83)!important;}
+body:not(.logged) .login-story-body h1 {color:#fff!important;}
+body:not(.logged) .login-story-body h1 span {
+ background:linear-gradient(108deg,#d3ff6b,#6de4c4)!important;
+ -webkit-background-clip:text!important;
+ background-clip:text!important;
+}
+body:not(.logged) .studio-official-logo {
+ width:min(302px,83%)!important;
+ height:auto!important;
+ max-height:60px!important;
+ aspect-ratio:790/122;
+ object-fit:contain!important;
+ object-position:left center!important;
+ filter:none!important;
+}
+body:not(.logged) .login-auth-header {justify-content:flex-end;}
+body:not(.logged) .login .login-card h2 {color:var(--cp-ink)!important;}
+body:not(.logged) .login-description {color:#667b76!important;}
+body:not(.logged) .login .login-password-control input {
+ background:#fff!important;
+ border-color:#dce6e1!important;
+ color:#203d3b!important;
+}
+body:not(.logged) .login .login-password-control input:focus {
+ border-color:#6fa99b!important;
+ box-shadow:0 0 0 4px rgba(83,175,149,.105)!important;
+}
+body:not(.logged) .login-submit {background:linear-gradient(102deg,#d3ff6b 0%,#95edb0 52%,#68ddca 100%)!important;}
+body:not(.logged) .login-assurance {color:#6c837b!important;}
+@media(max-width:900px){
+ body:not(.logged) .login {
+  padding:clamp(12px,4vw,25px)!important;
+  align-items:center!important;
+ }
+ body:not(.logged) .login-shell {
+  background:#fff!important;
+  border-radius:26px!important;
+  max-width:470px!important;
+  overflow:hidden!important;
+ }
+ body:not(.logged) .login-auth {
+  padding:0 clamp(20px,5vw,28px) 28px!important;
+  display:block!important;
+  background:#fff!important;
+  min-height:0!important;
+ }
+ body:not(.logged) .login-auth-header {
+  background:var(--cp-brand-slate)!important;
+  margin:0 calc(-1 * clamp(20px,5vw,28px)) 0!important;
+  padding:25px clamp(20px,5vw,28px)!important;
+  min-height:105px!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+ }
+ body:not(.logged) .login-mobile-brand {
+  width:min(230px,61vw)!important;
+  display:flex!important;
+  align-items:center!important;
+  margin:0!important;
+ }
+ body:not(.logged) .login-mobile-brand img {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  max-height:44px!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+ }
+ body:not(.logged) .login-back-link {color:#e7f6ef!important;white-space:nowrap;}
+ body:not(.logged) .login .login-card {
+  margin:28px auto 4px!important;
+  padding:0!important;
+  max-width:none!important;
+ }
+ body:not(.logged) .login .login-card h2 {font-size:clamp(1.95rem,7.4vw,2.55rem)!important;}
+ body:not(.logged) .login-kicker {color:#527f77!important;}
+ body:not(.logged) .login-description {margin-bottom:25px!important;}
+ body:not(.logged) .login-assurance {margin-top:22px!important;}
+}
+@media(max-width:370px){
+ body:not(.logged) .login-shell {border-radius:21px!important;}
+ body:not(.logged) .login-auth-header {min-height:90px!important;padding-top:19px!important;padding-bottom:19px!important;}
+ body:not(.logged) .login-mobile-brand{width:min(190px,57vw)!important;}
+ body:not(.logged) .login .login-card{margin:21px auto 4px!important;}
+}
