@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   deploy-staging:
-    name: Deploy isolated read-only Worker
+    name: Deploy isolated CMS staging Worker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,13 +26,16 @@ jobs:
           node scripts/studio-security.test.mjs
           node scripts/studio-ui.test.mjs
           node scripts/portfolio-migration.test.mjs
-      - name: Verify read-only staging and private R2 binding
+      - name: Verify isolated CMS staging and R2 bindings
         run: |
-          grep -q 'STUDIO_READ_ONLY = "true"' wrangler.toml
+          grep -q 'STUDIO_ENV = "staging"' wrangler.toml
+          grep -q 'STUDIO_READ_ONLY = "false"' wrangler.toml
           grep -q 'binding = "R2_PRIVATE"' wrangler.toml
           grep -q 'bucket_name = "connectpixel-cms-private"' wrangler.toml
           grep -q 'binding = "R2_PUBLISHED"' wrangler.toml
           grep -q 'bucket_name = "connectpixel-studio-preview"' wrangler.toml
+          grep -q 'binding = "R2_BUCKET"' wrangler.toml
+          grep -q 'name = "LOGIN_RATE_LIMIT"' wrangler.toml
       - name: Deploy to new Worker only, never to existing siteadmin or domain
         uses: cloudflare/wrangler-action@v3
         with:
