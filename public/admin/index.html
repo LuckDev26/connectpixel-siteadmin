@@ -402,25 +402,23 @@ label{color:#c9d9e6!important}
 </style>
 <link rel="stylesheet" href="/admin/studio.css">
 <link rel="stylesheet" href="/admin/studio-redesign.css">
+<link rel="stylesheet" href="/admin/login-refined.css">
 </head>
 <body class="locked">
 <div class="login" id="studioLoginScreen">
   <div class="login-shell">
-    <section class="login-story" aria-label="Apresentação do ConnectPixel Studio">
+    <section class="login-story" aria-label="ConnectPixel">
       <div class="login-story-top">
         <div class="studio-product-lockup">
-          <img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'">
-          <div><strong>ConnectPixel</strong><span>STUDIO</span></div>
+          <img class="studio-official-logo" src="/assets/logo-horizontal.png" alt="ConnectPixel" onerror="this.src='/assets/logo-icon.png'">
         </div>
-        <span class="studio-environment"><span aria-hidden="true"></span> Homologação</span>
       </div>
       <div class="login-story-body">
-        <div class="studio-story-eyebrow"><span class="studio-eyebrow-rule"></span> SEU ESPAÇO DE CRIAÇÃO</div>
-        <h1>O seu site.<br><span>Nas suas mãos.</span></h1>
-        <p>Um espaço para cuidar da presença digital da ConnectPixel com a atenção que cada detalhe merece.</p>
+        <h1>Seu site, sob <span>seu controle.</span></h1>
+        <p>Organize os conteúdos, apresente seus projetos e mantenha cada página da ConnectPixel atualizada em um único painel.</p>
         <div class="studio-story-preview" aria-hidden="true">
           <div class="studio-preview-head">
-            <span class="studio-preview-icon"><img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'"></span>
+            <span class="studio-preview-icon"><span class="studio-preview-logo-square"></span></span>
             <span class="studio-preview-lines"><i></i><i></i></span>
             <span class="studio-preview-dots"><i></i><i></i><i></i></span>
           </div>
@@ -433,44 +431,40 @@ label{color:#c9d9e6!important}
               <div class="studio-preview-cards"><i></i><i></i><i></i></div>
             </div>
           </div>
-          <div class="studio-preview-floating">
-            <span class="studio-preview-floating-mark">✓</span>
-            <div><strong>Organização visual</strong><small>Site, portfólio e conteúdos</small></div>
-          </div>
         </div>
       </div>
-      <div class="login-story-footer"><span>CONNECTPIXEL STUDIO</span><span>DESENVOLVIDO PARA SUA AGÊNCIA</span></div>
     </section>
     <section class="login-auth" aria-labelledby="studioLoginTitle">
-      <div class="login-auth-header"><div class="login-mobile-brand"><img src="/bio/assets/logo-icon.png" alt="" onerror="this.src='/logo.png'"><span>ConnectPixel <strong>Studio</strong></span></div><span class="login-auth-ambient"><span></span> ÁREA ADMINISTRATIVA</span><a href="/" class="login-back-link" aria-label="Visitar o site da ConnectPixel">Ver site <span aria-hidden="true">↗</span></a></div>
-      <div class="login-card">
-        
-        
-        <p class="login-kicker">BEM-VINDO DE VOLTA</p>
-        <h2 id="studioLoginTitle">Acesse seu painel<span>.</span></h2>
-        <p class="login-description">Acesse seu espaço para gerenciar os conteúdos da ConnectPixel.</p>
-        <form id="studioLoginForm" novalidate>
-        <div class="login-field-group">
-          <div class="login-field-heading"><label for="loginUsername">Usuário</label></div>
-          <div class="login-password-control login-username-control">
-            <svg class="login-input-lock" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
-            <input id="loginUsername" name="username" type="text" inputmode="text" placeholder="Digite seu usuário" autocomplete="username" autocorrect="off" autocapitalize="none" spellcheck="false" maxlength="80" required aria-describedby="loginError">
-          </div>
+      <div class="login-auth-header">
+        <div class="login-mobile-brand">
+          <img src="/assets/logo-horizontal.png" alt="ConnectPixel" onerror="this.src='/assets/logo-icon.png'">
         </div>
-          <div class="login-field-heading"><label for="loginToken">Senha</label><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Acesso protegido</span></div>
+        <a href="/" class="login-back-link">Visitar o site <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="login-card">
+        <p class="login-kicker">PAINEL ADMINISTRATIVO</p>
+        <h2 id="studioLoginTitle">Bem-vindo de volta<span>.</span></h2>
+        <p class="login-description">Entre com seu usuário e senha para continuar.</p>
+        <form id="studioLoginForm" novalidate>
+          <div class="login-field-group">
+            <div class="login-field-heading"><label for="loginUsername">Usuário ou e-mail</label></div>
+            <div class="login-password-control login-username-control">
+              <svg class="login-input-lock" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
+              <input id="loginUsername" name="username" type="text" inputmode="email" placeholder="Seu usuário ou e-mail" autocomplete="username" autocorrect="off" autocapitalize="none" spellcheck="false" maxlength="254" required aria-describedby="loginError">
+            </div>
+          </div>
+          <div class="login-field-heading"><label for="loginToken">Senha</label></div>
           <div class="login-password-control">
-            <svg class="login-input-lock" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
-            <input id="loginToken" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="loginHelp loginError" maxlength="4096">
-            <button type="button" id="studioPasswordToggle" class="login-password-toggle" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.7-7 10-7 10 7 10 7-3.7 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            <svg class="login-input-lock" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+            <input id="loginToken" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="loginError" maxlength="4096">
+            <button type="button" id="studioPasswordToggle" class="login-password-toggle" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.7-7 10-7 10 7-3.7 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
           </div>
           <p class="login-caps" id="loginCaps" hidden>Caps Lock ativado. Confira antes de entrar.</p>
-          <p id="loginHelp" class="login-field-help">Acesso exclusivo da equipe autorizada.</p>
-          <button type="submit" class="login-submit" id="loginBtn"><span class="login-submit-label">Entrar no Studio</span><span class="login-submit-icon" aria-hidden="true">→</span><span class="login-submit-spinner" aria-hidden="true"></span></button>
+          <button type="submit" class="login-submit" id="loginBtn"><span class="login-submit-label">Acessar painel</span><span class="login-submit-icon" aria-hidden="true">→</span><span class="login-submit-spinner" aria-hidden="true"></span></button>
           <p class="login-message" id="loginError" role="alert" aria-live="polite" hidden></p>
         </form>
-        <div class="login-assurance"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m12 22 7-4V7l-7-4-7 4v11l7 4Z"/><path d="m9 12 2 2 4-4"/></svg><span>Seus dados de acesso são protegidos. Nenhuma senha fica salva no navegador.</span></div>
+        <div class="login-assurance"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m12 22 7-4V7l-7-4-7 4v11l7 4Z"/><path d="m9 12 2 2 4-4"/></svg><span>Acesso individual protegido. As senhas são gerenciadas pelo Supabase.</span></div>
       </div>
-      <div class="login-auth-footer"><span>© ConnectPixel Studio</span><span>Ambiente de gerenciamento</span></div>
     </section>
   </div>
 </div>
@@ -528,7 +522,15 @@ label{color:#c9d9e6!important}
     <div id="changeLogList" class="log-list"></div>
   </div>
 </section>
- <section id="config" class="section"><div class="card"><h3>Segurança da sessão</h3><p class="small">Sua senha não é armazenada no navegador. A sessão utiliza cookie protegido, válido por até 8 horas. Para trocar a senha, altere o Secret ADMIN_TOKEN na Cloudflare e entre novamente.</p></div></section>
+ <section id="users" class="section">
+ <div class="card studio-users-card"><div class="item-head"><div><h3>Usuários e permissões</h3><p class="small">Crie acessos individuais e controle o que cada membro pode fazer.</p></div><button class="btn ghost" type="button" onclick="cpStudioRefreshUsers()">Atualizar</button></div>
+ <div class="studio-invite-grid"><div><label for="studioNewUsername">Nome de usuário</label><input id="studioNewUsername" placeholder="ex: editor.maria" autocomplete="off"></div><div><label for="studioNewEmail">E-mail</label><input type="email" id="studioNewEmail" placeholder="nome@empresa.com" autocomplete="off"></div><div><label for="studioNewRole">Perfil de acesso</label><select id="studioNewRole"><option value="viewer">Visualizador</option><option value="editor">Editor</option><option value="admin">Administrador</option></select></div><div class="studio-invite-button"><button class="btn primary" type="button" onclick="cpStudioInviteUser()">Adicionar usuário</button></div></div>
+ <p class="small">Uma senha provisória é exibida apenas uma vez, após criar o usuário. O novo membro deverá alterá-la no primeiro acesso.</p><p class="status" id="studioUsersStatus" aria-live="polite"></p>
+ <div id="studioTemporaryPassword" class="studio-temporary-password" hidden></div>
+ <div id="studioUsersList" class="studio-users-list" aria-live="polite"></div></div>
+</section>
+<section id="config" class="section"><div class="card"><h3>Minha conta</h3><p class="small">Seu acesso é individual e protegido pelo Supabase. Altere sua senha sempre que necessário.</p><button type="button" class="btn ghost" onclick="cpStudioRequirePasswordChange()">Alterar senha</button></div></section>
+ <dialog id="studioPasswordDialog" class="studio-dialog" aria-labelledby="studioPasswordDialogTitle"><form id="studioPasswordForm" method="dialog"><h3 id="studioPasswordDialogTitle">Atualizar minha senha</h3><p class="small">Para proteger sua conta, confirme a senha atual e escolha uma nova senha com pelo menos 12 caracteres.</p><label for="studioCurrentPassword">Senha atual</label><input type="password" id="studioCurrentPassword" autocomplete="current-password" required><label for="studioNextPassword">Nova senha</label><input type="password" id="studioNextPassword" autocomplete="new-password" minlength="12" required><p id="studioPasswordStatus" class="status" role="alert"></p><button type="submit" class="btn primary">Salvar nova senha</button></form></dialog>
  <p class="status" id="status"></p>
 </main></div><div class="toast" id="toast"></div>
 <script>
@@ -743,9 +745,13 @@ async function login(){
       message.hidden=false;input.setAttribute("aria-invalid","true");
       input.focus();input.select();return;
     }
+    const payload=await response.json();
     input.value="";
+    window.cpStudioSessionUser=payload.user;
     document.body.classList.add("logged");document.body.classList.remove("locked");
     document.title="ConnectPixel Studio | Painel";
+    if(payload.user?.mustChangePassword){window.cpStudioRequirePasswordChange?.();return;}
+    window.cpStudioUserReady?.(payload.user);
     await loadAll();
   }catch(err){
     message.textContent="Não foi possível conectar. Verifique sua internet e tente novamente.";
@@ -837,7 +843,7 @@ async function backup(){
 function downloadJson(t){let d=t==="site"?siteData:bioData,a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:"application/json"}));a.download="connectpixel-"+t+".json";a.click()}
 (async()=>{try{
   const res=await fetch("/api/session",{cache:"no-store"});
-  if(res.ok){document.body.classList.add("logged");document.body.classList.remove("locked");await loadAll();}
+  if(res.ok){const payload=await res.json();window.cpStudioSessionUser=payload.user;document.body.classList.add("logged");document.body.classList.remove("locked");if(payload.user?.mustChangePassword){window.cpStudioRequirePasswordChange?.();return;}window.cpStudioUserReady?.(payload.user);await loadAll();}
 }catch(e){console.warn("Sessão não recuperada",e)}})();
 </script>
 <script>
@@ -882,4 +888,5 @@ document.addEventListener("input",e=>{if(["uploadContentType","uploadSegment","u
 
 <script src="/admin/studio.js" defer></script>
 <script src="/admin/login-experience.js" defer></script>
+<script src="/admin/studio-users.js" defer></script>
 </body></html>
