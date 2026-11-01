@@ -331,3 +331,110 @@ body:not(.logged) .login-assurance {color:#6B6B67!important;}
  body:not(.logged) .login-auth {background:var(--cp-offwhite)!important;}
  body:not(.logged) .login-auth-header {background:var(--cp-graphite)!important;}
 }
+
+
+/* ConnectPixel Studio — contraste e motion refinados (sem excessos). */
+body:not(.logged) .login {
+  background:
+    radial-gradient(ellipse 60% 70% at 8% 8%,rgba(72,229,194,.105),transparent 70%),
+    radial-gradient(ellipse 48% 58% at 95% 90%,rgba(194,255,105,.07),transparent 73%),
+    #292c2b!important;
+}
+body:not(.logged) .login-shell {
+  border:1px solid rgba(255,255,255,.22)!important;
+  box-shadow:0 45px 100px rgba(0,0,0,.36),0 7px 25px rgba(0,0,0,.18)!important;
+  animation:cp-card-appear .65s cubic-bezier(.2,.8,.2,1) both;
+}
+body:not(.logged) .login-story {
+  background:
+    radial-gradient(ellipse 60% 42% at 80% 87%,rgba(72,229,194,.11),transparent 85%),
+    linear-gradient(145deg,#383b3a,#303333 70%,#343a37)!important;
+}
+body:not(.logged) .login-story-body h1 {
+  color:#fff!important;
+  text-shadow:0 2px 18px rgba(0,0,0,.1);
+}
+body:not(.logged) .login-story-body h1 span {
+  background:linear-gradient(105deg,#ddff8a 0%,#b8ff88 38%,#48e5c2 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+}
+body:not(.logged) .login-story-body>p {color:#e4ebe6!important;}
+body:not(.logged) .login-kicker {
+  color:#236f5b!important;font-weight:850!important;letter-spacing:.17em!important;
+}
+body:not(.logged) .login-description {color:#565b59!important;}
+body:not(.logged) .login .login-field-heading label {color:#292d2c!important;}
+body:not(.logged) .login .login-password-control input {
+  border:1.5px solid #bfc9c5!important;
+  background:#fff!important;color:#262c29!important;
+  box-shadow:0 2px 8px rgba(23,40,32,.025)!important;
+  transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease!important;
+}
+body:not(.logged) .login .login-password-control:focus-within input {
+  border-color:#258c74!important;
+  box-shadow:0 0 0 4px rgba(72,229,194,.17),0 7px 19px rgba(32,93,79,.08)!important;
+}
+body:not(.logged) .login .login-password-control:focus-within .login-input-lock {
+  color:#188d73!important;transform:translateY(-1px);
+}
+body:not(.logged) .login-input-lock {transition:transform .2s ease,color .2s ease;}
+body:not(.logged) .login-password-toggle {transition:background .2s,transform .2s,color .2s!important;}
+body:not(.logged) .login-password-toggle:hover {transform:translateY(-50%) scale(1.07)!important;}
+body:not(.logged) .login-submit {
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(104deg,#d5ff73,#a5f69c 43%,#48e5c2 100%)!important;
+  box-shadow:0 10px 22px rgba(36,141,114,.19),inset 0 1px 0 rgba(255,255,255,.55)!important;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,filter .22s ease!important;
+}
+body:not(.logged) .login-submit::after {
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent 28%,rgba(255,255,255,.30) 49%,transparent 70%);
+  transform:translateX(-140%);transition:transform .55s ease;
+}
+body:not(.logged) .login-submit:hover:not(:disabled) {
+  transform:translateY(-3px)!important;
+  box-shadow:0 18px 30px rgba(36,141,114,.24),inset 0 1px 0 rgba(255,255,255,.6)!important;
+}
+body:not(.logged) .login-submit:hover:not(:disabled)::after {transform:translateX(140%);}
+body:not(.logged) .login-submit:active:not(:disabled) {transform:translateY(0) scale(.99)!important;}
+body:not(.logged) .login-back-link {
+  color:#3e5750!important;transition:color .2s,transform .2s!important;
+}
+body:not(.logged) .login-back-link:hover {color:#137f65!important;transform:translateX(2px);}
+body:not(.logged) .login-assurance {color:#535e59!important;}
+body:not(.logged) .studio-story-preview {
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease!important;
+  box-shadow:0 24px 54px rgba(0,0,0,.24)!important;
+}
+body:not(.logged) .studio-story-preview:hover {
+  transform:perspective(900px) rotateY(-1deg) rotateX(1deg) translateY(-7px)!important;
+  box-shadow:0 37px 70px rgba(0,0,0,.26)!important;
+}
+body:not(.logged) .login-story-body h1,
+body:not(.logged) .login-story-body>p,
+body:not(.logged) .login-card {
+  animation:cp-rise-in .7s cubic-bezier(.2,.8,.2,1) both;
+}
+body:not(.logged) .login-story-body>p {animation-delay:.09s;}
+body:not(.logged) .login-card {animation-delay:.13s;}
+body:not(.logged) .login-message:not([hidden]) {animation:cp-error-in .25s ease both;}
+@keyframes cp-card-appear {from{opacity:0;transform:translateY(15px) scale(.986)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cp-rise-in {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cp-error-in {from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px) {
+  body:not(.logged) .login-auth-header {background:#333333!important;}
+  body:not(.logged) .login-back-link {color:#f4fff9!important;}
+  body:not(.logged) .login-back-link:hover {color:#b5ffe1!important;}
+  body:not(.logged) .login-shell {box-shadow:0 23px 56px rgba(0,0,0,.30)!important;}
+}
+@media(prefers-reduced-motion:reduce) {
+  body:not(.logged) .login-shell,
+  body:not(.logged) .login-story-body h1,
+  body:not(.logged) .login-story-body>p,
+  body:not(.logged) .login-card,
+  body:not(.logged) .login-message:not([hidden]) {animation:none!important;}
+  body:not(.logged) .login-submit,
+  body:not(.logged) .login-submit::after,
+  body:not(.logged) .studio-story-preview,
+  body:not(.logged) .login .login-password-control input {transition:none!important;}
+}
