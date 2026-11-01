@@ -87,9 +87,30 @@ assert.equal((await call('/api/admin/publish','POST',{siteContent:draft,bioConte
 const logout=await call('/api/session/logout','POST',{},token);
 assert.equal(logout.status,200);
 assert.match(logout.headers.get('set-cookie')||'',/Max-Age=0/);
+// Staging must fail closed when a bucket binding is missing, even with a valid session.
+const incompleteStage={...env,STUDIO_ENV:'staging',R2_PUBLISHED:undefined};
+const incompleteCookie=await mintSession(incompleteStage);
+const blockedPublish=await call('/api/admin/publish','POST',{
+  siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)
+},incompleteCookie,'https://studio.test',incompleteStage);
+assert.equal(blockedPublish.status,503,'No staging publish can fall through to public R2 if preview binding is missing');
+assert.equal(media.writes.filter(k=>k==='content/site-content.json').length,1,'Missing staging binding must not mutate public R2');
+const missingPrivate={...env,STUDIO_ENV:'staging',R2_PRIVATE:undefined};
+const missingPrivateToken=await mintSession(missingPrivate);
+assert.equal((await call('/api/admin/save-draft','POST',{
+  siteContent:JSON.parse(publicSite),bioContent:JSON.parse(publicBio)
+},missingPrivateToken,'https://studio.test',missingPrivate)).status,503,'Missing private staging R2 must block saving');
+const oversize={...env,STUDIO_ENV:'staging'};
+const oversizeCookie=await mintSession(oversize);
+const hugeSite=JSON.parse(publicSite);
+hugeSite.site.about='A'.repeat(1_500_000);
+const largeDraft=await call('/api/admin/save-draft','POST',{
+  siteContent:hugeSite,bioContent:JSON.parse(publicBio)
+},oversizeCookie,'https://studio.test',oversize);
+assert.equal(largeDraft.status,413,'Oversize draft must be rejected before writing');
 const stagingMediaWrites=media.writes.length;
 const stagePublished=new Bucket('staging-published-content');
-const stagedEnv={...env,R2_PUBLISHED:stagePublished,ASSETS:{fetch:async req=>new Response(new URL(req.url).pathname.includes('bio-content')?publicBio:publicSite)}};
+const stagedEnv={...env,STUDIO_ENV:'staging',R2_PUBLISHED:stagePublished,ASSETS:{fetch:async req=>new Response(new URL(req.url).pathname.includes('bio-content')?publicBio:publicSite)}};
 const stageSession=await mintSession(stagedEnv);
 const stageDoc=JSON.parse(publicSite);
 stageDoc.site.about={headline:'Novo site em homologação'};
