@@ -1,4 +1,4 @@
-import {sessionRoute, requireAdmin} from "./studio-security.js";
+import {session as studioSession, authorize as studioAuthorize, users as studioUsers, changePassword as studioChangePassword} from "./studio-supabase-auth.js";
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -33,9 +33,15 @@ export default {
 async function api(req, env, url) {
   const parts = url.pathname.replace(/^\/api\/?/, "").split("/").filter(Boolean);
   const admin = parts[0] === "admin";
-  if (parts[0] === "session") return sessionRoute(req, env, url);
+  if (parts[0] === "session") return studioSession(req, env, url);
+  let actor=null;
   if (admin) {
-    if (!await requireAdmin(req, env)) return json({ok:false,error:"Não autorizado"},401);
+    const auth=await studioAuthorize(req,env,parts);
+    if (!auth.ok) return json({ok:false,error:auth.status===401?"Não autorizado":auth.status===403?"Acesso negado":"Autenticação indisponível"},auth.status);
+    actor=auth.account;
+    if (actor.must_change_password && parts[1] !== "change-password" && parts[1] !== "users" && parts[1] !== "diagnostics") {
+      return json({ok:false,error:"É necessário atualizar a senha provisória antes de usar o painel",requiresPasswordChange:true},403);
+    }
     // Fail closed: staging edits require all isolated buckets, even if a variable
     // is mistakenly changed or removed from the deployment configuration.
     if (!["GET","HEAD"].includes(req.method) && env.STUDIO_ENV === "staging" &&
@@ -47,6 +53,8 @@ async function api(req, env, url) {
     }
   }
 
+  if (admin && parts[1] === "users") return studioUsers(req,env,parts,actor);
+  if (admin && parts[1] === "change-password" && req.method === "POST") return studioChangePassword(req,env,actor);
   if (admin && parts[1] === "diagnostics" && req.method === "GET") return diagnostics(env);
   if (admin && parts[1] === "save-draft" && req.method === "POST") return saveDraft(req, env);
   if (admin && parts[1] === "publish" && req.method === "POST") return publishContent(req, env);
